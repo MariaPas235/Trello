@@ -52,7 +52,6 @@ public class serializator_user {
                 if (userNameFromFile.equals(nameUser) && passwordFromFile.equals(passwordUser)) {
                     result = true;
                 } else {
-                    // Si llegamos aquí, significa que el usuario no fue encontrado
                     System.out.println("Usuario no encontrado");
                 }
             }
