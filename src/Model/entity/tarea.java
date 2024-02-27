@@ -10,6 +10,7 @@ public class tarea {
     private String descripcion;
     private LocalDate fechaInicio;
     private LocalDate fechaLimite;
+
     //private LocalDateTime fechaActual;
 
 

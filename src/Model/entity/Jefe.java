@@ -4,5 +4,23 @@ public class Jefe extends Persona{
     public Jefe() {
         super("","","","");
     }
-    //Metodos que hara el jefe de un proyecto
+    //Funciones que tiene el jefe de un proyecto
+    public void anadirColaboradores(){
+
+    }
+    public void eliminarColaboradores(){
+
+    }
+    public void anadirTarea(){
+
+    }
+    public void asignartarea(){
+
+    }
+    public void borrarTarea(){
+
+    }
+    public void actualizarTarea(){
+
+    }
 }
