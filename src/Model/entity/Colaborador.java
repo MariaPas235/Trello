@@ -5,5 +5,7 @@ public class Colaborador extends Persona{
         super("","","","");
     }
     //Metodos que tendra el colaborador
+    public void actualizarTarea(){
 
+    }
 }
