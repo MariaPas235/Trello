@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 
 
 
-public abstract class Persona {
+public  class Persona {
     protected String nombre;
     protected String usuario;
     protected String contrasena;
@@ -54,9 +54,9 @@ public abstract class Persona {
     public void setMail(String mail) {
         this.mail = mail;
     }
-    public boolean validarCorreo(String mail){
+    public static boolean validarCorreo(String mail){
         boolean result = false;
-        Pattern mailPattern = Pattern.compile("[A-Za-z0-9]+@+(gmail|outlook)\\.(com|es)");
+        Pattern mailPattern = Pattern.compile("[A-Za-z0-9]+@+(gmail|outlook|hotmail)\\.(com|es)");
         Matcher mailMatcher = mailPattern.matcher(mail);
         System.out.println("El mail es: " + mailMatcher.matches());
         if (mailMatcher.matches()) {
@@ -67,7 +67,7 @@ public abstract class Persona {
         return result;
     }
 
-    public boolean validarContrasena(String contrasena){
+    public static boolean validarContrasena(String contrasena){
         boolean result = false;
         Pattern contrasenaPattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!.#_()%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
         Matcher contrasenaMatcher = contrasenaPattern.matcher(contrasena);

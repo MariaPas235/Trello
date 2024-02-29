@@ -6,9 +6,8 @@ int imprimirMenuInicio();
 int leeNumero(String msg);
 String leeString(String msg);
 
-String recogeDatosInicio();
-
-String recogeDatosRegistro();
+void recogeDatosInicio();
+ void recogeDatosRegistro();
 
 
 }
