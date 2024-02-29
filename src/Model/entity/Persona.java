@@ -1,16 +1,18 @@
 package Model.entity;
 
+import serializator.serializator_user;
+
 import java.util.Objects;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 
-
-public  class Persona {
+public class Persona {
     protected String nombre;
     protected String usuario;
     protected String contrasena;
     protected String mail;
+    static serializator.serializator_user serializator_user = new serializator_user();
 
     public Persona(String nombre, String usuario, String contrasena, String mail) {
         this.nombre = nombre;
@@ -20,7 +22,7 @@ public  class Persona {
     }
 
     public Persona() {
-        this("","","","");
+        this("", "", "", "");
     }
 
     public String getNombre() {
@@ -54,25 +56,33 @@ public  class Persona {
     public void setMail(String mail) {
         this.mail = mail;
     }
-    public static boolean validarCorreo(String mail){
+
+    public static boolean validarCorreo(String mail) {
         boolean result = false;
         Pattern mailPattern = Pattern.compile("[A-Za-z0-9]+@+(gmail|outlook|hotmail)\\.(com|es)");
         Matcher mailMatcher = mailPattern.matcher(mail);
-        System.out.println("El mail es: " + mailMatcher.matches());
         if (mailMatcher.matches()) {
+            System.out.println("El mail esta bien escrito");
+        } else {
+            System.out.println("El mail está mal escrito");
+        }
+
+        if (mailMatcher.matches() && !serializator_user.search_mailUser(mail)) {
             System.out.println("El mail es correcto ");
+            result = true;
         } else {
             System.out.println("El mail es incorrecto, escribelo de nuevo");
         }
         return result;
     }
 
-    public static boolean validarContrasena(String contrasena){
+    public static boolean validarContrasena(String contrasena) {
         boolean result = false;
-        Pattern contrasenaPattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!.#_()%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+        Pattern contrasenaPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!.#_()%*?&])[A-Za-z\\d@$!.#_()%*?&]{8,}$");
         Matcher contrasenaMatcher = contrasenaPattern.matcher(contrasena);
         if (contrasenaMatcher.matches()) {
             System.out.println("La contraseña es correcta");
+            result = true;
         } else {
             System.out.println("La contraseña es incorrecta, intentelo de nuevo");
         }
