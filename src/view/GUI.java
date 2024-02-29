@@ -1,7 +1,9 @@
 package view;
 
 import Interface.IGUI;
+import Model.entity.Persona;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GUI implements IGUI {
@@ -37,13 +39,31 @@ public class GUI implements IGUI {
     }
 
     @Override
-    public String recogeDatosInicio() {
-        return null;
+    public void recogeDatosInicio() {
+        String nombreUsuario= leeString("Inserte su usuario");
+        String contrasena= leeString("Inserte su contraseña");
+
     }
 
     @Override
-    public String recogeDatosRegistro() {
-        return null;
+    public void recogeDatosRegistro() {
+
+        String nombrePersona= leeString("Inserte su nombre completo");
+        String nombreUsuario= leeString("Inserte su nombre de usuario");
+        String contrasena= leeString("Inserte su contraseña (Debe tener al menos 8 caracteres, incluyendo 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes -> @$!.#_()%*?& <-)");
+        while (!Persona.validarContrasena(contrasena)){
+            System.out.println("Contraseña incorrecto");
+            contrasena=leeString("Introduce una contraseña correcta");
+        }
+
+        String mail= leeString("Inserte su mail");
+
+        while (!Persona.validarCorreo(mail)){
+            System.out.println("Mail incorrecto");
+            mail=leeString("Introduce tu mail correctamente");
+        }
+    Persona persona = new Persona(nombrePersona,nombreUsuario,contrasena,mail);
+    // nombrearraylist.add(persona)
     }
 
     public int imprimirMenuInicio() {
@@ -70,5 +90,6 @@ public class GUI implements IGUI {
 
         return numero;
     }
+
 }
 
