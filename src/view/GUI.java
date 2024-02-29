@@ -21,7 +21,7 @@ public class GUI {
 
     public int mostrarMenuInicio() {
         System.out.println("1. Registrarse");
-        System.out.println("2. Iniciar sesión");
+        System.out.println("2. Iniciar sesion");
         int opcion = leeNumero("Inserte una opción");
         return opcion;
     }
