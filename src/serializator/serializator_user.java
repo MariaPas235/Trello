@@ -5,19 +5,19 @@ import Model.entity.Persona;
 import java.io.*;
 
 public class serializator_user {
-    String name;
-    String nameUser;
-    String passwordUser;
-    String email;
+    String Nombre;
+    String Usuario;
+    String Contrasena;
+    String mail;
 
     public void serializator_user(Persona persona) throws FileNotFoundException {
         try {
             FileWriter writer = new FileWriter("DatosUsuario.txt", true);
-            nameUser = persona.getnameUser;
-            name = persona.getName;
-            email = persona.getEmail;
-            passwordUser = persona.getPassword;
-            writer.write(name + "\n" + nameUser + "\n" + email + "\n" + passwordUser + "\n");
+            Usuario = persona.getUsuario();
+            Nombre = persona.getNombre();
+            mail = persona.getMail();
+            Contrasena = persona.getContrasena();
+            writer.write(Nombre + "\n" + Usuario + "\n" + mail + "\n" + Contrasena + "\n");
             writer.close();
         } catch (IOException e) {
             System.out.println("Error al guardar datos persona: " + e.getMessage());
@@ -27,9 +27,9 @@ public class serializator_user {
     public void serializator_userName(Persona persona) throws FileNotFoundException {
         try {
             FileWriter writer = new FileWriter("DatosLogin.txt", true);
-            nameUser = persona.getnameUser;
-            passwordUser = persona.getPassword;
-            writer.write(nameUser + "\n" + passwordUser + "\n");
+            Usuario = persona.getUsuario();
+            Contrasena = persona.getContrasena();
+            writer.write(Usuario + "\n" + Contrasena + "\n");
             writer.close();
         } catch (IOException e) {
             System.out.println("Error al guardar login: " + e.getMessage());
