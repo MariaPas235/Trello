@@ -2,13 +2,14 @@ package view;
 
 import Interface.IGUI;
 import Model.entity.Persona;
+import serializator.serializator_user;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class GUI implements IGUI {
     Scanner teclado = new Scanner(System.in);
-
+    serializator_user serializator_user = new serializator_user();
     public void imprimirBienvenida() {
         System.out.println("________                                                                  ___                                 __________                  ___ ___           \n" +
                 "`MMMMMMMb. 68b                                                   68b      `MM                                 MMMMMMMMMM                  `MM `MM           \n" +
@@ -40,13 +41,16 @@ public class GUI implements IGUI {
 
     @Override
     public void recogeDatosInicio() {
-        String nombreUsuario= leeString("Inserte su usuario");
-        String contrasena= leeString("Inserte su contraseña");
-
+        String nombreUsuario;
+        String contrasena;
+       do {
+          nombreUsuario = leeString("Inserte su usuario");
+          contrasena = leeString("Inserte su contraseña");
+       }while(!serializator_user.search_logUser(nombreUsuario, contrasena));
     }
 
     @Override
-    public void recogeDatosRegistro() {
+    public void recogeDatosRegistro() throws FileNotFoundException {
 
         String nombrePersona= leeString("Inserte su nombre completo");
         String nombreUsuario= leeString("Inserte su nombre de usuario");
@@ -63,6 +67,8 @@ public class GUI implements IGUI {
             mail=leeString("Introduce tu mail correctamente");
         }
     Persona persona = new Persona(nombrePersona,nombreUsuario,contrasena,mail);
+    serializator_user.serializator_user(persona);
+    serializator_user.serializator_userName(persona);
     // nombrearraylist.add(persona)
     }
 

@@ -63,4 +63,23 @@ public class serializator_user {
         }
         return result;
     }
+    public boolean search_mailUser(String mailUser) {
+        boolean result = false;
+        try {
+            FileInputStream fileIn = new FileInputStream("DatosUsuario.txt");
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileIn));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.equals(mailUser)) {
+                    result = true;
+                }
+            }
+            bufferedReader.close();
+            fileIn.close();
+
+        } catch (IOException e) {
+            System.out.println("Error al leer: " + e.getMessage());
+        }
+        return result;
+    }
 }
