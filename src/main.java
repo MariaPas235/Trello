@@ -7,7 +7,7 @@ public class main {
     public static void main(String[] args) {
         GUI view = new GUI();
 
-        switch (view.mostrarMenuInicio()){
+        switch (view.imprimirMenuInicio()){
             case 1:
 
 
