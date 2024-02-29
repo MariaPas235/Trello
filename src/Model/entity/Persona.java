@@ -1,6 +1,10 @@
 package Model.entity;
 
 import java.util.Objects;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+
 
 public abstract class Persona {
     protected String nombre;
@@ -49,6 +53,30 @@ public abstract class Persona {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+    public boolean validarCorreo(String mail){
+        boolean result = false;
+        Pattern mailPattern = Pattern.compile("[A-Za-z0-9]+@+(gmail|outlook)\\.(com|es)");
+        Matcher mailMatcher = mailPattern.matcher(mail);
+        System.out.println("El mail es: " + mailMatcher.matches());
+        if (mailMatcher.matches()) {
+            System.out.println("El mail es correcto ");
+        } else {
+            System.out.println("El mail es incorrecto, escribelo de nuevo");
+        }
+        return result;
+    }
+
+    public boolean validarContrasena(String contrasena){
+        boolean result = false;
+        Pattern contrasenaPattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!.#_()%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+        Matcher contrasenaMatcher = contrasenaPattern.matcher(contrasena);
+        if (contrasenaMatcher.matches()) {
+            System.out.println("La contraseña es correcta");
+        } else {
+            System.out.println("La contraseña es incorrecta, intentelo de nuevo");
+        }
+        return result;
     }
 
     @Override
