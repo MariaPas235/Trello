@@ -1,28 +1,31 @@
 package Model.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 
 public class tarea {
     private String nombre;
-    //private  String personaAsignada;
+    private String personaAsignada;
     private String descripcion;
     private LocalDate fechaInicio;
     private LocalDate fechaLimite;
 
-    //private LocalDateTime fechaActual;
+    private LocalDateTime fechaActual;
 
 
-    public tarea(String nombre, String descripcion, LocalDate fechaInicio, LocalDate fechaLimite) {
+    public tarea(String nombre, String personaAsignada, String descripcion, LocalDate fechaInicio, LocalDate fechaLimite, LocalDateTime fechaActual) {
         this.nombre = nombre;
+        this.personaAsignada = personaAsignada;
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
         this.fechaLimite = fechaLimite;
+        this.fechaActual = fechaActual;
     }
 
     public tarea() {
-        //this("","",0,0);
+        this("", "", "", LocalDate.now(), LocalDate.now(), LocalDateTime.now());
     }
 
     public String getNombre() {
@@ -31,6 +34,14 @@ public class tarea {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getPersonaAsignada() {
+        return personaAsignada;
+    }
+
+    public void setPersonaAsignada(String personaAsignada) {
+        this.personaAsignada = personaAsignada;
     }
 
     public String getDescripcion() {
@@ -57,6 +68,14 @@ public class tarea {
         this.fechaLimite = fechaLimite;
     }
 
+    public LocalDateTime getFechaActual() {
+        return fechaActual;
+    }
+
+    public void setFechaActual(LocalDateTime fechaActual) {
+        this.fechaActual = fechaActual;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,9 +84,10 @@ public class tarea {
         return Objects.equals(nombre, tarea.nombre) && Objects.equals(descripcion, tarea.descripcion) && Objects.equals(fechaInicio, tarea.fechaInicio) && Objects.equals(fechaLimite, tarea.fechaLimite);
     }
 
-
     @Override
     public String toString() {
-        return "tarea[" + nombre + descripcion + fechaInicio + fechaLimite + "]";
+        return "tarea[" + nombre + personaAsignada + descripcion + fechaInicio + fechaLimite + fechaActual + "]";
     }
 }
+
+

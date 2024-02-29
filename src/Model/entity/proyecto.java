@@ -1,6 +1,5 @@
 package Model.entity;
 
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -18,7 +17,7 @@ public class proyecto {
     }
 
     public proyecto() {
-        //this("","",0,"");
+        this("", "", LocalDate.now(), "");
     }
 
     public String getNombre() {
@@ -63,6 +62,7 @@ public class proyecto {
 
     @Override
     public String toString() {
-        return "proyecto[" + nombre  + descripcion + fechaCreacion + estado + "]";
+        return "proyecto[" + nombre +  descripcion + fechaCreacion + estado + "]";
     }
 }
+

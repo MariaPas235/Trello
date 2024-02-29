@@ -20,4 +20,7 @@ public class Jefe extends Persona{
     public void borrarTarea(){
 
     }
+    public void actualizarTarea(){
+
+    }
 }
