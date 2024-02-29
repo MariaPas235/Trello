@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class GUI {
     Scanner teclado = new Scanner(System.in);
+
     public String leeString(String msg) {
         String entrada = "";
         do {
@@ -43,3 +44,4 @@ public class GUI {
         return numero;
     }
 }
+
