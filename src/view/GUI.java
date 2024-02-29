@@ -19,7 +19,7 @@ public class GUI {
         return entrada;
     }
 
-    public int mostrarMenuInicio() {
+    public int imprimirMenuInicio() {
         System.out.println("1. Registrarse");
         System.out.println("2. Iniciar sesion");
         int opcion = leeNumero("Inserte una opción");
