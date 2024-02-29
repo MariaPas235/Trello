@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class GUI {
     Scanner teclado = new Scanner(System.in);
 
+    public void imprimirBienvenida() {
+        System.out.println("Bienvenido a nuestro proyecto");
+    }
+
     public String leeString(String msg) {
         String entrada = "";
         do {
