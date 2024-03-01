@@ -11,18 +11,12 @@ public class GUI implements IGUI {
     Scanner teclado = new Scanner(System.in);
     serializator_user serializator_user = new serializator_user();
     public void imprimirBienvenida() {
-        System.out.println("________                                                                  ___                                 __________                  ___ ___           \n" +
-                "`MMMMMMMb. 68b                                                   68b      `MM                                 MMMMMMMMMM                  `MM `MM           \n" +
-                " MM    `Mb Y89                                                   Y89       MM                                 /   MM   \\                   MM  MM           \n" +
-                " MM     MM ___   ____   ___  __   ____    ___   ____   ___  __   ___   ____MM   _____            ___              MM     ___  __   ____    MM  MM   _____   \n" +
-                " MM    .M9 `MM  6MMMMb  `MM 6MMb  `MM(    )M'  6MMMMb  `MM 6MMb  `MM  6MMMMMM  6MMMMMb         6MMMMb             MM     `MM 6MM  6MMMMb   MM  MM  6MMMMMb  \n" +
-                " MMMMMMM(   MM 6M'  `Mb  MMM9 `Mb  `Mb    d'  6M'  `Mb  MMM9 `Mb  MM 6M'  `MM 6M'   `Mb       8M'  `Mb            MM      MM69 \" 6M'  `Mb  MM  MM 6M'   `Mb \n" +
-                " MM    `Mb  MM MM    MM  MM'   MM   YM.  ,P   MM    MM  MM'   MM  MM MM    MM MM     MM           ,oMM            MM      MM'    MM    MM  MM  MM MM     MM \n" +
-                " MM     MM  MM MMMMMMMM  MM    MM    MM  M    MMMMMMMM  MM    MM  MM MM    MM MM     MM       ,6MM9'MM            MM      MM     MMMMMMMM  MM  MM MM     MM \n" +
-                " MM     MM  MM MM        MM    MM    `Mbd'    MM        MM    MM  MM MM    MM MM     MM       MM'   MM            MM      MM     MM        MM  MM MM     MM \n" +
-                " MM    .M9  MM YM    d9  MM    MM     YMP     YM    d9  MM    MM  MM YM.  ,MM YM.   ,M9       MM.  ,MM            MM      MM     YM    d9  MM  MM YM.   ,M9 \n" +
-                "_MMMMMMM9' _MM_ YMMMM9  _MM_  _MM_     M       YMMMM9  _MM_  _MM__MM_ YMMMMMM_ YMMMMM9        `YMMM9'Yb.         _MM_    _MM_     YMMMM9  _MM__MM_ YMMMMM9  \n" +
-                "                                                                                                                                                            ");
+        System.out.println(".______    __   _______ .__   __. ____    ____  _______ .__   __.  __   _______    ______           ___         .___________..______       _______  __       __        ______   \n" +
+                "|   _  \\  |  | |   ____||  \\ |  | \\   \\  /   / |   ____||  \\ |  | |  | |       \\  /  __  \\         /   \\        |           ||   _  \\     |   ____||  |     |  |      /  __  \\  \n" +
+                "|  |_)  | |  | |  |__   |   \\|  |  \\   \\/   /  |  |__   |   \\|  | |  | |  .--.  ||  |  |  |       /  ^  \\       `---|  |----`|  |_)  |    |  |__   |  |     |  |     |  |  |  | \n" +
+                "|   _  <  |  | |   __|  |  . `  |   \\      /   |   __|  |  . `  | |  | |  |  |  ||  |  |  |      /  /_\\  \\          |  |     |      /     |   __|  |  |     |  |     |  |  |  | \n" +
+                "|  |_)  | |  | |  |____ |  |\\   |    \\    /    |  |____ |  |\\   | |  | |  '--'  ||  `--'  |     /  _____  \\         |  |     |  |\\  \\----.|  |____ |  `----.|  `----.|  `--'  | \n" +
+                "|______/  |__| |_______||__| \\__|     \\__/     |_______||__| \\__| |__| |_______/  \\______/     /__/     \\__\\        |__|     | _| `._____||_______||_______||_______| \\______/ ");
     }
 
     public String leeString(String msg) {
@@ -56,7 +50,6 @@ public class GUI implements IGUI {
         String nombreUsuario= leeString("Inserte su nombre de usuario");
         String contrasena= leeString("Inserte su contraseña (Debe tener al menos 8 caracteres, incluyendo 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes -> @$!.#_()%*?& <-)");
         while (!Persona.validarContrasena(contrasena)){
-            System.out.println("Contraseña incorrecto");
             contrasena=leeString("Introduce una contraseña correcta");
         }
 
