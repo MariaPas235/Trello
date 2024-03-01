@@ -1,7 +1,9 @@
 package Model.entity;
 
+import serializator.Security;
 import serializator.serializator_user;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -45,8 +47,8 @@ public class Persona {
         return contrasena;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContrasena(String contrasena) throws NoSuchAlgorithmException {
+        this.contrasena = Security.hashPassword(contrasena);
     }
 
     public String getMail() {
@@ -99,7 +101,7 @@ public class Persona {
 
     @Override
     public int hashCode() {
-        return Objects.hash(contrasena);
+        return Objects.hash(nombre, usuario, contrasena, mail);
     }
 
     @Override
