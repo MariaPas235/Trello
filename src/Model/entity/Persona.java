@@ -2,12 +2,15 @@ package Model.entity;
 
 import serializator.serializator_user;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 
 public class Persona {
+    private List<Jefe> jefes;
+    private List<Colaborador> colaboradores;
     protected String nombre;
     protected String usuario;
     protected String contrasena;

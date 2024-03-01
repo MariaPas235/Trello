@@ -16,7 +16,6 @@ public class Controller implements IController {
                     GUI.recogeDatosRegistro();
                 case 2:
                     GUI.recogeDatosInicio();
-
                     break;
             }
             return null;

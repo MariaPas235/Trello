@@ -5,10 +5,10 @@ import Model.entity.Persona;
 import java.io.*;
 
 public class serializator_user {
-    String Nombre;
-    String Usuario;
-    String Contrasena;
-    String mail;
+    private String Nombre;
+    private String Usuario;
+    private String Contrasena;
+    private String mail;
 
     public void serializator_user(Persona persona) throws FileNotFoundException {
         try {
@@ -82,4 +82,5 @@ public class serializator_user {
         }
         return result;
     }
+    //Editar Usuario es decir hacer el CRUD
 }
