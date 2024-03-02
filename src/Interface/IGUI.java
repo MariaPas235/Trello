@@ -1,6 +1,7 @@
 package Interface;
 
 import java.io.FileNotFoundException;
+import java.security.NoSuchAlgorithmException;
 
 public interface IGUI {
 void imprimirBienvenida();
@@ -9,7 +10,7 @@ int leeNumero(String msg);
 String leeString(String msg);
 
 void recogeDatosInicio();
- void recogeDatosRegistro() throws FileNotFoundException;
+ void recogeDatosRegistro() throws FileNotFoundException, NoSuchAlgorithmException;
 
 
 }

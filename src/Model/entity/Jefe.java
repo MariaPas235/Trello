@@ -1,7 +1,9 @@
 package Model.entity;
 
+import java.security.NoSuchAlgorithmException;
+
 public class Jefe extends Persona{
-    public Jefe() {
+    public Jefe() throws NoSuchAlgorithmException {
         super("","","","");
     }
     //Funciones que tiene el jefe de un proyecto

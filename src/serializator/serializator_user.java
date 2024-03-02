@@ -36,10 +36,10 @@ public class serializator_user {
         }
     }
 
-    public boolean search_logUser(String nameUser, String passwordUser) {
+    public static boolean search_logUser(String nameUser, String passwordUser) {
         boolean result = false;
         try {
-            FileInputStream fileIn = new FileInputStream("DatosLogin.txt");
+            FileInputStream fileIn = new FileInputStream("Users.bin");
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileIn));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -66,7 +66,7 @@ public class serializator_user {
     public boolean search_mailUser(String mailUser) {
         boolean result = false;
         try {
-            FileInputStream fileIn = new FileInputStream("DatosUsuario.txt");
+            FileInputStream fileIn = new FileInputStream("Users.bin");
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileIn));
             String line;
             while ((line = bufferedReader.readLine()) != null) {
