@@ -1,5 +1,6 @@
 package Model.entity;
 
+import Model.repo.RepoPersona;
 import serializator.Security;
 import serializator.Serializator;
 import serializator.serializator_user;
@@ -16,8 +17,7 @@ public class Persona implements Serializable {
     protected String usuario;
     protected String contrasena;
     protected String mail;
-    static serializator.serializator_user serializator_user = new serializator_user();
-
+    static RepoPersona rp = RepoPersona.get_instance();
     public Persona(String nombre, String usuario, String contrasena, String mail) throws NoSuchAlgorithmException {
         this.nombre = nombre;
         this.usuario = usuario;
@@ -70,8 +70,7 @@ public class Persona implements Serializable {
         } else {
             System.out.println("El mail está mal escrito");
         }
-
-        if (mailMatcher.matches() && !serializator.serializator_user.search_mailUser(mail)) {
+        if (!rp.getByEmail(mail)) {
             System.out.println("El mail es correcto ");
             result = true;
         } else {
@@ -81,8 +80,8 @@ public class Persona implements Serializable {
     }
     public static boolean validarUsuario(String usuario) {
         boolean result = false;
-
-        if (!serializator.serializator_user.search_nameUser(usuario)) {
+        rp = RepoPersona.get_instance();
+        if (!rp.getByUserName(usuario)) {
             System.out.println("El usuario es correcto ");
             result = true;
         } else {

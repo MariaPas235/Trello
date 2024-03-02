@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class RepoPersona extends library<Persona,String> {
-    private final static String FILENAME= "DatosUsuario.txt";
+    private final static String FILENAME= "Users.bin";
     private static RepoPersona _instance;
     private Set<Persona> personas;
     private RepoPersona(){
@@ -66,5 +66,30 @@ public class RepoPersona extends library<Persona,String> {
     public boolean delete(String id) {
         return false;
     }
+
+    @Override
+    public boolean getByUserName(String username) {
+        boolean result = false;
+        for (Persona persona:personas){
+            if (persona.getUsuario().equals(username)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public boolean getByEmail(String mail) {
+        boolean result = false;
+        for (Persona persona:personas){
+            if (persona.getMail().equals(mail)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
     public boolean save(){return  save(FILENAME);}
 }
