@@ -1,7 +1,9 @@
 package Model.entity;
 
+import java.security.NoSuchAlgorithmException;
+
 public class Colaborador extends Persona{
-    public Colaborador() {
+    public Colaborador() throws NoSuchAlgorithmException {
         super("","","","");
     }
     //Metodos que tendra el colaborador

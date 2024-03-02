@@ -1,28 +1,32 @@
 package Model.entity;
 
+import serializator.Security;
+import serializator.Serializator;
 import serializator.serializator_user;
 
+import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 
-public class Persona {
+public class Persona implements Serializable {
     protected String nombre;
     protected String usuario;
     protected String contrasena;
     protected String mail;
     static serializator.serializator_user serializator_user = new serializator_user();
 
-    public Persona(String nombre, String usuario, String contrasena, String mail) {
+    public Persona(String nombre, String usuario, String contrasena, String mail) throws NoSuchAlgorithmException {
         this.nombre = nombre;
         this.usuario = usuario;
-        this.contrasena = contrasena;
+        setContrasena(contrasena);
         this.mail = mail;
     }
 
-    public Persona() {
-        this("", "", "", "");
+    public Persona(String usuario) throws NoSuchAlgorithmException {
+        this("", usuario, "", "");
     }
 
     public String getNombre() {
@@ -45,8 +49,8 @@ public class Persona {
         return contrasena;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContrasena(String contrasena) throws NoSuchAlgorithmException {
+        this.contrasena = Security.hashPassword(contrasena);
     }
 
     public String getMail() {
@@ -90,16 +94,16 @@ public class Persona {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Persona persona = (Persona) o;
-        return Objects.equals(nombre, persona.nombre) && Objects.equals(usuario, persona.usuario) && Objects.equals(contrasena, persona.contrasena) && Objects.equals(mail, persona.mail);
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Persona persona = (Persona) object;
+        return Objects.equals(usuario, persona.usuario) || Objects.equals(mail, persona.mail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contrasena);
+        return Objects.hash(usuario, mail);
     }
 
     @Override
