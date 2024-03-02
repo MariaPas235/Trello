@@ -73,7 +73,6 @@ public class RepoPersona extends library<Persona,String> {
         for (Persona persona:personas){
             if (persona.getUsuario().equals(username)) {
                 result = true;
-                break;
             }
         }
         return result;
@@ -85,7 +84,6 @@ public class RepoPersona extends library<Persona,String> {
         for (Persona persona:personas){
             if (persona.getMail().equals(mail)) {
                 result = true;
-                break;
             }
         }
         return result;
