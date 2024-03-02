@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class RepoPersona extends library<Persona,String> {
-    private final static String FILENAME= "Users.bin";
+    private final static String FILENAME= "DatosUsuario.txt";
     private static RepoPersona _instance;
     private Set<Persona> personas;
     private RepoPersona(){
