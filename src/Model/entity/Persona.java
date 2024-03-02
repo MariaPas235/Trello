@@ -79,7 +79,17 @@ public class Persona implements Serializable {
         }
         return result;
     }
+    public static boolean validarUsuario(String usuario) {
+        boolean result = false;
 
+        if (!serializator.serializator_user.search_nameUser(usuario)) {
+            System.out.println("El usuario es correcto ");
+            result = true;
+        } else {
+            System.out.println("El usuario ya existe");
+        }
+        return result;
+    }
     public static boolean validarContrasena(String contrasena) {
         boolean result = false;
         Pattern contrasenaPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!.#_()%*?&])[A-Za-z\\d@$!.#_()%*?&]{8,}$");
