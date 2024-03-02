@@ -2,14 +2,18 @@ package view;
 
 import Interface.IGUI;
 import Model.entity.Persona;
+import Model.repo.RepoPersona;
+import serializator.Serializator;
 import serializator.serializator_user;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
+
 public class GUI implements IGUI {
     Scanner teclado = new Scanner(System.in);
-    serializator_user serializator_user = new serializator_user();
+    Serializator serializator = new Serializator();
+
     public void imprimirBienvenida() {
         System.out.println(".______    __   _______ .__   __. ____    ____  _______ .__   __.  __   _______    ______           ___         .___________..______       _______  __       __        ______   \n" +
                 "|   _  \\  |  | |   ____||  \\ |  | \\   \\  /   / |   ____||  \\ |  | |  | |       \\  /  __  \\         /   \\        |           ||   _  \\     |   ____||  |     |  |      /  __  \\  \n" +
@@ -37,32 +41,33 @@ public class GUI implements IGUI {
     public void recogeDatosInicio() {
         String nombreUsuario;
         String contrasena;
-       do {
-          nombreUsuario = leeString("Inserte su usuario");
-          contrasena = leeString("Inserte su contraseña");
-       }while(!serializator_user.search_logUser(nombreUsuario, contrasena));
+        do {
+            nombreUsuario = leeString("Inserte su usuario");
+            contrasena = leeString("Inserte su contraseña");
+        } while (!serializator_user.search_logUser(nombreUsuario, contrasena));
     }
 
     @Override
-    public void recogeDatosRegistro() throws FileNotFoundException {
+    public void recogeDatosRegistro() throws FileNotFoundException, NoSuchAlgorithmException {
 
-        String nombrePersona= leeString("Inserte su nombre completo");
-        String nombreUsuario= leeString("Inserte su nombre de usuario");
-        String contrasena= leeString("Inserte su contraseña (Debe tener al menos 8 caracteres, incluyendo 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes -> @$!.#_()%*?& <-)");
-        while (!Persona.validarContrasena(contrasena)){
-            contrasena=leeString("Introduce una contraseña correcta");
+        String nombrePersona = leeString("Inserte su nombre completo");
+        String nombreUsuario = leeString("Inserte su nombre de usuario");
+        String contrasena = leeString("Inserte su contraseña (Debe tener al menos 8 caracteres, incluyendo 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes -> @$!.#_()%*?& <-)");
+        while (!Persona.validarContrasena(contrasena)) {
+            contrasena = leeString("Introduce una contraseña correcta");
         }
 
-        String mail= leeString("Inserte su mail");
+        String mail = leeString("Inserte su mail");
 
-        while (!Persona.validarCorreo(mail)){
+        while (!Persona.validarCorreo(mail)) {
             System.out.println("Mail incorrecto");
-            mail=leeString("Introduce tu mail correctamente");
+            mail = leeString("Introduce tu mail correctamente");
         }
-    Persona persona = new Persona(nombrePersona,nombreUsuario,contrasena,mail);
-    serializator_user.serializator_user(persona);
-    serializator_user.serializator_userName(persona);
-    // nombrearraylist.add(persona)
+        RepoPersona rp = RepoPersona.get_instance(); //Falla el get_instance no entiendo ;_;
+        Persona persona = new Persona(nombrePersona, nombreUsuario, contrasena, mail);
+        rp.add(persona);
+        rp.save();
+
     }
 
     public int imprimirMenuInicio() {
