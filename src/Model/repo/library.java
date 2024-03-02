@@ -18,5 +18,6 @@ public abstract class library<T,K> implements Serializable {
     public abstract T update(T data);
     public abstract boolean delete(K id);
     public abstract boolean getByUserName(K username);
-    public abstract boolean getByEmail(K username);
+    public abstract boolean getByEmail(K email);
+    public abstract boolean getBypassword(K password);
 }

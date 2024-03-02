@@ -2,9 +2,13 @@ package Model.repo;
 
 import Model.entity.Persona;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
+
+import static serializator.Security.hashPassword;
 
 public class RepoPersona extends library<Persona,String> {
     private final static String FILENAME= "Users.bin";
@@ -89,5 +93,23 @@ public class RepoPersona extends library<Persona,String> {
         return result;
     }
 
-    public boolean save(){return  save(FILENAME);}
-}
+    @Override
+    public boolean getBypassword(String password) {
+        boolean result = false;
+        String hashedInputPassword = null;
+        try {
+            hashedInputPassword = hashPassword(password);
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        for (Persona persona : personas) {
+            if (persona.getContrasena().equals(hashedInputPassword)) {
+                result = true;
+            }
+        }
+        return result;
+    }
+        public boolean save () {
+            return save(FILENAME);
+        }
+    }
