@@ -52,6 +52,9 @@ public class GUI implements IGUI {
 
         String nombrePersona = leeString("Inserte su nombre completo");
         String nombreUsuario = leeString("Inserte su nombre de usuario");
+        while (!Persona.validarUsuario(nombreUsuario)) {
+            nombreUsuario = leeString("Introduce una nombre de usuario correcto");
+        }
         String contrasena = leeString("Inserte su contraseña (Debe tener al menos 8 caracteres, incluyendo 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes -> @$!.#_()%*?& <-)");
         while (!Persona.validarContrasena(contrasena)) {
             contrasena = leeString("Introduce una contraseña correcta");
