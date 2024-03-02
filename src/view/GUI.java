@@ -70,6 +70,7 @@ public class GUI implements IGUI {
     serializator_user.serializator_user(persona);
     serializator_user.serializator_userName(persona);
     // nombrearraylist.add(persona)
+
     }
 
     public int imprimirMenuInicio() {
