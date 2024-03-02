@@ -71,7 +71,7 @@ public class Persona implements Serializable {
             System.out.println("El mail está mal escrito");
         }
 
-        if (mailMatcher.matches() && !serializator_user.search_mailUser(mail)) {
+        if (mailMatcher.matches() && !serializator.serializator_user.search_mailUser(mail)) {
             System.out.println("El mail es correcto ");
             result = true;
         } else {
