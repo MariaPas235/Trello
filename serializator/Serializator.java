@@ -3,7 +3,6 @@ package serializator;
 import java.io.*;
 
 public class Serializator {
-    //test
     /**
      * Método que serializa en disco cualquier tipo de objeto serializable
      * @param obj debe ser un objeto que implemente la interfaz Serialize
