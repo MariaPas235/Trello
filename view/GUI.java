@@ -5,6 +5,7 @@ import Model.entity.Persona;
 import Model.repo.RepoPersona;
 import serializator.Serializator;
 import serializator.serializator_user;
+import Model.entity.proyecto;
 
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
@@ -76,6 +77,7 @@ public class GUI implements IGUI {
     public int imprimirMenuInicio() {
         System.out.println("1. Registrarse");
         System.out.println("2. Iniciar sesion");
+        System.out.println("3. Salir");
         int opcion = leeNumero("Inserte una opción");
         return opcion;
     }
@@ -97,6 +99,51 @@ public class GUI implements IGUI {
 
         return numero;
     }
+
+    public void bienvenidaApp(){
+        System.out.println(" _____                                _             ____                                                _   \n" +
+                " | ____|  ___   _ __     __ _    ___  (_)   ___     |  _ \\    ___   _ __   ___    ___    _ __     __ _  | |  \n" +
+                " |  _|   / __| | '_ \\   / _` |  / __| | |  / _ \\    | |_) |  / _ \\ | '__| / __|  / _ \\  | '_ \\   / _` | | |  \n" +
+                " | |___  \\__ \\ | |_) | | (_| | | (__  | | | (_) |   |  __/  |  __/ | |    \\__ \\ | (_) | | | | | | (_| | | |  \n" +
+                " |_____| |___/ | .__/   \\__,_|  \\___| |_|  \\___/    |_|      \\___| |_|    |___/  \\___/  |_| |_|  \\__,_| |_|  \n" +
+                "               |_|                                                                                           ");
+    }
+
+    public int imprimirMenuProyectos() {
+        System.out.println("1. Crear proyecto");
+        System.out.println("2. Borrar proyecto");
+        System.out.println("3. Listar proyectos creados");
+        System.out.println("4. Listar proyectos como colaborador");
+        System.out.println("5. Cerrar Sesión");
+        int opcion = leeNumero("Inserte una opción");
+        return opcion;
+    }
+
+    public void recogerDatosProyecto(){
+        String nombreProyecto=leeString("Inserte el nombre de su proyecto");
+        String descripcion= leeString("Inserte una descripción de su proyecto");
+        //fecha creación y fecha fin
+        String colaboradores=leeString("Añade los colaboradores de su proyecto");//Aquí podemos poner para que solo añada un colaborador o que añada más de 1
+        proyecto proyecto = new proyecto(nombreProyecto,descripcion,localDate,estado);//igual lo del estado deberíamos quitarlo
+        //Deberíamos de poner para que devuelva un proyecto ya creado con estos datos que hemos recogido
+        //meter el proyecto en un array de proyectos e identificarlo con un creado, para luego poder buscarlo en el array por el creado
+
+    }
+
+    public void borrarProyecto(){
+
+    }
+
+    public void listarProyectosCreados(){
+
+    }
+
+
+    public void listarProyectosColaborador(){
+
+    }
+
+
 
 }
 
