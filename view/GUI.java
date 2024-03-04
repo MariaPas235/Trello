@@ -128,9 +128,15 @@ public class GUI implements IGUI {
         //Deberíamos de poner para que devuelva un proyecto ya creado con estos datos que hemos recogido
         //meter el proyecto en un array de proyectos e identificarlo con un creado, para luego poder buscarlo en el array por el creado
 
+        //test
+    }
+
+    public void deleteProyecto(){
+
     }
 
     public void borrarProyecto(){
+
 
     }
 
