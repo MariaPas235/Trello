@@ -130,7 +130,7 @@ public class GUI implements IGUI {
         //test
     }
 
-    public void borrarProyecto(){
+    public void deleteProyecto(){
 
     }
 
