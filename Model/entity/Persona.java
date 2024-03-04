@@ -2,8 +2,6 @@ package Model.entity;
 
 import Model.repo.RepoPersona;
 import serializator.Security;
-import serializator.Serializator;
-import serializator.serializator_user;
 
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;

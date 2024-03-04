@@ -4,7 +4,6 @@ import Interface.IGUI;
 import Model.entity.Persona;
 import Model.repo.RepoPersona;
 import serializator.Serializator;
-import serializator.serializator_user;
 import Model.entity.proyecto;
 
 import java.io.FileNotFoundException;
