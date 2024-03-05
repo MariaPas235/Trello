@@ -1,6 +1,7 @@
 package Model.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Proyecto {
@@ -8,17 +9,20 @@ public class Proyecto {
     private String descripcion;
     private LocalDate fechaCreacion;
     private String estado;
+    private ArrayList<Tarea> tareas;
 
-    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion, String estado) {
+    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion, String estado, ArrayList<Tarea> tareas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
+        this.tareas = tareas;
     }
 
     public Proyecto() {
-        this("", "", LocalDate.now(), "");
+        this("", "", LocalDate.now(), "", new ArrayList<>());
     }
+
 
     public String getNombre() {
         return nombre;
@@ -57,7 +61,7 @@ public class Proyecto {
         boolean isEquals;
         if (this == obj) {
             isEquals = true;
-        } else if ((obj == null || getClass() != obj.getClass())){
+        } else if ((obj == null || getClass() != obj.getClass())) {
             isEquals = false;
         } else {
             Proyecto proyecto = (Proyecto) obj;
@@ -68,7 +72,7 @@ public class Proyecto {
 
     @Override
     public String toString() {
-        return "proyecto[" + nombre +  descripcion + fechaCreacion + estado + "]";
+        return "proyecto[" + nombre + descripcion + LocalDate.now() + estado + "]";
     }
 }
 
