@@ -116,7 +116,8 @@ public class GUI implements IGUI {
         System.out.println("2. Borrar proyecto");
         System.out.println("3. Listar proyectos creados");
         System.out.println("4. Listar proyectos como colaborador");
-        System.out.println("5. Cerrar Sesión");
+        System.out.println("5. Seleccionar proyecto");
+        System.out.println("6. Cerrar Sesión");
         int opcion = leeNumero("Inserte una opción");
         return opcion;
     }
@@ -126,30 +127,33 @@ public class GUI implements IGUI {
         String descripcion= leeString("Inserte una descripción de su proyecto");
         //fecha creación y fecha fin
         String colaboradores=leeString("Añade los colaboradores de su proyecto");//Aquí podemos poner para que solo añada un colaborador o que añada más de 1
-        Proyecto proyecto = new Proyecto(nombreProyecto,descripcion,localDate,estado);//igual lo del estado deberíamos quitarlo
+        String estado = leeString("Inserte el estado del proyecto (nombre, descripcion, localDate.)");
         //Deberíamos de poner para que devuelva un proyecto ya creado con estos datos que hemos recogido
         //meter el proyecto en un array de proyectos e identificarlo con un creado, para luego poder buscarlo en el array por el creado
-
+        Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, localDate);
         //test
     }
 
-    public void deleteProyecto(){
-
-    }
-
-    public void borrarProyecto(){
-
-    }
-
-    public void listarProyectosCreados(){
+    public void crarProyecto() {
 
     }
 
 
-    public void listarProyectosColaborador(){
+    public void borrarProyecto() {
 
     }
 
+    public void listarProyectosCreados() {
+
+    }
+
+    public void seleccionarProyecto() {
+
+    }
+
+    public void listarProyectosColaborador() {
+
+    }
 
 }
 
