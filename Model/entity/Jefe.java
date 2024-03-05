@@ -1,28 +1,43 @@
 package Model.entity;
 
+import Interface.IJefe;
+
 import java.security.NoSuchAlgorithmException;
 
-public class Jefe extends Persona{
+public class Jefe extends Persona implements IJefe {
     public Jefe() throws NoSuchAlgorithmException {
         super("","","","");
     }
     //Funciones que tiene el jefe de un proyecto
-    public void anadirColaboradores(){
+    @Override
+    public void anadirColaboradores() {
 
     }
-    public void eliminarColaboradores(){
+
+    @Override
+    public void eliminarColaboradores() {
 
     }
-    public void anadirTarea(){
+
+    @Override
+    public void anadirTarea() {
 
     }
-    public void asignartarea(){
+
+    @Override
+    public void asignartarea() {
 
     }
-    public void borrarTarea(){
+
+    @Override
+    public void borrarTarea() {
 
     }
-    public void actualizarTarea(){
+
+    @Override
+    public void actualizarTarea() {
 
     }
+
+
 }
