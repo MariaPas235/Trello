@@ -1,5 +1,5 @@
 package Model.entity;
 
 public enum RangoPersona {
-    Jefe,Colaborador
+    JEFE,COLABORADOR
 }
