@@ -1,4 +1,5 @@
 package Model.repo;
+import Model.entity.Proyecto;
 import Model.entity.Tarea;
 
 import java.util.Collection;
@@ -38,6 +39,17 @@ public class RepoTarea extends Library_proyect<Tarea,String>{
             if (tarea.getNombre().equals(id)){
                 result = tarea;
                 break;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public boolean getByName(String Name) {
+        boolean result = false;
+        for (Tarea tarea:tareas){
+            if (tarea.getNombre().equals(Name)) {
+                result = true;
             }
         }
         return result;

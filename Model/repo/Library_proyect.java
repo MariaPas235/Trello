@@ -3,7 +3,6 @@ package Model.repo;
 import serializator.Serializator;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 public abstract class Library_proyect<T,K> implements Serializable {
@@ -16,7 +15,7 @@ public abstract class Library_proyect<T,K> implements Serializable {
     public abstract T add(T data);
     public abstract T getByID(K id);
 
-    public abstract boolean getByNameProyect(String proyectName);
+    public abstract boolean getByName(String Name);
 
     public abstract Collection<T> getAll();
     public abstract T update(T data);

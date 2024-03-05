@@ -149,7 +149,7 @@ public class GUI implements IGUI {
         String nombreProyecto;
         do {
             nombreProyecto = leeString("Inserte el nombre de su proyecto");
-        } while (!rProyecto.getByNameProyect(nombreProyecto));
+        } while (!rProyecto.getByName(nombreProyecto));
         return rProyecto.getByID(nombreProyecto);
     }
 
