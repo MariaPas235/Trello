@@ -8,10 +8,17 @@ import Model.entity.Proyecto;
 
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class GUI implements IGUI {
     Scanner teclado = new Scanner(System.in);
+    private String nombre;
+    private String descripcion;
+    private LocalDate fechaCreacion;
+    private LocalDate fechaFin;
+    private String colaboradores;
+    private String estado;
     Serializator serializator = new Serializator();
     static RepoPersona rp = RepoPersona.get_instance();
     public void imprimirBienvenida() {
@@ -47,7 +54,7 @@ public class GUI implements IGUI {
             contrasena = leeString("Inserte su contraseña");
         } while (!rp.getByUserName(nombreUsuario) && !rp.getBypassword(contrasena));
 
-    return persona;
+        return persona;
     }
 
     @Override
@@ -122,16 +129,28 @@ public class GUI implements IGUI {
         return opcion;
     }
 
-    public void recogerDatosProyecto(){
-        String nombreProyecto=leeString("Inserte el nombre de su proyecto");
-        String descripcion= leeString("Inserte una descripción de su proyecto");
-        //fecha creación y fecha fin
-        String colaboradores=leeString("Añade los colaboradores de su proyecto");//Aquí podemos poner para que solo añada un colaborador o que añada más de 1
-        String estado = leeString("Inserte el estado del proyecto (nombre, descripcion, localDate.)");
-        //Deberíamos de poner para que devuelva un proyecto ya creado con estos datos que hemos recogido
-        //meter el proyecto en un array de proyectos e identificarlo con un creado, para luego poder buscarlo en el array por el creado
-        Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, localDate);
-        //test
+    public void recogerDatosProyecto() {
+        String nombreProyecto = leeString("Inserte el nombre de su proyecto");
+        String descripcion = leeString("Inserte una descripción de su proyecto");
+        LocalDate fechaCreacion = LocalDate.now();
+        String colaboradores = leeString("Añade los colaboradores de su proyecto");
+        String estado = leeString("Inserte el estado del proyecto");
+
+        Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, fechaCreacion);
+    }
+
+    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public void crarProyecto() {
