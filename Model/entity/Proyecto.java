@@ -3,20 +3,20 @@ package Model.entity;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class proyecto {
+public class Proyecto {
     private String nombre;
     private String descripcion;
     private LocalDate fechaCreacion;
     private String estado;
 
-    public proyecto(String nombre, String descripcion, LocalDate fechaCreacion, String estado) {
+    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion, String estado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
     }
 
-    public proyecto() {
+    public Proyecto() {
         this("", "", LocalDate.now(), "");
     }
 
@@ -53,11 +53,17 @@ public class proyecto {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        proyecto proyecto = (proyecto) o;
-        return Objects.equals(nombre, proyecto.nombre) && Objects.equals(descripcion, proyecto.descripcion) && Objects.equals(fechaCreacion, proyecto.fechaCreacion) && Objects.equals(estado, proyecto.estado);
+    public boolean equals(Object obj) {
+        boolean isEquals;
+        if (this == obj) {
+            isEquals = true;
+        } else if ((obj == null || getClass() != obj.getClass())){
+            isEquals = false;
+        } else {
+            Proyecto proyecto = (Proyecto) obj;
+            isEquals = Objects.equals(nombre, proyecto.nombre);
+        }
+        return isEquals;
     }
 
     @Override

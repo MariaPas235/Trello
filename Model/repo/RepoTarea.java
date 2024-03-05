@@ -1,15 +1,14 @@
 package Model.repo;
-import Model.entity.proyecto;
-import Model.entity.tarea;
+import Model.entity.Tarea;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class RepoTarea extends Library_proyect<tarea,String>{
+public class RepoTarea extends Library_proyect<Tarea,String>{
     private final static String FILENAME = "Tasks.bin";
     private static RepoTarea _instance;
-    private Set<tarea> tareas;
+    private Set<Tarea> tareas;
 
     private RepoTarea() {
         tareas = new HashSet<>();
@@ -25,17 +24,17 @@ public class RepoTarea extends Library_proyect<tarea,String>{
         return _instance;
     }
     @Override
-    public tarea add(tarea data) {
-        tarea result = null;
+    public Tarea add(Tarea data) {
+        Tarea result = null;
         if(tareas.add(data)){
             result=data;
         }
         return result;
     }
     @Override
-    public tarea getByID(String id) {
-        tarea result = null;
-        for (tarea tarea:tareas){
+    public Tarea getByID(String id) {
+        Tarea result = null;
+        for (Tarea tarea:tareas){
             if (tarea.getNombre().equals(id)){
                 result = tarea;
                 break;
@@ -45,13 +44,13 @@ public class RepoTarea extends Library_proyect<tarea,String>{
     }
 
     @Override
-    public Collection<tarea> getAll() {
+    public Collection<Tarea> getAll() {
         return tareas;
     }
 
     @Override
-    public tarea update(tarea data) {
-        tarea result = null;
+    public Tarea update(Tarea data) {
+        Tarea result = null;
         result = getByID((data.getNombre()));
         if(result!=null){
             tareas.remove(result);
@@ -65,7 +64,7 @@ public class RepoTarea extends Library_proyect<tarea,String>{
     @Override
     public boolean delete(String nombreTarea) {
         boolean result=false;
-        for (tarea tarea:tareas){
+        for (Tarea tarea:tareas){
             if (tarea.getNombre().equals(nombreTarea)){
                 tareas.remove(tarea);
                 result = true;

@@ -1,11 +1,9 @@
 import Controller.Controller;
 import Model.entity.Persona;
-import Model.entity.proyecto;
+import Model.entity.Proyecto;
 import Model.repo.RepoPersona;
 import Model.repo.RepoProyecto;
-import view.GUI;
 
-import javax.swing.text.View;
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
 
@@ -19,7 +17,7 @@ public class main {
             System.out.println(p);
         }
         RepoProyecto rpe = RepoProyecto.get_instance();
-        for(proyecto p : rpe.getAll()){
+        for(Proyecto p : rpe.getAll()){
             System.out.println(p);
         }
 

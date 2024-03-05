@@ -101,11 +101,17 @@ public class Persona implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        Persona persona = (Persona) object;
-        return Objects.equals(usuario, persona.usuario) || Objects.equals(mail, persona.mail);
+    public boolean equals(Object obj) {
+        boolean isEquals;
+        if (this == obj){
+            isEquals = true;
+        } else if (obj == null || getClass() != obj.getClass()){
+            isEquals = false;
+        } else{
+            Persona persona = (Persona) obj;
+            return Objects.equals(nombre, persona.nombre) && Objects.equals(usuario, persona.usuario)&& Objects.equals(mail, persona.mail);
+        }
+        return isEquals;
     }
 
     @Override
