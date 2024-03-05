@@ -67,8 +67,15 @@ public class RepoPersona extends library<Persona,String> {
     }
 
     @Override
-    public boolean delete(String id) {
-        return false;
+    public boolean delete(String nombrePersona) {
+        boolean result=false;
+        for (Persona persona:personas){
+                if (persona.getNombre().equals(nombrePersona)){
+                personas.remove(persona);
+                result = true;
+            }
+        }
+        return result;
     }
 
     @Override
@@ -109,7 +116,8 @@ public class RepoPersona extends library<Persona,String> {
         }
         return result;
     }
-        public boolean save () {
+
+    public boolean save () {
             return save(FILENAME);
         }
     }
