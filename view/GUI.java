@@ -2,25 +2,22 @@ package view;
 
 import Interface.IGUI;
 import Model.entity.Persona;
+import Model.entity.Tarea;
 import Model.repo.RepoPersona;
+import Model.repo.RepoProyecto;
 import serializator.Serializator;
 import Model.entity.Proyecto;
 
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GUI implements IGUI {
     Scanner teclado = new Scanner(System.in);
-    private String nombre;
-    private String descripcion;
-    private LocalDate fechaCreacion;
-    private LocalDate fechaFin;
-    private String colaboradores;
-    private String estado;
-    Serializator serializator = new Serializator();
     static RepoPersona rp = RepoPersona.get_instance();
+    static RepoProyecto rProyecto = RepoProyecto.get_instance();
     public void imprimirBienvenida() {
         System.out.println(".______    __   _______ .__   __. ____    ____  _______ .__   __.  __   _______    ______           ___         .___________..______       _______  __       __        ______   \n" +
                 "|   _  \\  |  | |   ____||  \\ |  | \\   \\  /   / |   ____||  \\ |  | |  | |       \\  /  __  \\         /   \\        |           ||   _  \\     |   ____||  |     |  |      /  __  \\  \n" +
@@ -46,15 +43,13 @@ public class GUI implements IGUI {
 
     @Override
     public Persona recogeDatosInicio() {
-        Persona persona= null;
         String nombreUsuario;
         String contrasena;
         do {
             nombreUsuario = leeString("Inserte su usuario");
             contrasena = leeString("Inserte su contraseña");
         } while (!rp.getByUserName(nombreUsuario) && !rp.getBypassword(contrasena));
-
-        return persona;
+        return rp.getByID(nombreUsuario);
     }
 
     @Override
@@ -134,28 +129,13 @@ public class GUI implements IGUI {
         String descripcion = leeString("Inserte una descripción de su proyecto");
         LocalDate fechaCreacion = LocalDate.now();
         String colaboradores = leeString("Añade los colaboradores de su proyecto");
-        String estado = leeString("Inserte el estado del proyecto");
-
-        Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, fechaCreacion);
+        //String estado = leeString("Inserte el estado del proyecto");
+        RepoProyecto rProyecto = RepoProyecto.get_instance();
+        Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, fechaCreacion,new ArrayList<Persona>(),new ArrayList<Tarea>());
+        rProyecto.add(proyecto);
+        rProyecto.save();
     }
 
-    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public void crarProyecto() {
-
-    }
 
 
     public void borrarProyecto() {

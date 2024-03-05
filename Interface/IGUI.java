@@ -12,7 +12,7 @@ int leeNumero(String msg);
 String leeString(String msg);
 
 Persona recogeDatosInicio();
- void recogeDatosRegistro() throws FileNotFoundException, NoSuchAlgorithmException;
+void recogeDatosRegistro() throws FileNotFoundException, NoSuchAlgorithmException;
 
 
 }
