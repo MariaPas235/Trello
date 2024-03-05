@@ -1,14 +1,14 @@
 package Model.repo;
 
-import Model.entity.proyecto;
+import Model.entity.Proyecto;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class RepoProyecto extends Library_proyect <proyecto,String> {
+public class RepoProyecto extends Library_proyect <Proyecto,String> {
     private final static String FILENAME = "Proyects.bin";
     private static RepoProyecto _instance;
-    private Set<proyecto> proyectos;
+    private Set<Proyecto> proyectos;
 
     private RepoProyecto() {
         proyectos = new HashSet<>();
@@ -25,17 +25,17 @@ public class RepoProyecto extends Library_proyect <proyecto,String> {
     }
 
     @Override
-    public proyecto add(proyecto data) {
-        proyecto result = null;
+    public Proyecto add(Proyecto data) {
+        Proyecto result = null;
         if(proyectos.add(data)){
             result=data;
         }
         return result;
     }
     @Override
-    public proyecto getByID(String id) {
-        proyecto result = null;
-        for (proyecto proyecto:proyectos){
+    public Proyecto getByID(String id) {
+        Proyecto result = null;
+        for (Proyecto proyecto:proyectos){
             if (proyecto.getNombre().equals(id)){
                 result = proyecto;
                 break;
@@ -45,13 +45,13 @@ public class RepoProyecto extends Library_proyect <proyecto,String> {
     }
 
     @Override
-    public Collection<proyecto> getAll() {
+    public Collection<Proyecto> getAll() {
         return proyectos;
     }
 
     @Override
-    public proyecto update(proyecto data) {
-        proyecto result = null;
+    public Proyecto update(Proyecto data) {
+        Proyecto result = null;
         result = getByID((data.getNombre()));
         if(result!=null){
             proyectos.remove(result);
@@ -65,7 +65,7 @@ public class RepoProyecto extends Library_proyect <proyecto,String> {
     @Override
     public boolean delete(String nombreProyecto) {
         boolean result=false;
-        for (proyecto proyecto:proyectos){
+        for (Proyecto proyecto:proyectos){
             if (proyecto.getNombre().equals(nombreProyecto)){
                 proyectos.remove(proyecto);
                 result = true;

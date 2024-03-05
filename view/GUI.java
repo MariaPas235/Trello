@@ -4,7 +4,7 @@ import Interface.IGUI;
 import Model.entity.Persona;
 import Model.repo.RepoPersona;
 import serializator.Serializator;
-import Model.entity.proyecto;
+import Model.entity.Proyecto;
 
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
@@ -123,7 +123,7 @@ public class GUI implements IGUI {
         String descripcion= leeString("Inserte una descripción de su proyecto");
         //fecha creación y fecha fin
         String colaboradores=leeString("Añade los colaboradores de su proyecto");//Aquí podemos poner para que solo añada un colaborador o que añada más de 1
-        proyecto proyecto = new proyecto(nombreProyecto,descripcion,localDate,estado);//igual lo del estado deberíamos quitarlo
+        Proyecto proyecto = new Proyecto(nombreProyecto,descripcion,localDate,estado);//igual lo del estado deberíamos quitarlo
         //Deberíamos de poner para que devuelva un proyecto ya creado con estos datos que hemos recogido
         //meter el proyecto en un array de proyectos e identificarlo con un creado, para luego poder buscarlo en el array por el creado
 

@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 
-public class tarea {
+public class Tarea {
     private String nombre;
     private String personaAsignada;
     private String descripcion;
@@ -15,7 +15,7 @@ public class tarea {
     private LocalDateTime fechaActual;
 
 
-    public tarea(String nombre, String personaAsignada, String descripcion, LocalDate fechaInicio, LocalDate fechaLimite, LocalDateTime fechaActual) {
+    public Tarea(String nombre, String personaAsignada, String descripcion, LocalDate fechaInicio, LocalDate fechaLimite, LocalDateTime fechaActual) {
         this.nombre = nombre;
         this.personaAsignada = personaAsignada;
         this.descripcion = descripcion;
@@ -24,7 +24,7 @@ public class tarea {
         this.fechaActual = fechaActual;
     }
 
-    public tarea() {
+    public Tarea() {
         this("", "", "", LocalDate.now(), LocalDate.now(), LocalDateTime.now());
     }
 
@@ -77,11 +77,17 @@ public class tarea {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        tarea tarea = (tarea) o;
-        return Objects.equals(nombre, tarea.nombre) && Objects.equals(descripcion, tarea.descripcion) && Objects.equals(fechaInicio, tarea.fechaInicio) && Objects.equals(fechaLimite, tarea.fechaLimite);
+    public boolean equals(Object obj) {
+        boolean isEquals;
+        if (this == obj) {
+            isEquals = true;
+        } else if ((obj == null || getClass() != obj.getClass())){
+            isEquals = false;
+        } else {
+            Tarea tarea = (Tarea) obj;
+            isEquals = Objects.equals(nombre, tarea.nombre);
+        }
+        return isEquals;
     }
 
     @Override
