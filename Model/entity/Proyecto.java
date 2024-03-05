@@ -8,19 +8,19 @@ public class Proyecto {
     private String nombre;
     private String descripcion;
     private LocalDate fechaCreacion;
-    private String estado;
+    private ArrayList<Persona> colaboradores;
     private ArrayList<Tarea> tareas;
 
-    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion, String estado, ArrayList<Tarea> tareas) {
+    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion, ArrayList<Persona> colaboradores, ArrayList<Tarea> tareas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
-        this.estado = estado;
+        this.colaboradores = colaboradores;
         this.tareas = tareas;
     }
 
     public Proyecto() {
-        this("", "", LocalDate.now(), "", new ArrayList<>());
+        this("", "", LocalDate.now(), new ArrayList<>(), new ArrayList<>());
     }
 
 
@@ -48,12 +48,20 @@ public class Proyecto {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public String getEstado() {
-        return estado;
+    public ArrayList<Persona> getColaboradores() {
+        return colaboradores;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setColaboradores(ArrayList<Persona> colaboradores) {
+        this.colaboradores = colaboradores;
+    }
+
+    public ArrayList<Tarea> getTareas() {
+        return tareas;
+    }
+
+    public void setTareas(ArrayList<Tarea> tareas) {
+        this.tareas = tareas;
     }
 
     @Override
@@ -72,7 +80,7 @@ public class Proyecto {
 
     @Override
     public String toString() {
-        return "proyecto[" + nombre + descripcion + LocalDate.now() + estado + "]";
+        return "proyecto[" + nombre + descripcion + LocalDate.now() + tareas + colaboradores +"]";
     }
 }
 
