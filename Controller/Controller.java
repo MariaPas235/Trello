@@ -2,6 +2,7 @@ package Controller;
 
 import Interface.IController;
 import Interface.IGUI;
+import Model.entity.Persona;
 import view.GUI;
 
 import java.io.FileNotFoundException;
@@ -16,28 +17,40 @@ public class Controller implements IController {
                 case 1:
                     GUI.recogeDatosRegistro();
                 case 2:
-                    GUI.recogeDatosInicio();
                     GUI.bienvenidaApp();
-
-                    switch (GUI.imprimirMenuProyectos()){
-                        case 1:
-                            GUI.recogerDatosProyecto();
-                            //aquí quiero que cuando meta todos los datos salte al menu otra vez
-                        case 2:
-                            //borrar proyecto por nombre
-                        case 3:
-                            //listar proyectos creados
-                        case 4:
-                            //listar proyectos como colaborador
-                        case 5:
-                            System.out.println("Gracias por usar Trello. Hasta pronto （＾∀＾）ﾉｼ");
-                            break;
-                    }
+                    controladorMenu(GUI.recogeDatosInicio());
                     break;
                 case 3:
                     break;
 
             }
-            return null;
+            return "Gracias por usar Trello. Hasta pronto （＾∀＾）ﾉｼ";
+        }
+        public void controladorMenu(Persona persona){
+            int option = 0;
+            do{
+                System.out.println("Hola! " + persona.getNombre());
+                GUI.imprimirMenuProyectos();
+                option= GUI.leeNumero("Introduce opcion deseada: ");
+                switch (option){
+                    case 1:
+                        GUI.recogerDatosProyecto();
+                        //aquí quiero que cuando meta todos los datos salte al menu otra vez
+                    case 2:
+                        //borrar proyecto por nombre
+                        GUI.borrarProyecto();
+                    case 3:
+                        //listar proyectos creados
+                        GUI.listarProyectosCreados();
+                    case 4:
+                        //listar proyectos como colaborador
+                        GUI.listarProyectosColaborador();
+                    case 5:
+
+                        GUI.selecionarProyecto();
+                        break;
+                }
+            }while(!(option ==6));
+
         }
     }
