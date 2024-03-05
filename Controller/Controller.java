@@ -1,8 +1,6 @@
 package Controller;
 
 import Interface.IController;
-import Interface.IGUI;
-import Model.entity.Persona;
 import Model.entity.Proyecto;
 import Model.repo.Sesion;
 import view.GUI;
@@ -50,7 +48,7 @@ public class Controller implements IController {
                         break;
                     case 4:
                         //listar proyectos como colaborador
-                        GUI.listarProyectosColaborador();
+                        GUI.listarProyectos();
                         break;
                     case 5:
                         controladorProyectosJefe(GUI.seleccionarProyecto());
@@ -103,6 +101,6 @@ public class Controller implements IController {
                     GUI.desasignarTarea();
                     break;
             }
-        }while(!(option ==4));
+        }while(!(opcion ==4));
     }
     }

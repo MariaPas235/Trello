@@ -43,6 +43,16 @@ public class RepoProyecto extends Library_proyect <Proyecto,String> {
         }
         return result;
     }
+    @Override
+    public boolean getByNameProyect(String proyectName) {
+        boolean result = false;
+        for (Proyecto proyecto:proyectos){
+            if (proyecto.getNombre().equals(proyectName)) {
+                result = true;
+            }
+        }
+        return result;
+    }
 
     @Override
     public Collection<Proyecto> getAll() {

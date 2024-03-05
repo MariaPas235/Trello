@@ -5,7 +5,6 @@ import Model.entity.Persona;
 import Model.entity.Tarea;
 import Model.repo.RepoPersona;
 import Model.repo.RepoProyecto;
-import serializator.Serializator;
 import Model.entity.Proyecto;
 
 import java.io.FileNotFoundException;
@@ -146,13 +145,37 @@ public class GUI implements IGUI {
 
     }
 
-    public void seleccionarProyecto() {
+    public Proyecto seleccionarProyecto() {
+        String nombreProyecto;
+        do {
+            nombreProyecto = leeString("Inserte el nombre de su proyecto");
+        } while (!rProyecto.getByNameProyect(nombreProyecto));
+        return rProyecto.getByID(nombreProyecto);
+    }
+
+    public void listarProyectos() {
 
     }
 
-    public void listarProyectosColaborador() {
-
+    public void imprimirOpcionesDeTarea() {
     }
 
+    public void anadirTarea() {
+    }
+
+    public void borrarTarea() {
+    }
+
+    public void moverTarea() {
+    }
+
+    public void asignarTarea() {
+    }
+
+    public void editarTarea() {
+    }
+
+    public void desasignarTarea() {
+    }
 }
 

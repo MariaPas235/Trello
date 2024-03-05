@@ -15,6 +15,9 @@ public abstract class Library_proyect<T,K> implements Serializable {
     }
     public abstract T add(T data);
     public abstract T getByID(K id);
+
+    public abstract boolean getByNameProyect(String proyectName);
+
     public abstract Collection<T> getAll();
     public abstract T update(T data);
     public abstract boolean delete(K id);
