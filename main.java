@@ -1,6 +1,8 @@
 import Controller.Controller;
 import Model.entity.Persona;
+import Model.entity.proyecto;
 import Model.repo.RepoPersona;
+import Model.repo.RepoProyecto;
 import view.GUI;
 
 import javax.swing.text.View;
@@ -14,6 +16,10 @@ public class main {
          controller.controllerMain();
         RepoPersona rp = RepoPersona.get_instance();
         for(Persona p : rp.getAll()){
+            System.out.println(p);
+        }
+        RepoProyecto rpe = RepoProyecto.get_instance();
+        for(proyecto p : rpe.getAll()){
             System.out.println(p);
         }
 
