@@ -1,5 +1,7 @@
 package Interface;
 
+import Model.entity.Persona;
+
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
 
@@ -9,7 +11,7 @@ int imprimirMenuInicio();
 int leeNumero(String msg);
 String leeString(String msg);
 
-void recogeDatosInicio();
+Persona recogeDatosInicio();
  void recogeDatosRegistro() throws FileNotFoundException, NoSuchAlgorithmException;
 
 

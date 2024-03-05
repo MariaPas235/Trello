@@ -38,13 +38,16 @@ public class GUI implements IGUI {
     }
 
     @Override
-    public void recogeDatosInicio() {
+    public Persona recogeDatosInicio() {
+        Persona persona= null;
         String nombreUsuario;
         String contrasena;
         do {
             nombreUsuario = leeString("Inserte su usuario");
             contrasena = leeString("Inserte su contraseña");
         } while (!rp.getByUserName(nombreUsuario) && !rp.getBypassword(contrasena));
+
+    return persona;
     }
 
     @Override
