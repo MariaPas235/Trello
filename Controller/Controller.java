@@ -17,6 +17,7 @@ public class Controller implements IController {
                     GUI.recogeDatosRegistro();
                 case 2:
                     GUI.recogeDatosInicio();
+                    GUI.bienvenidaApp();
 
                     switch (GUI.imprimirMenuProyectos()){
                         case 1:
