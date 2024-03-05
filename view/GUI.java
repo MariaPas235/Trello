@@ -137,7 +137,6 @@ public class GUI implements IGUI {
 
     public void borrarProyecto(){
 
-
     }
 
     public void listarProyectosCreados(){
@@ -148,7 +147,6 @@ public class GUI implements IGUI {
     public void listarProyectosColaborador(){
 
     }
-
 
 
 }
