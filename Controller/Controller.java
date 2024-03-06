@@ -4,6 +4,7 @@ import Interface.IController;
 import Model.entity.Colaborador;
 import Model.entity.Jefe;
 import Model.entity.Proyecto;
+import Model.repo.RepoProyecto;
 import Model.repo.Sesion;
 import view.GUI;
 
@@ -14,7 +15,7 @@ public class Controller implements IController {
     GUI GUI = new GUI();
     Jefe jefe = new Jefe();
     Colaborador colaborador= new Colaborador();
-
+    static RepoProyecto rProyecto = RepoProyecto.get_instance();
     public Controller() throws NoSuchAlgorithmException {
     }
 
@@ -26,8 +27,7 @@ public class Controller implements IController {
                     GUI.recogeDatosRegistro();
                 case 2:
                     GUI.bienvenidaApp();
-                    Sesion sesion = new Sesion(GUI.recogeDatosInicio());
-                    controladorMenu(sesion);
+                    controladorMenu(Sesion.getInstance());
                     break;
                 case 3:
                     break;
@@ -46,8 +46,7 @@ public class Controller implements IController {
                         //aquí quiero que cuando meta todos los datos salte al menu otra vez
                         break;
                     case 2:
-                        //borrar proyecto por nombre
-                        GUI.borrarProyecto();
+                        rProyecto.delete(GUI.borrarProyecto());
                         break;
                     case 3:
                         //listar proyectos como colaborador
