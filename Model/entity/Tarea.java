@@ -94,6 +94,7 @@ public class Tarea {
     public String toString() {
         return "tarea[" + nombre + personaAsignada + descripcion + fechaInicio + fechaLimite + fechaActual + "]";
     }
+
 }
 
 
