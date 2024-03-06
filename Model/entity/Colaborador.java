@@ -5,7 +5,7 @@ import Interface.IColaborador;
 import java.security.NoSuchAlgorithmException;
 
 public class Colaborador extends Persona implements IColaborador {
-    public Colaborador() throws NoSuchAlgorithmException {
+    public Colaborador(){
         super("","","","");
     }
     //Metodos que tendra el colaborador

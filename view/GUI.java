@@ -7,8 +7,6 @@ import Model.repo.RepoPersona;
 import Model.repo.RepoProyecto;
 import Model.entity.Proyecto;
 
-import java.io.FileNotFoundException;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -48,12 +46,12 @@ public class GUI implements IGUI {
         do {
             nombreUsuario = leeString("Inserte su usuario");
             contrasena = leeString("Inserte su contraseña");
-        } while (!rp.getByUserName(nombreUsuario) && !rp.getBypassword(contrasena));
+        } while (!(rp.getByUserName(nombreUsuario) && rp.getBypassword(contrasena)));
         return rp.getByID(nombreUsuario);
     }
 
     @Override
-    public void recogeDatosRegistro() throws FileNotFoundException, NoSuchAlgorithmException {
+    public Persona recogeDatosRegistro() {
 
         String nombrePersona = leeString("Inserte su nombre completo");
         String nombreUsuario = leeString("Inserte su nombre de usuario");
@@ -71,10 +69,8 @@ public class GUI implements IGUI {
             System.out.println("Mail incorrecto");
             mail = leeString("Introduce tu mail correctamente");
         }
-        RepoPersona rp = RepoPersona.get_instance(); //Falla el get_instance no entiendo ;_;
-        Persona persona = new Persona(nombrePersona, nombreUsuario, contrasena, mail);
-        rp.add(persona);
-        rp.save();
+
+        return new Persona(nombrePersona, nombreUsuario, contrasena, mail);
 
     }
 
@@ -82,8 +78,7 @@ public class GUI implements IGUI {
         System.out.println("1. Registrarse");
         System.out.println("2. Iniciar sesion");
         System.out.println("3. Salir");
-        int opcion = leeNumero("Inserte una opción");
-        return opcion;
+        return leeNumero("Inserte una opción");
     }
 
     public int leeNumero(String msg) {
@@ -120,8 +115,7 @@ public class GUI implements IGUI {
         System.out.println("4. Listar proyectos");
         System.out.println("5. Seleccionar proyecto");
         System.out.println("6. Cerrar Sesión");
-        int opcion = leeNumero("Inserte una opción");
-        return opcion;
+        return leeNumero("Inserte una opción");
     }
 
     public void recogerDatosProyecto() {
@@ -194,7 +188,7 @@ public class GUI implements IGUI {
         }
         System.out.println("Tareas:");
         for (Tarea tarea : proyecto.getTareas()) {
-            System.out.println("- " + tarea.getNombre() + " (" + tarea.getEstado() + ")");
+            System.out.println("- " + tarea.getNombre() + " (" + tarea.getPersonaAsignada() + ")");
         }
     }
 }

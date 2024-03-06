@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 public abstract class library<T,K> implements Serializable {
-    public static library load(String filename){
+    public static Object load(String filename){
         return Serializator.desearize(filename);
     }
     public  boolean save(String filename){

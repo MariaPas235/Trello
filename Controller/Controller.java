@@ -1,113 +1,50 @@
 package Controller;
 
 import Interface.IController;
-import Model.entity.Colaborador;
-import Model.entity.Jefe;
-import Model.entity.Proyecto;
+import Model.entity.*;
+import Model.repo.RepoPersona;
 import Model.repo.RepoProyecto;
 import Model.repo.Sesion;
 import view.GUI;
 
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class Controller implements IController {
     GUI GUI = new GUI();
     Jefe jefe = new Jefe();
-    Colaborador colaborador= new Colaborador();
+    Colaborador colaborador = new Colaborador();
+    static  RepoPersona rPersona = new RepoPersona();
     static RepoProyecto rProyecto = RepoProyecto.get_instance();
+    ControllerMenu controladorMenu = new ControllerMenu();
+
     //tengotrabajoquehacer
-    public Controller() throws NoSuchAlgorithmException {
+    public Controller() {
     }
 
     @Override
-        public String controllerMain() throws FileNotFoundException, NoSuchAlgorithmException {
-            GUI.imprimirBienvenida();
-            switch (GUI.imprimirMenuInicio()){
+    public String controllerMain() {
+        GUI.imprimirBienvenida();
+        do {
+            switch (GUI.imprimirMenuInicio()) {
                 case 1:
-                    GUI.recogeDatosRegistro();
+                    RepoPersona rPersona = RepoPersona.get_instance();
+                    Persona persona = GUI.recogeDatosRegistro();
+                    rPersona.add(persona);
+                    rPersona.save();
+                    break;
                 case 2:
                     GUI.bienvenidaApp();
-                    controladorMenu(Sesion.getInstance());
+                    controladorMenu.controladorMenu(Sesion.getInstance());
                     break;
                 case 3:
                     break;
-
             }
-            return "Gracias por usar Trello. Hasta pronto （＾∀＾）ﾉｼ";
-        }
-        public void controladorMenu(Sesion sesion){
-            int option = 0;
-            do{
-                System.out.println("Hola! " + sesion.getPersona());
-                option= GUI.imprimirMenuProyectos();
-                switch (option){
-                    case 1:
-                        GUI.recogerDatosProyecto();
-                        //aquí quiero que cuando meta todos los datos salte al menu otra vez
-                        break;
-                    case 2:
-                        rProyecto.delete(GUI.borrarProyecto());
-                        break;
-                    case 3:
-                        //listar proyectos como colaborador
-                        GUI.listarProyectos();
-                        break;
-                    case 4:
-                        Proyecto proyecto = GUI.seleccionarProyecto();
-                        controladorProyectosJefe(proyecto);
-                        break;
-                }
-            }while(!(option ==5));
+        } while (!(GUI.imprimirMenuInicio() == 3));
 
-        }
-        public  void controladorProyectosJefe(Proyecto proyecto){
-            int opcion= 0;
-            do{
-                System.out.println("Bienvenido! " + proyecto.getNombre());
-                GUI.imprimeProyecto(proyecto);
-                GUI.imprimirOpcionesDeTarea();
-                opcion= GUI.leeNumero("Introduce opcion deseada: ");
-                switch (opcion){
-                    case 1:
-                        jefe.anadirTarea();
-                        break;
-                    case 2:
-                        jefe.borrarTarea();
-                        break;
-                    case 3:
-                        jefe.anadirColaboradores();
-                        break;
-                    case 4:
-                        jefe.eliminarColaboradores();
-                        break;
-                    case 5:
-                        jefe.asignartarea();
-                        break;
-                    case 6:
-                        jefe.actualizarTarea();
-                        break;
-                }
-            }while(!(opcion ==7));
-        }
-    public  void controladorProyectosColaborador(Proyecto proyecto){
-        int opcion= 0;
-        do{
-            System.out.println("Bienvenido! " + proyecto.getNombre());
-            GUI.imprimeProyecto(proyecto);
-            GUI.imprimirOpcionesDeTarea();
-            opcion= GUI.leeNumero("Introduce opcion deseada: ");
-            switch (opcion){
-                case 1:
-                    colaborador.actualizarEstadoTarea();
-                    break;
-                case 2:
-                    colaborador.verComentario();
-                    break;
-                case 3:
-                    colaborador.desasignarTarea();
-                    break;
-            }
-        }while(!(opcion ==4));
+        return "Gracias por usar Trello. Hasta pronto （＾∀＾）ﾉｼ";
+
+
     }
 }

@@ -16,14 +16,18 @@ public class Persona implements Serializable {
     protected String contrasena;
     protected String mail;
     static RepoPersona rp = RepoPersona.get_instance();
-    public Persona(String nombre, String usuario, String contrasena, String mail) throws NoSuchAlgorithmException {
+    public Persona(String nombre, String usuario, String contrasena, String mail) {
         this.nombre = nombre;
         this.usuario = usuario;
-        setContrasena(contrasena);
+        try {
+            setContrasena(contrasena);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
         this.mail = mail;
     }
 
-    public Persona(String usuario) throws NoSuchAlgorithmException {
+    public Persona(String usuario) {
         this("", usuario, "", "");
     }
 

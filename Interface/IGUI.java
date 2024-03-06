@@ -18,7 +18,7 @@ public interface IGUI {
 
     Persona recogeDatosInicio();
 
-    void recogeDatosRegistro() throws FileNotFoundException, NoSuchAlgorithmException;
+    Persona recogeDatosRegistro();
 
     void bienvenidaApp();
 
