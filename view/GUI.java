@@ -115,8 +115,8 @@ public class GUI implements IGUI {
     public int imprimirMenuProyectos() {
         System.out.println("1. Crear proyecto");
         System.out.println("2. Borrar proyecto");
-        System.out.println("3. Listar proyectos creados");
-        System.out.println("4. Listar proyectos como colaborador");
+        System.out.println("3. Listar proyectos como colaborador");
+        System.out.println("4. Listar proyectos");
         System.out.println("5. Seleccionar proyecto");
         System.out.println("6. Cerrar Sesión");
         int opcion = leeNumero("Inserte una opción");
