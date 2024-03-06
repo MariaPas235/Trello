@@ -13,4 +13,7 @@ public class Colaborador extends Persona implements IColaborador {
     public void actualizarEstadoTarea() {
 
     }
+
+    public void desasignarTarea() {
+    }
 }

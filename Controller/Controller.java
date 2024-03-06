@@ -79,19 +79,22 @@ public class Controller implements IController {
                         jefe.anadirColaboradores();
                         break;
                     case 4:
-                        jefe.asignartarea();
+                        jefe.eliminarColaboradores();
                         break;
                     case 5:
+                        jefe.asignartarea();
+                        break;
+                    case 6:
                         jefe.actualizarTarea();
                         break;
                 }
-            }while(!(opcion ==6));
+            }while(!(opcion ==7));
         }
     public  void controladorProyectosColaborador(Proyecto proyecto){
         int opcion= 0;
         do{
             System.out.println("Bienvenido! " + proyecto.getNombre());
-            GUI.imprimeProyecto();
+            GUI.imprimeProyecto(proyecto);
             GUI.imprimirOpcionesDeTarea();
             opcion= GUI.leeNumero("Introduce opcion deseada: ");
             switch (opcion){
@@ -99,7 +102,7 @@ public class Controller implements IController {
                     colaborador.actualizarEstadoTarea();
                     break;
                 case 2:
-                    colaborador.verComentario;
+                    colaborador.verComentario();
                     break;
                 case 3:
                     colaborador.desasignarTarea();
@@ -107,4 +110,4 @@ public class Controller implements IController {
             }
         }while(!(opcion ==4));
     }
-    }
+}
