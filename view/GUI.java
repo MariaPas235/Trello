@@ -137,8 +137,8 @@ public class GUI implements IGUI {
 
 
 
-    public void borrarProyecto() {
-
+    public String borrarProyecto() {
+        return leeString("Introduce el nombre del proyecto que quieras eliminar:");
     }
 
     public Proyecto seleccionarProyecto() {
@@ -191,7 +191,7 @@ public class GUI implements IGUI {
         System.out.println("Fecha de Creación: " + proyecto.getFechaCreacion());
         System.out.println("Colaboradores:");
         for (Persona colaborador : proyecto.getColaboradores()) {
-            System.out.println("- " + colaborador.getNombreUsuario());
+            System.out.println("- " + colaborador.getNombre());
         }
         System.out.println("Tareas:");
         for (Tarea tarea : proyecto.getTareas()) {

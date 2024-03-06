@@ -26,7 +26,7 @@ public interface IGUI {
 
     void recogerDatosProyecto();
 
-    void borrarProyecto();
+    String borrarProyecto();
 
     void listarProyectos();
 
