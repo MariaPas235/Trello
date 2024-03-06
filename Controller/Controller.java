@@ -35,6 +35,7 @@ public class Controller implements IController {
                     rPersona.save();
                     break;
                 case 2:
+                    Sesion.setGUI(new GUI());
                     GUI.bienvenidaApp();
                     controladorMenu.controladorMenu(Sesion.getInstance());
                     break;
