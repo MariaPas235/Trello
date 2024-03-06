@@ -17,6 +17,7 @@ public class GUI implements IGUI {
     Scanner teclado = new Scanner(System.in);
     static RepoPersona rp = RepoPersona.get_instance();
     static RepoProyecto rProyecto = RepoProyecto.get_instance();
+    //test
     public void imprimirBienvenida() {
         System.out.println(".______    __   _______ .__   __. ____    ____  _______ .__   __.  __   _______    ______           ___         .___________..______       _______  __       __        ______   \n" +
                 "|   _  \\  |  | |   ____||  \\ |  | \\   \\  /   / |   ____||  \\ |  | |  | |       \\  /  __  \\         /   \\        |           ||   _  \\     |   ____||  |     |  |      /  __  \\  \n" +
