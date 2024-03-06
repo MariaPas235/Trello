@@ -115,8 +115,8 @@ public class GUI implements IGUI {
     public int imprimirMenuProyectos() {
         System.out.println("1. Crear proyecto");
         System.out.println("2. Borrar proyecto");
-        System.out.println("3. Listar proyectos creados");
-        System.out.println("4. Listar proyectos como colaborador");
+        System.out.println("3. Listar proyectos como colaborador");
+        System.out.println("4. Listar proyectos");
         System.out.println("5. Seleccionar proyecto");
         System.out.println("6. Cerrar Sesión");
         int opcion = leeNumero("Inserte una opción");
@@ -141,10 +141,6 @@ public class GUI implements IGUI {
 
     }
 
-    public void listarProyectosCreados() {
-
-    }
-
     public Proyecto seleccionarProyecto() {
         String nombreProyecto;
         do {
@@ -154,7 +150,18 @@ public class GUI implements IGUI {
     }
 
     public void listarProyectos() {
-
+        ArrayList<Proyecto> proyectos = (ArrayList<Proyecto>) rProyecto.getAll();
+        if (proyectos.isEmpty()) {
+            System.out.println("No hay proyectos creados.");
+        } else {
+            System.out.println("Proyectos creados:");
+            for (Proyecto proyecto : proyectos) {
+                System.out.println("Nombre: " + proyecto.getNombre());
+                System.out.println("Descripción: " + proyecto.getDescripcion());
+                System.out.println("Fecha de Creación: " + proyecto.getFechaCreacion());
+                System.out.println("-----------------------------------");
+            }
+        }
     }
 
     public void imprimirOpcionesDeTarea() {
@@ -177,5 +184,18 @@ public class GUI implements IGUI {
 
     public void desasignarTarea() {
     }
-}
 
+    public void imprimeProyecto(Proyecto proyecto) {
+        System.out.println("Nombre: " + proyecto.getNombre());
+        System.out.println("Descripción: " + proyecto.getDescripcion());
+        System.out.println("Fecha de Creación: " + proyecto.getFechaCreacion());
+        System.out.println("Colaboradores:");
+        for (Persona colaborador : proyecto.getColaboradores()) {
+            System.out.println("- " + colaborador.getNombreUsuario());
+        }
+        System.out.println("Tareas:");
+        for (Tarea tarea : proyecto.getTareas()) {
+            System.out.println("- " + tarea.getNombre() + " (" + tarea.getEstado() + ")");
+        }
+    }
+}

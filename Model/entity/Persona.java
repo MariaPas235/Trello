@@ -123,4 +123,5 @@ public class Persona implements Serializable {
     public String toString() {
         return "Persona[" + nombre + usuario + contrasena + mail + "]";
     }
+
 }
