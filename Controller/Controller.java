@@ -1,6 +1,8 @@
 package Controller;
 
 import Interface.IController;
+import Model.entity.Colaborador;
+import Model.entity.Jefe;
 import Model.entity.Proyecto;
 import Model.repo.Sesion;
 import view.GUI;
@@ -10,7 +12,13 @@ import java.security.NoSuchAlgorithmException;
 
 public class Controller implements IController {
     GUI GUI = new GUI();
-        @Override
+    Jefe jefe = new Jefe();
+    Colaborador colaborador= new Colaborador();
+
+    public Controller() throws NoSuchAlgorithmException {
+    }
+
+    @Override
         public String controllerMain() throws FileNotFoundException, NoSuchAlgorithmException {
             GUI.imprimirBienvenida();
             switch (GUI.imprimirMenuInicio()){
@@ -43,18 +51,14 @@ public class Controller implements IController {
                         GUI.borrarProyecto();
                         break;
                     case 3:
-                        //listar proyectos creados
-                        GUI.listarProyectosCreados();
-                        break;
-                    case 4:
                         //listar proyectos como colaborador
                         GUI.listarProyectos();
                         break;
-                    case 5:
+                    case 4:
                         controladorProyectosJefe(GUI.seleccionarProyecto());
                         break;
                 }
-            }while(!(option ==6));
+            }while(!(option ==5));
 
         }
         public  void controladorProyectosJefe(Proyecto proyecto){
@@ -66,19 +70,19 @@ public class Controller implements IController {
                 opcion= GUI.leeNumero("Introduce opcion deseada: ");
                 switch (opcion){
                     case 1:
-                        GUI.anadirTarea();
+                        jefe.anadirTarea();
                         break;
                     case 2:
-                        GUI.borrarTarea();
+                        jefe.borrarTarea();
                         break;
                     case 3:
-                        GUI.moverTarea();
+                        jefe.anadirColaboradores();
                         break;
                     case 4:
-                        GUI.asignarTarea();
+                        jefe.asignartarea();
                         break;
                     case 5:
-                        GUI.editarTarea();
+                        jefe.actualizarTarea();
                         break;
                 }
             }while(!(opcion ==6));
@@ -92,13 +96,13 @@ public class Controller implements IController {
             opcion= GUI.leeNumero("Introduce opcion deseada: ");
             switch (opcion){
                 case 1:
-                    GUI.editarTarea();
+                    colaborador.actualizarEstadoTarea();
                     break;
                 case 2:
-                    GUI.moverTarea();
+                    colaborador.verComentario;
                     break;
                 case 3:
-                    GUI.desasignarTarea();
+                    colaborador.desasignarTarea();
                     break;
             }
         }while(!(opcion ==4));
