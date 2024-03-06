@@ -1,21 +1,23 @@
 package Model.repo;
 
+import Interface.IGUI;
 import Model.entity.Persona;
 
 public class Sesion {
     private static Sesion _instance;
+    private static IGUI GUI;
     private Persona persona;
-    private Sesion(){}
+    public Sesion(Persona persona){}
     public static Sesion getInstance(){
 
 
         if (_instance==null){
-            _instance=new Sesion();
+            _instance=new Sesion(GUI.recogeDatosInicio());
         }
         return _instance;
     }
 
-    public Persona setPersona(){  //entra persona view
+    public Persona getPersona(){  //entra persona view
         return persona;
     }
 

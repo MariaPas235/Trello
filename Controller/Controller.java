@@ -1,8 +1,10 @@
 package Controller;
 
 import Interface.IController;
-import Interface.IGUI;
-import Model.entity.Persona;
+import Model.entity.Colaborador;
+import Model.entity.Jefe;
+import Model.entity.Proyecto;
+import Model.repo.Sesion;
 import view.GUI;
 
 import java.io.FileNotFoundException;
@@ -10,7 +12,13 @@ import java.security.NoSuchAlgorithmException;
 
 public class Controller implements IController {
     GUI GUI = new GUI();
-        @Override
+    Jefe jefe = new Jefe();
+    Colaborador colaborador= new Colaborador();
+
+    public Controller() throws NoSuchAlgorithmException {
+    }
+
+    @Override
         public String controllerMain() throws FileNotFoundException, NoSuchAlgorithmException {
             GUI.imprimirBienvenida();
             switch (GUI.imprimirMenuInicio()){
@@ -18,7 +26,8 @@ public class Controller implements IController {
                     GUI.recogeDatosRegistro();
                 case 2:
                     GUI.bienvenidaApp();
-                    controladorMenu(GUI.recogeDatosInicio());
+                    Sesion sesion = new Sesion(GUI.recogeDatosInicio());
+                    controladorMenu(sesion);
                     break;
                 case 3:
                     break;
@@ -26,31 +35,79 @@ public class Controller implements IController {
             }
             return "Gracias por usar Trello. Hasta pronto （＾∀＾）ﾉｼ";
         }
-        public void controladorMenu(Persona persona){
+        public void controladorMenu(Sesion sesion){
             int option = 0;
             do{
-                System.out.println("Hola! " + persona.getNombre());
+                System.out.println("Hola! " + sesion.getPersona());
                 GUI.imprimirMenuProyectos();
                 option= GUI.leeNumero("Introduce opcion deseada: ");
                 switch (option){
                     case 1:
                         GUI.recogerDatosProyecto();
                         //aquí quiero que cuando meta todos los datos salte al menu otra vez
+                        break;
                     case 2:
                         //borrar proyecto por nombre
                         GUI.borrarProyecto();
+                        break;
                     case 3:
-                        //listar proyectos creados
-                        GUI.listarProyectosCreados();
-                    case 4:
                         //listar proyectos como colaborador
-                        GUI.listarProyectosColaborador();
-                    case 5:
-
-                        GUI.selecionarProyecto();
+                        GUI.listarProyectos();
+                        break;
+                    case 4:
+                        controladorProyectosJefe(GUI.seleccionarProyecto());
                         break;
                 }
-            }while(!(option ==6));
+            }while(!(option ==5));
 
         }
+        public  void controladorProyectosJefe(Proyecto proyecto){
+            int opcion= 0;
+            do{
+                System.out.println("Bienvenido! " + proyecto.getNombre());
+                GUI.imprimeProyecto(proyecto);
+                GUI.imprimirOpcionesDeTarea();
+                opcion= GUI.leeNumero("Introduce opcion deseada: ");
+                switch (opcion){
+                    case 1:
+                        jefe.anadirTarea();
+                        break;
+                    case 2:
+                        jefe.borrarTarea();
+                        break;
+                    case 3:
+                        jefe.anadirColaboradores();
+                        break;
+                    case 4:
+                        jefe.eliminarColaboradores();
+                        break;
+                    case 5:
+                        jefe.asignartarea();
+                        break;
+                    case 6:
+                        jefe.actualizarTarea();
+                        break;
+                }
+            }while(!(opcion ==7));
+        }
+    public  void controladorProyectosColaborador(Proyecto proyecto){
+        int opcion= 0;
+        do{
+            System.out.println("Bienvenido! " + proyecto.getNombre());
+            GUI.imprimeProyecto(proyecto);
+            GUI.imprimirOpcionesDeTarea();
+            opcion= GUI.leeNumero("Introduce opcion deseada: ");
+            switch (opcion){
+                case 1:
+                    colaborador.actualizarEstadoTarea();
+                    break;
+                case 2:
+                    colaborador.verComentario();
+                    break;
+                case 3:
+                    colaborador.desasignarTarea();
+                    break;
+            }
+        }while(!(opcion ==4));
     }
+}

@@ -2,18 +2,21 @@ package view;
 
 import Interface.IGUI;
 import Model.entity.Persona;
+import Model.entity.Tarea;
 import Model.repo.RepoPersona;
-import serializator.Serializator;
+import Model.repo.RepoProyecto;
 import Model.entity.Proyecto;
 
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GUI implements IGUI {
     Scanner teclado = new Scanner(System.in);
-    Serializator serializator = new Serializator();
     static RepoPersona rp = RepoPersona.get_instance();
+    static RepoProyecto rProyecto = RepoProyecto.get_instance();
     public void imprimirBienvenida() {
         System.out.println(".______    __   _______ .__   __. ____    ____  _______ .__   __.  __   _______    ______           ___         .___________..______       _______  __       __        ______   \n" +
                 "|   _  \\  |  | |   ____||  \\ |  | \\   \\  /   / |   ____||  \\ |  | |  | |       \\  /  __  \\         /   \\        |           ||   _  \\     |   ____||  |     |  |      /  __  \\  \n" +
@@ -39,15 +42,13 @@ public class GUI implements IGUI {
 
     @Override
     public Persona recogeDatosInicio() {
-        Persona persona= null;
         String nombreUsuario;
         String contrasena;
         do {
             nombreUsuario = leeString("Inserte su usuario");
             contrasena = leeString("Inserte su contraseña");
         } while (!rp.getByUserName(nombreUsuario) && !rp.getBypassword(contrasena));
-
-    return persona;
+        return rp.getByID(nombreUsuario);
     }
 
     @Override
@@ -114,46 +115,87 @@ public class GUI implements IGUI {
     public int imprimirMenuProyectos() {
         System.out.println("1. Crear proyecto");
         System.out.println("2. Borrar proyecto");
-        System.out.println("3. Listar proyectos creados");
-        System.out.println("4. Listar proyectos como colaborador");
+        System.out.println("3. Listar proyectos como colaborador");
+        System.out.println("4. Listar proyectos");
         System.out.println("5. Seleccionar proyecto");
         System.out.println("6. Cerrar Sesión");
         int opcion = leeNumero("Inserte una opción");
         return opcion;
     }
 
-    public void recogerDatosProyecto(){
-        String nombreProyecto=leeString("Inserte el nombre de su proyecto");
-        String descripcion= leeString("Inserte una descripción de su proyecto");
-        //fecha creación y fecha fin
-        String colaboradores=leeString("Añade los colaboradores de su proyecto");//Aquí podemos poner para que solo añada un colaborador o que añada más de 1
-        String estado = leeString("Inserte el estado del proyecto (nombre, descripcion, localDate.)");
-        //Deberíamos de poner para que devuelva un proyecto ya creado con estos datos que hemos recogido
-        //meter el proyecto en un array de proyectos e identificarlo con un creado, para luego poder buscarlo en el array por el creado
-        Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, localDate);
-        //test
+    public void recogerDatosProyecto() {
+        String nombreProyecto = leeString("Inserte el nombre de su proyecto");
+        String descripcion = leeString("Inserte una descripción de su proyecto");
+        LocalDate fechaCreacion = LocalDate.now();
+        String colaboradores = leeString("Añade los colaboradores de su proyecto");
+        //String estado = leeString("Inserte el estado del proyecto");
+        RepoProyecto rProyecto = RepoProyecto.get_instance();
+        Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, fechaCreacion,new ArrayList<Persona>(),new ArrayList<Tarea>());
+        rProyecto.add(proyecto);
+        rProyecto.save();
     }
 
-    public void crarProyecto() {
-
-    }
 
 
     public void borrarProyecto() {
 
     }
 
-    public void listarProyectosCreados() {
-
+    public Proyecto seleccionarProyecto() {
+        String nombreProyecto;
+        do {
+            nombreProyecto = leeString("Inserte el nombre de su proyecto");
+        } while (!rProyecto.getByName(nombreProyecto));
+        return rProyecto.getByID(nombreProyecto);
     }
 
-    public void seleccionarProyecto() {
-
+    public void listarProyectos() {
+        ArrayList<Proyecto> proyectos = (ArrayList<Proyecto>) rProyecto.getAll();
+        if (proyectos.isEmpty()) {
+            System.out.println("No hay proyectos creados.");
+        } else {
+            System.out.println("Proyectos creados:");
+            for (Proyecto proyecto : proyectos) {
+                System.out.println("Nombre: " + proyecto.getNombre());
+                System.out.println("Descripción: " + proyecto.getDescripcion());
+                System.out.println("Fecha de Creación: " + proyecto.getFechaCreacion());
+                System.out.println("-----------------------------------");
+            }
+        }
     }
 
-    public void listarProyectosColaborador() {
-
+    public void imprimirOpcionesDeTarea() {
     }
 
+    public void anadirTarea() {
+    }
+
+    public void borrarTarea() {
+    }
+
+    public void moverTarea() {
+    }
+
+    public void asignarTarea() {
+    }
+
+    public void editarTarea() {
+    }
+
+    public void desasignarTarea() {
+    }
+
+    public void imprimeProyecto(Proyecto proyecto) {
+        System.out.println("Nombre: " + proyecto.getNombre());
+        System.out.println("Descripción: " + proyecto.getDescripcion());
+        System.out.println("Fecha de Creación: " + proyecto.getFechaCreacion());
+        System.out.println("Colaboradores:");
+        for (Persona colaborador : proyecto.getColaboradores()) {
+            System.out.println("- " + colaborador.getNombreUsuario());
+        }
+        System.out.println("Tareas:");
+        for (Tarea tarea : proyecto.getTareas()) {
+            System.out.println("- " + tarea.getNombre() + " (" + tarea.getEstado() + ")");
+        }
+    }
 }
-
