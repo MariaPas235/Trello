@@ -136,8 +136,8 @@ public class GUI implements IGUI {
         rProyecto.save();
     }
 
-    public void borrarProyecto() {
-
+    public String borrarProyecto() {
+        return leeString("Introduce el nombre del proyecto que quieres eliminar:");
     }
 
     public Proyecto seleccionarProyecto() {
