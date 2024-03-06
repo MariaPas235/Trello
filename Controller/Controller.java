@@ -16,6 +16,7 @@ public class Controller implements IController {
     Jefe jefe = new Jefe();
     Colaborador colaborador= new Colaborador();
     static RepoProyecto rProyecto = RepoProyecto.get_instance();
+    //tengotrabajoquehacer
     public Controller() throws NoSuchAlgorithmException {
     }
 
