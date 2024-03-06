@@ -39,8 +39,7 @@ public class Controller implements IController {
             int option = 0;
             do{
                 System.out.println("Hola! " + sesion.getPersona());
-                GUI.imprimirMenuProyectos();
-                option= GUI.leeNumero("Introduce opcion deseada: ");
+                option= GUI.imprimirMenuProyectos();
                 switch (option){
                     case 1:
                         GUI.recogerDatosProyecto();
@@ -55,7 +54,8 @@ public class Controller implements IController {
                         GUI.listarProyectos();
                         break;
                     case 4:
-                        controladorProyectosJefe(GUI.seleccionarProyecto());
+                        Proyecto proyecto = GUI.seleccionarProyecto();
+                        controladorProyectosJefe(proyecto);
                         break;
                 }
             }while(!(option ==5));
