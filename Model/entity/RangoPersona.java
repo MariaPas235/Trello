@@ -23,9 +23,9 @@ public enum RangoPersona {
     /**
      * static: este metodo estatico crea un HashMap con la variable RANGO_PERSONA_MAP
      * for-each: Se recorren todos los valores del enum RangoPersona utilizando el método values()
-     estadotarea agrega una entrada al mapa creado
-     En estadotarea.estado la clave es el estado
-     ESTADO_TAREA_MAP.put permite insertar un mapeo al mapa HashMAp
+     rangopersona agrega una entrada al mapa creado
+     En rangopersona.estado la clave es el estado
+     RANGO_PERSONA_MAP.put permite insertar un mapeo al mapa HashMAp
      Permite agregar una clave específica y el valor al que está asociada esa clave en un mapa particular.
      */
     static {
@@ -36,7 +36,7 @@ public enum RangoPersona {
     }
 
     /**
-     * El uso de este método es obtener una instancia de EstadoTarea a partir de un nombre de estado representado por la cadena estado
+     * El uso de este método es obtener una instancia de RangoPersona a partir de un nombre de estado representado por la cadena estado
      *
      * @param estado es el nombre del estado
      * @return devuelve el nombre del estado escrito si es valido, si no, da un error de expcepcion
