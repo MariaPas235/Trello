@@ -191,7 +191,7 @@ public class GUI implements IGUI {
         System.out.println("Fecha de Creación: " + proyecto.getFechaCreacion());
         System.out.println("Colaboradores:");
         for (Persona colaborador : proyecto.getColaboradores()) {
-            System.out.println("- " + colaborador.getNombreUsuario());
+            System.out.println("- " + colaborador.getNombre());
         }
         System.out.println("Tareas:");
         for (Tarea tarea : proyecto.getTareas()) {

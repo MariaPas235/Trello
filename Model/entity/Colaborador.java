@@ -16,4 +16,7 @@ public class Colaborador extends Persona implements IColaborador {
 
     public void desasignarTarea() {
     }
+
+    public void verComentario() {
+    }
 }
