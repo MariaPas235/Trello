@@ -137,8 +137,8 @@ public class GUI implements IGUI {
 
 
 
-    public void borrarProyecto() {
-
+    public String borrarProyecto() {
+        return leeString("Introduce el nombre del proyecto que quieras eliminar:");
     }
 
     public Proyecto seleccionarProyecto() {
