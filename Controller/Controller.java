@@ -91,7 +91,7 @@ public class Controller implements IController {
         int opcion= 0;
         do{
             System.out.println("Bienvenido! " + proyecto.getNombre());
-            GUI.imprimeProyecto();
+            GUI.imprimeProyecto(proyecto);
             GUI.imprimirOpcionesDeTarea();
             opcion= GUI.leeNumero("Introduce opcion deseada: ");
             switch (opcion){
@@ -107,4 +107,4 @@ public class Controller implements IController {
             }
         }while(!(opcion ==4));
     }
-    }
+}
