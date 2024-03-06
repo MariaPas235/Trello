@@ -5,7 +5,7 @@ import Interface.IJefe;
 import java.security.NoSuchAlgorithmException;
 
 public class Jefe extends Persona implements IJefe {
-    public Jefe() throws NoSuchAlgorithmException {
+    public Jefe() {
         super("","","","");
     }
     //Funciones que tiene el jefe de un proyecto

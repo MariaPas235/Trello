@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class main {
 
-    public static void main(String[] args) throws FileNotFoundException, NoSuchAlgorithmException {
+    public static void main(String[] args) {
          Controller controller = new Controller();
          controller.controllerMain();
         RepoPersona rp = RepoPersona.get_instance();

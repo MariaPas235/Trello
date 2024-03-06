@@ -2,11 +2,10 @@ package Model.repo;
 
 import Model.entity.Persona;
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import static serializator.Security.hashPassword;
 
@@ -14,7 +13,7 @@ public class RepoPersona extends library<Persona,String> {
     private final static String FILENAME= "Users.bin";
     private static RepoPersona _instance;
     private Set<Persona> personas;
-    private RepoPersona(){
+    public RepoPersona(){
         personas= new HashSet<>();
     }
     public static RepoPersona get_instance(){
@@ -68,10 +67,12 @@ public class RepoPersona extends library<Persona,String> {
 
     @Override
     public boolean delete(String nombrePersona) {
-        boolean result=false;
-        for (Persona persona:personas){
-                if (persona.getNombre().equals(nombrePersona)){
-                personas.remove(persona);
+        boolean result = false;
+        Iterator<Persona> iterator = personas.iterator();
+        while (iterator.hasNext()) {
+            Persona persona = iterator.next();
+            if (persona.getNombre().equals(nombrePersona)) {
+                iterator.remove();
                 result = true;
             }
         }
