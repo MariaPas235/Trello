@@ -129,14 +129,12 @@ public class GUI implements IGUI {
         String descripcion = leeString("Inserte una descripción de su proyecto");
         LocalDate fechaCreacion = LocalDate.now();
         String colaboradores = leeString("Añade los colaboradores de su proyecto");
-        //String estado = leeString("Inserte el estado del proyecto");
+        String estadoDelProyecto = leeString("Inserte el estado del proyecto");
         RepoProyecto rProyecto = RepoProyecto.get_instance();
         Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, fechaCreacion,new ArrayList<Persona>(),new ArrayList<Tarea>());
         rProyecto.add(proyecto);
         rProyecto.save();
     }
-
-
 
     public String borrarProyecto() {
         return leeString("Introduce el nombre del proyecto que quieres eliminar:");
