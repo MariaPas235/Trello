@@ -23,7 +23,7 @@ public class ControllerMenu implements IControllerMenu {
     public void controladorMenu(Sesion sesion){
         int option = 0;
         do{
-            System.out.println("Hola! " + sesion.getPersona());
+            System.out.println("Hola! " + sesion.getPersona().getUsuario());
             option= GUI.imprimirMenuProyectos();
             switch (option){
                 case 1:
