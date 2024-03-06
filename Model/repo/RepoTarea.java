@@ -56,9 +56,7 @@ public class RepoTarea extends Library_proyect<Tarea,String>{
     }
 
     @Override
-    public Collection<Tarea> getAll() {
-        return tareas;
-    }
+    public Collection<Tarea> getAll() {return tareas;}
 
     @Override
     public Tarea update(Tarea data) {
