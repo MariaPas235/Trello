@@ -39,9 +39,7 @@ public class Controller implements IController {
             int option = 0;
             do{
                 System.out.println("Hola! " + sesion.getPersona());
-                GUI.imprimirMenuProyectos();
-                option= GUI.leeNumero("Introduce opcion deseada: ");
-                switch (option){
+                switch (GUI.imprimirMenuProyectos()){
                     case 1:
                         GUI.recogerDatosProyecto();
                         //aquí quiero que cuando meta todos los datos salte al menu otra vez
