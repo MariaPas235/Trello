@@ -17,6 +17,7 @@ public class GUI implements IGUI {
     Scanner teclado = new Scanner(System.in);
     static RepoPersona rp = RepoPersona.get_instance();
     static RepoProyecto rProyecto = RepoProyecto.get_instance();
+    //test
     public void imprimirBienvenida() {
         System.out.println(".______    __   _______ .__   __. ____    ____  _______ .__   __.  __   _______    ______           ___         .___________..______       _______  __       __        ______   \n" +
                 "|   _  \\  |  | |   ____||  \\ |  | \\   \\  /   / |   ____||  \\ |  | |  | |       \\  /  __  \\         /   \\        |           ||   _  \\     |   ____||  |     |  |      /  __  \\  \n" +
@@ -128,17 +129,15 @@ public class GUI implements IGUI {
         String descripcion = leeString("Inserte una descripción de su proyecto");
         LocalDate fechaCreacion = LocalDate.now();
         String colaboradores = leeString("Añade los colaboradores de su proyecto");
-        //String estado = leeString("Inserte el estado del proyecto");
+        String estadoDelProyecto = leeString("Inserte el estado del proyecto");
         RepoProyecto rProyecto = RepoProyecto.get_instance();
         Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, fechaCreacion,new ArrayList<Persona>(),new ArrayList<Tarea>());
         rProyecto.add(proyecto);
         rProyecto.save();
     }
 
-
-
     public String borrarProyecto() {
-        return leeString("Introduce el nombre del proyecto que quieras eliminar:");
+        return leeString("Introduce el nombre del proyecto que quieres eliminar:");
     }
 
     public Proyecto seleccionarProyecto() {
