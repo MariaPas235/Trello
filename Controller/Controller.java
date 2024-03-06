@@ -39,7 +39,8 @@ public class Controller implements IController {
             int option = 0;
             do{
                 System.out.println("Hola! " + sesion.getPersona());
-                switch (GUI.imprimirMenuProyectos()){
+                option= GUI.imprimirMenuProyectos();
+                switch (option){
                     case 1:
                         GUI.recogerDatosProyecto();
                         //aquí quiero que cuando meta todos los datos salte al menu otra vez
@@ -53,7 +54,8 @@ public class Controller implements IController {
                         GUI.listarProyectos();
                         break;
                     case 4:
-                        controladorProyectosJefe(GUI.seleccionarProyecto());
+                        Proyecto proyecto = GUI.seleccionarProyecto();
+                        controladorProyectosJefe(proyecto);
                         break;
                 }
             }while(!(option ==5));
