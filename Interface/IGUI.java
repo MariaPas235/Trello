@@ -24,7 +24,7 @@ public interface IGUI {
 
     int imprimirMenuProyectos();
 
-    Proyecto recogerDatosProyecto();
+    Proyecto recogerDatosProyecto(String nombre);
 
     String borrarProyecto();
 
