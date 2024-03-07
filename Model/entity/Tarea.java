@@ -95,6 +95,8 @@ public class Tarea {
         return "tarea[" + nombre + personaAsignada + descripcion + fechaInicio + fechaLimite + fechaActual + "]";
     }
 
+    public String getEstado() {
+    }
 }
 
 
