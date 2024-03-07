@@ -15,7 +15,8 @@ public class Tarea {
     private LocalDateTime fechaActual;
     private String comentario;
 
-    public Tarea(String nombre, String personaAsignada, String descripcion, LocalDate fechaInicio, LocalDate fechaLimite, LocalDateTime fechaActual,String comentario) {
+    private EstadoTarea estadoTarea;
+    public Tarea(String nombre, String personaAsignada, String descripcion, LocalDate fechaInicio, LocalDate fechaLimite, LocalDateTime fechaActual,String comentario, EstadoTarea estadoTarea) {
         this.nombre = nombre;
         this.personaAsignada = personaAsignada;
         this.descripcion = descripcion;
@@ -23,10 +24,11 @@ public class Tarea {
         this.fechaLimite = fechaLimite;
         this.fechaActual = fechaActual;
         this.comentario= comentario;
+        this.estadoTarea= estadoTarea;
     }
 
     public Tarea() {
-        this("", "", "", LocalDate.now(), LocalDate.now(), LocalDateTime.now(),"");
+        this("", "", "", LocalDate.now(), LocalDate.now(), LocalDateTime.now(),"",EstadoTarea.SININICIAR);
     }
 
     public String getNombre() {
@@ -83,6 +85,14 @@ public class Tarea {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public EstadoTarea getEstadoTarea() {
+        return estadoTarea;
+    }
+
+    public void setEstadoTarea(EstadoTarea estadoTarea) {
+        this.estadoTarea = estadoTarea;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package view;
 
 import Interface.IGUI;
+import Model.entity.EstadoTarea;
 import Model.entity.Persona;
 import Model.entity.Tarea;
 import Model.repo.RepoPersona;
@@ -156,6 +157,29 @@ public class GUI implements IGUI {
     }
 
     public void anadirTarea() {
+        int dia,mes,ano;
+        String nombreTarea = leeString("Inserte el nombre de su tarea");
+        String descripcion = leeString("Inserte una descripción de su tarea");
+        LocalDate fechaCreacion = LocalDate.now();
+        do {
+             dia= leeNumero("Introduce el dia (con número) de finalización de la tarea");
+        }while (dia>30 || dia<1);
+
+        do {
+            mes= leeNumero("Introduce el mes (con número) de finalización de la tarea");
+        }while (mes>12 || mes<1);
+
+        do {
+            ano= leeNumero("Introduce el año (con número) de finalización de la tarea");
+        }while (ano<2024);
+
+        LocalDate fechaFinalizacion = LocalDate.of(ano,mes,dia);
+
+        EstadoTarea EstadoDelProyecto = EstadoTarea.SININICIAR;
+        RepoProyecto rProyecto = RepoProyecto.get_instance();
+        Tarea tarea = new Tarea(nombreTarea, descripcion, fechaCreacion,fechaFinalizacion,personaAsignada,);
+        return proyecto;
+
     }
 
     public void borrarTarea() {
@@ -170,8 +194,6 @@ public class GUI implements IGUI {
     public void editarTarea() {
     }
 
-    public void desasignarTarea() {
-    }
 
     public void imprimeProyecto(Proyecto proyecto) {
         System.out.println("Nombre: " + proyecto.getNombre());
