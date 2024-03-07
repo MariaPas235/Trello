@@ -13,10 +13,13 @@ public class Colaborador extends Persona implements IColaborador {
     public void actualizarEstadoTarea() {
 
     }
+    @Override
+    public void anadirComentario() {
 
-    public void desasignarTarea() {
     }
 
-    public void verComentario() {
+    @Override
+    public void editarComentario() {
     }
+
 }
