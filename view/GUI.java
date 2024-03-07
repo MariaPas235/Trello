@@ -9,7 +9,9 @@ import Model.repo.RepoProyecto;
 import Model.entity.Proyecto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class GUI implements IGUI {
@@ -156,9 +158,22 @@ public class GUI implements IGUI {
         return leeNumero("Inserte una opción");
     }
 
-    public void anadirTarea() {
+    public Tarea anadirTarea() {
         int dia,mes,ano;
         String nombreTarea = leeString("Inserte el nombre de su tarea");
+        String personaasignada = null;
+        RepoPersona repoPersona = new RepoPersona();
+        do {
+            String nombrePersona = leeString("Inserte nombre de la persona a cargo de la tarea");
+            Collection<Persona> personas = repoPersona.getAll();
+            for (Persona persona : personas) {
+                if (persona.getUsuario().equals(nombrePersona)) {
+                    personaasignada = nombrePersona;
+                }else{
+                    System.out.println("La persona ingresada no existe. Por favor, intente de nuevo.");
+                }
+            }
+        } while (personaasignada == null);
         String descripcion = leeString("Inserte una descripción de su tarea");
         LocalDate fechaCreacion = LocalDate.now();
         do {
@@ -174,11 +189,7 @@ public class GUI implements IGUI {
         }while (ano<2024);
 
         LocalDate fechaFinalizacion = LocalDate.of(ano,mes,dia);
-
-        EstadoTarea EstadoDelProyecto = EstadoTarea.SININICIAR;
-        RepoProyecto rProyecto = RepoProyecto.get_instance();
-        Tarea tarea = new Tarea(nombreTarea, descripcion, fechaCreacion,fechaFinalizacion,personaAsignada,);
-        return proyecto;
+        return new Tarea(nombreTarea,personaasignada ,descripcion, fechaCreacion,fechaFinalizacion,LocalDateTime.now(),null,EstadoTarea.SININICIAR);
 
     }
 
