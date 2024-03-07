@@ -15,7 +15,7 @@ public class ControllerProyectoColaborador implements IControllerProyectoColabor
     Colaborador colaborador= new Colaborador();
     static RepoProyecto rProyecto = RepoProyecto.get_instance();
 
-    public ControllerProyectoColaborador() throws NoSuchAlgorithmException {
+    public ControllerProyectoColaborador() {
     }
 
     public  void controladorProyectosColaborador(Proyecto proyecto){

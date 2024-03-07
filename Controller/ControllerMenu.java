@@ -10,12 +10,14 @@ import view.GUI;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ControllerMenu implements IControllerMenu {
     view.GUI GUI = new GUI();
     Jefe jefe = new Jefe();
     Colaborador colaborador= new Colaborador();
     ControllerProyectoJefe controladorProyectosJefe = new ControllerProyectoJefe();
+    ControllerProyectoColaborador controllerProyectoColaborador = new ControllerProyectoColaborador();
     static RepoProyecto rProyecto = RepoProyecto.get_instance();
 
     public ControllerMenu() {
@@ -51,8 +53,11 @@ public class ControllerMenu implements IControllerMenu {
                          proyecto= rProyecto.getByID(GUI.seleccionarProyecto());
 
                     }while (!rProyecto.getByName(GUI.seleccionarProyecto()));
-
-                    controladorProyectosJefe.controladorProyectosJefe(proyecto);
+                    if(Objects.equals(proyecto.getJefe(), sesion.getPersona().getUsuario())){
+                        controladorProyectosJefe.controladorProyectosJefe(proyecto);
+                    }else{
+                        controllerProyectoColaborador.controladorProyectosColaborador(proyecto);
+                    }
                     break;
             }
         }while(!(option ==5));
