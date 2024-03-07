@@ -9,6 +9,7 @@ import Model.repo.Sesion;
 import view.GUI;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class ControllerMenu implements IControllerMenu {
     view.GUI GUI = new GUI();
@@ -35,17 +36,22 @@ public class ControllerMenu implements IControllerMenu {
                     rProyecto.delete(GUI.borrarProyecto());
                     break;
                 case 3:
-                    //listar proyectos como colaborador
-                    GUI.listarProyectos();
-                    break;
+                    ArrayList<Proyecto> proyectos = (ArrayList<Proyecto>) rProyecto.getAll();
+                    if (proyectos.isEmpty()) {
+                        System.out.println("No hay proyectos creados.");
+                    } else {
+                        System.out.println("Proyectos creados:");
+                        for (Proyecto proyecto : proyectos) {
+                            GUI.listarProyectos(proyecto);
+                        }
+                    }
                 case 4:
+                    Proyecto proyecto;
                     do {
-                        GUI.seleccionarProyecto();
+                         proyecto= rProyecto.getByID(GUI.seleccionarProyecto());
+
                     }while (!rProyecto.getByName(GUI.seleccionarProyecto()));
-                    rProyecto.getByID(/*pide un string id*/);
 
-
-                    Proyecto proyecto = GUI.seleccionarProyecto();
                     controladorProyectosJefe.controladorProyectosJefe(proyecto);
                     break;
             }

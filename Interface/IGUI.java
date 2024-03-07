@@ -28,7 +28,7 @@ public interface IGUI {
 
     String borrarProyecto();
 
-    void listarProyectos();
+    void listarProyectos(Proyecto proyecto);
 
     String seleccionarProyecto();
 
