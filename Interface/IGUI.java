@@ -41,5 +41,4 @@ public interface IGUI {
 
     void editarTarea();
 
-    void desasignarTarea();
 }
