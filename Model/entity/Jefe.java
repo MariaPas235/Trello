@@ -38,6 +38,4 @@ public class Jefe extends Persona implements IJefe {
     public void actualizarTarea() {
 
     }
-
-
 }

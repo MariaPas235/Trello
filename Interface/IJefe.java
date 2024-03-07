@@ -8,4 +8,5 @@ public interface IJefe {
     void asignartarea();
     void borrarTarea();
     void actualizarTarea();
+
 }
