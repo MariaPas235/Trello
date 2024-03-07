@@ -11,7 +11,7 @@ public class RepoTarea extends Library_proyect<Tarea,String>{
     private static RepoTarea _instance;
     private Set<Tarea> tareas;
 
-    private RepoTarea() {
+    public RepoTarea() {
         tareas = new HashSet<>();
     }
 

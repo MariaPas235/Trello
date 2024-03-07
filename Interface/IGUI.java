@@ -2,6 +2,7 @@ package Interface;
 
 import Model.entity.Persona;
 import Model.entity.Proyecto;
+import Model.entity.Tarea;
 
 //Metodos que implementamos en la GUI (Vista)
 public interface IGUI {
@@ -31,7 +32,7 @@ public interface IGUI {
 
     int imprimirOpcionesDeTarea();
 
-    void anadirTarea();
+    Tarea anadirTarea();
 
     void borrarTarea();
 
