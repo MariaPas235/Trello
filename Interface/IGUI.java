@@ -3,9 +3,6 @@ package Interface;
 import Model.entity.Persona;
 import Model.entity.Proyecto;
 
-import java.io.FileNotFoundException;
-import java.security.NoSuchAlgorithmException;
-
 //Metodos que implementamos en la GUI (Vista)
 public interface IGUI {
     void imprimirBienvenida();
@@ -32,7 +29,7 @@ public interface IGUI {
 
     String seleccionarProyecto();
 
-    void imprimirOpcionesDeTarea();
+    int imprimirOpcionesDeTarea();
 
     void anadirTarea();
 
