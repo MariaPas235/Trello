@@ -138,19 +138,13 @@ public class GUI implements IGUI {
         return  leeString("Inserte el nombre de su proyecto");
     }
 
-    public void listarProyectos() {
-        ArrayList<Proyecto> proyectos = (ArrayList<Proyecto>) rProyecto.getAll();
-        if (proyectos.isEmpty()) {
-            System.out.println("No hay proyectos creados.");
-        } else {
-            System.out.println("Proyectos creados:");
-            for (Proyecto proyecto : proyectos) {
+    public void listarProyectos(Proyecto proyecto) {
+
                 System.out.println("Nombre: " + proyecto.getNombre());
                 System.out.println("Descripción: " + proyecto.getDescripcion());
                 System.out.println("Fecha de Creación: " + proyecto.getFechaCreacion());
                 System.out.println("-----------------------------------");
-            }
-        }
+
     }
 
     public void imprimirOpcionesDeTarea() {

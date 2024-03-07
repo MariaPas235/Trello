@@ -82,5 +82,9 @@ public class Proyecto {
     public String toString() {
         return "proyecto[" + nombre + descripcion + LocalDate.now() + tareas + colaboradores +"]";
     }
+
+    private  static final void jefeProyecto(){
+
+    }
 }
 
