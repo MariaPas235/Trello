@@ -1,5 +1,6 @@
 package Interface;
 
+
 public interface IJefe {
     //Metodos que se implementaran en la clase jefe
     void anadirColaboradores();
