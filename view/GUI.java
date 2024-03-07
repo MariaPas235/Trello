@@ -146,14 +146,13 @@ public class GUI implements IGUI {
 
     }
 
-    public void imprimirOpcionesDeTarea() {
-        System.out.println("Seleccione una opción:");
+    public int imprimirOpcionesDeTarea() {
         System.out.println("1. Añadir tarea");
         System.out.println("2. Borrar tarea");
         System.out.println("3. Mover tarea");
         System.out.println("4. Asignar tarea");
         System.out.println("5. Editar tarea");
-        System.out.println("6. Desasignar tarea");
+        return leeNumero("Inserte una opción");
     }
 
     public void anadirTarea() {
