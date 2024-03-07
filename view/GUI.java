@@ -170,8 +170,6 @@ public class GUI implements IGUI {
     public void editarTarea() {
     }
 
-    public void desasignarTarea() {
-    }
 
     public void imprimeProyecto(Proyecto proyecto) {
         System.out.println("Nombre: " + proyecto.getNombre());
