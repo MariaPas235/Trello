@@ -27,7 +27,8 @@ public class ControllerMenu implements IControllerMenu {
             option= GUI.imprimirMenuProyectos();
             switch (option){
                 case 1:
-                    GUI.recogerDatosProyecto();
+                    rProyecto.add( GUI.recogerDatosProyecto());
+                    rProyecto.save();
                     //aquí quiero que cuando meta todos los datos salte al menu otra vez
                     break;
                 case 2:
@@ -38,6 +39,12 @@ public class ControllerMenu implements IControllerMenu {
                     GUI.listarProyectos();
                     break;
                 case 4:
+                    do {
+                        GUI.seleccionarProyecto();
+                    }while (!rProyecto.getByName(GUI.seleccionarProyecto()));
+                    rProyecto.getByID(/*pide un string id*/);
+
+
                     Proyecto proyecto = GUI.seleccionarProyecto();
                     controladorProyectosJefe.controladorProyectosJefe(proyecto);
                     break;
