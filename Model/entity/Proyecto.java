@@ -8,19 +8,21 @@ public class Proyecto {
     private String nombre;
     private String descripcion;
     private LocalDate fechaCreacion;
+    private String Jefe;
     private ArrayList<Persona> colaboradores;
     private ArrayList<Tarea> tareas;
 
-    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion, ArrayList<Persona> colaboradores, ArrayList<Tarea> tareas) {
+    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion,String jefe, ArrayList<Persona> colaboradores, ArrayList<Tarea> tareas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
+        this.Jefe = jefe;
         this.colaboradores = colaboradores;
         this.tareas = tareas;
     }
 
     public Proyecto() {
-        this("", "", LocalDate.now(), new ArrayList<>(), new ArrayList<>());
+        this("","", LocalDate.now(),"",new ArrayList<>(), new ArrayList<>());
     }
 
 
@@ -42,6 +44,14 @@ public class Proyecto {
 
     public LocalDate getFechaCreacion() {
         return fechaCreacion;
+    }
+
+    public String getJefe() {
+        return Jefe;
+    }
+
+    public void setJefe(String jefe) {
+        Jefe = jefe;
     }
 
     public void setFechaCreacion(LocalDate fechaCreacion) {

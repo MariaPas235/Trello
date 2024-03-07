@@ -118,14 +118,14 @@ public class GUI implements IGUI {
         return leeNumero("Inserte una opción");
     }
 
-    public Proyecto recogerDatosProyecto() {
+    public Proyecto recogerDatosProyecto(String nombre) {
         String nombreProyecto = leeString("Inserte el nombre de su proyecto");
         String descripcion = leeString("Inserte una descripción de su proyecto");
         LocalDate fechaCreacion = LocalDate.now();
         String colaboradores = leeString("Añade los colaboradores de su proyecto");
         String estadoDelProyecto = leeString("Inserte el estado del proyecto");
         RepoProyecto rProyecto = RepoProyecto.get_instance();
-        Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, fechaCreacion,new ArrayList<Persona>(),new ArrayList<Tarea>());
+        Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, fechaCreacion, nombre,new ArrayList<Persona>(),new ArrayList<Tarea>());
         return proyecto;
     }
 

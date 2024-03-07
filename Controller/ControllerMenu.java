@@ -28,7 +28,7 @@ public class ControllerMenu implements IControllerMenu {
             option= GUI.imprimirMenuProyectos();
             switch (option){
                 case 1:
-                    rProyecto.add( GUI.recogerDatosProyecto());
+                    rProyecto.add( GUI.recogerDatosProyecto(sesion.getPersona().getUsuario()));
                     rProyecto.save();
                     //aquí quiero que cuando meta todos los datos salte al menu otra vez
                     break;
