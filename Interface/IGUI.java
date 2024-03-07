@@ -24,13 +24,13 @@ public interface IGUI {
 
     int imprimirMenuProyectos();
 
-    void recogerDatosProyecto();
+    Proyecto recogerDatosProyecto();
 
     String borrarProyecto();
 
     void listarProyectos();
 
-    Proyecto seleccionarProyecto();
+    String seleccionarProyecto();
 
     void imprimirOpcionesDeTarea();
 
