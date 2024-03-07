@@ -20,6 +20,7 @@ public class Colaborador extends Persona implements IColaborador {
 
     @Override
     public void editarComentario() {
+
     }
 
 }
