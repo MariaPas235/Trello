@@ -1,10 +1,13 @@
 package Model.entity;
 
+import IO.Teclado;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Proyecto implements Serializable {
     private String nombre;
@@ -14,7 +17,7 @@ public class Proyecto implements Serializable {
     private ArrayList<Colaborador> colaboradores;
     private ArrayList<Tarea> tareas;
 
-    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion,String jefe, ArrayList<Colaborador> colaboradores, ArrayList<Tarea> tareas) {
+    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion, String jefe, ArrayList<Colaborador> colaboradores, ArrayList<Tarea> tareas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
@@ -24,7 +27,7 @@ public class Proyecto implements Serializable {
     }
 
     public Proyecto() {
-        this("","", LocalDate.now(),"",new ArrayList<>(), new ArrayList<>());
+        this("", "", LocalDate.now(), "", new ArrayList<>(), new ArrayList<>());
     }
 
 
@@ -92,12 +95,9 @@ public class Proyecto implements Serializable {
 
     @Override
     public String toString() {
-        return "proyecto[" + nombre + descripcion + LocalDate.now() + tareas + colaboradores +"]";
+        return "proyecto[" + nombre + descripcion + LocalDate.now() + tareas + colaboradores + "]";
     }
 
-    private  static final void jefeProyecto(){
-
-    }
 
     public boolean esColaborador(String usuario) {
         // Suponiendo que tienes una lista de colaboradores en tu objeto Proyecto
@@ -105,5 +105,51 @@ public class Proyecto implements Serializable {
 
         // Verificar si el usuario dado está en la lista de colaboradores
         return colaboradores.contains(usuario);
+    }
+    public ArrayList<Colaborador> añadirColaborador() {
+        ArrayList<Colaborador> colaborador = new ArrayList<>();
+
+        boolean auxSN = true;
+        while (auxSN) {
+            Colaborador colaboradoraux = new Colaborador();
+            colaboradoraux.setUsuario(Teclado.leeString("Introduce el nombre del colaborador: "));
+            colaborador.add(colaboradoraux);
+            String respuesta = Teclado.leeString("Quieres añadir otro colaborador (s/n)? ");
+            auxSN = respuesta.equalsIgnoreCase("s");
+        }
+        return colaborador;
+    }
+
+    public void eliminarColaborador() {
+        Scanner scanner = new Scanner(System.in);
+
+        if (colaboradores.isEmpty()) {
+            System.out.println("No hay colaboradores en el proyecto.");
+
+        } else {
+
+            System.out.println("Colaboradores actuales:");
+            for (int i = 0; i < colaboradores.size(); i++) {
+                System.out.println((i + 1) + ". " + colaboradores.get(i).getNombre());
+            }
+
+            System.out.println("Seleccione el número del colaborador que desea eliminar (0 para cancelar):");
+            int opcion = Integer.parseInt(scanner.nextLine());
+
+            if (opcion == 0) {
+                System.out.println("Operación cancelada.");
+
+            } else {
+
+
+                if (opcion < 1 || opcion > colaboradores.size()) {
+                    System.out.println("Número de colaborador inválido.");
+                } else {
+
+                    Colaborador colaboradorEliminado = colaboradores.remove(opcion - 1);
+                    System.out.println("Colaborador " + colaboradorEliminado.getNombre() + " eliminado correctamente.");
+                }
+            }
+        }
     }
 }

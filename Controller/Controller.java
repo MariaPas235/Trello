@@ -29,7 +29,6 @@ public class Controller implements IController {
         do {
             switch (GUI.imprimirMenuInicio()) {
                 case 1:
-                    RepoPersona rPersona = RepoPersona.get_instance();
                     Persona persona = GUI.recogeDatosRegistro();
                     rPersona.add(persona);
                     rPersona.save();

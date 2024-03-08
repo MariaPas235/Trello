@@ -97,43 +97,14 @@ public class GUI implements IGUI {
         proyecto.setNombre(Teclado.leeString("Inserte el nombre de su proyecto"));
         proyecto.setDescripcion(Teclado.leeString("Inserte una descripción de su proyecto"));
         proyecto.setFechaCreacion(LocalDate.now());
-        proyecto.setColaboradores(añadirColaborador());
-        proyecto.setTareas(añadirTareas());
+        proyecto.setColaboradores(proyecto.añadirColaborador());
+        proyecto.setTareas(Tarea.añadirTareas());
+        proyecto.setJefe(nombre);
         return proyecto;
     }
 
-    public ArrayList<Colaborador> añadirColaborador() {
-        ArrayList<Colaborador> colaborador = new ArrayList<>();
 
-        boolean auxSN = true;
-        while (auxSN) {
-            Colaborador colaboradoraux = new Colaborador();
-            colaboradoraux.setUsuario(Teclado.leeString("Introduce el nombre del colaborador: "));
-            colaborador.add(colaboradoraux);
-            String respuesta = Teclado.leeString("Quieres añadir otro colaborador (s/n)? ");
-            auxSN = respuesta.equalsIgnoreCase("s");
-        }
-        return colaborador;
-    }
-
-    public ArrayList<Tarea> añadirTareas() {
-        ArrayList<Tarea> tarea = new ArrayList<>();
-        boolean auxSN = true;
-        while (auxSN) {
-            Tarea tarea1 = new Tarea();
-            tarea1.setNombre(Teclado.leeString("Introduce el nombre de la tarea: "));
-            tarea1.setDescripcion(Teclado.leeString("Introduce una descripcion: "));
-            tarea1.setFechaActual(LocalDateTime.now());
-            tarea1.setFechaInicio(LocalDate.now());
-            tarea1.setFechaLimite(añadirFechaFin());
-            tarea.add(tarea1);
-            String respuesta = Teclado.leeString("Quieres añadir otro colaborador (s/n)? ");
-            auxSN = respuesta.equalsIgnoreCase("s");
-        }
-        return tarea;
-    }
-
-    private static LocalDate añadirFechaFin() {
+    public static LocalDate añadirFechaFin() {
         LocalDateTime ahora = LocalDateTime.now();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -174,58 +145,15 @@ public class GUI implements IGUI {
     public int imprimirOpcionesDeTarea() {
         System.out.println("1. Añadir tarea");
         System.out.println("2. Borrar tarea");
-        System.out.println("3. Mover tarea");
-        System.out.println("4. Asignar tarea");
-        System.out.println("5. Editar tarea");
+        System.out.println("3. Añadir colaboradores");
+        System.out.println("4. Eliminar Colaboradores");
+        System.out.println("5. Asignar Tarea");
+        System.out.println("6. Actualizar Tarea");
+        System.out.println("7. Salir");
         return Teclado.leeNumero("Inserte una opción");
     }
 
-    public Tarea anadirTarea() {
-        int dia,mes,ano;
-        String nombreTarea = Teclado.leeString("Inserte el nombre de su tarea");
-        String personaasignada = null;
-        RepoPersona repoPersona = new RepoPersona();
-        do {
-            String nombrePersona = Teclado.leeString("Inserte nombre de la persona a cargo de la tarea");
-            Collection<Persona> personas = repoPersona.getAll();
-            for (Persona persona : personas) {
-                if (persona.getUsuario().equals(nombrePersona)) {
-                    personaasignada = nombrePersona;
-                }else{
-                    System.out.println("La persona ingresada no existe. Por favor, intente de nuevo.");
-                }
-            }
-        } while (personaasignada == null);
-        String descripcion = Teclado.leeString("Inserte una descripción de su tarea");
-        LocalDate fechaCreacion = LocalDate.now();
-        do {
-             dia= Teclado.leeNumero("Introduce el dia (con número) de finalización de la tarea");
-        }while (dia>30 || dia<1);
 
-        do {
-            mes= Teclado.leeNumero("Introduce el mes (con número) de finalización de la tarea");
-        }while (mes>12 || mes<1);
-
-        do {
-            ano=Teclado.leeNumero("Introduce el año (con número) de finalización de la tarea");
-        }while (ano<2024);
-
-        LocalDate fechaFinalizacion = LocalDate.of(ano,mes,dia);
-        return new Tarea(nombreTarea,personaasignada ,descripcion, fechaCreacion,fechaFinalizacion,LocalDateTime.now(),null,EstadoTarea.SININICIAR);
-
-    }
-
-    public void borrarTarea() {
-    }
-
-    public void moverTarea() {
-    }
-
-    public void asignarTarea() {
-    }
-
-    public void editarTarea() {
-    }
 
 
     public void imprimeProyecto(Proyecto proyecto) {
@@ -236,9 +164,16 @@ public class GUI implements IGUI {
         for (Persona colaborador : proyecto.getColaboradores()) {
             System.out.println("- " + colaborador.getNombre());
         }
+        System.out.println("========================================================================");
         System.out.println("Tareas:");
+        System.out.printf("%-30s%-30s%-30s\n", "Nombre", "Persona Asignada", "Estado");
         for (Tarea tarea : proyecto.getTareas()) {
-            System.out.println("- " + tarea.getNombre() + " (" + tarea.getPersonaAsignada() + ")");
+            String nombreTarea = tarea.getNombre();
+            String personaAsignada = tarea.getPersonaAsignada();
+            String estadoTarea = tarea.getEstadoTarea().toString();
+
+            System.out.printf("%-30s%-30s%-30s\n", nombreTarea, personaAsignada, estadoTarea);
         }
+        System.out.println("========================================================================");
     }
 }

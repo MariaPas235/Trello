@@ -27,15 +27,4 @@ public interface IGUI {
     String seleccionarProyecto();
 
     int imprimirOpcionesDeTarea();
-
-    Tarea anadirTarea();
-
-    void borrarTarea();
-
-    void moverTarea();
-
-    void asignarTarea();
-
-    void editarTarea();
-
 }

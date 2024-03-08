@@ -4,6 +4,7 @@ import Interface.IControllerMenu;
 import Model.entity.Colaborador;
 import Model.entity.Jefe;
 import Model.entity.Proyecto;
+import Model.entity.Tarea;
 import Model.repo.RepoProyecto;
 import Model.repo.Sesion;
 import view.GUI;
@@ -11,6 +12,7 @@ import view.GUI;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Set;
 
 public class ControllerMenu implements IControllerMenu {
     view.GUI GUI = new GUI();
@@ -32,18 +34,17 @@ public class ControllerMenu implements IControllerMenu {
                 case 1:
                     rProyecto.add( GUI.recogerDatosProyecto(sesion.getPersona().getUsuario()));
                     rProyecto.save();
-                    //aquí quiero que cuando meta todos los datos salte al menu otra vez
                     break;
                 case 2:
                     rProyecto.delete(GUI.borrarProyecto());
                     break;
                 case 3:
-                    ArrayList<Proyecto> proyectos = (ArrayList<Proyecto>) rProyecto.getAll();
-                    if (proyectos.isEmpty()) {
+                    Set<Proyecto> proyectosSet = (Set<Proyecto>) rProyecto.getAll();
+                    if (proyectosSet.isEmpty()) {
                         System.out.println("No hay proyectos creados.");
                     } else {
                         System.out.println("Proyectos creados:");
-                        for (Proyecto proyecto : proyectos) {
+                        for (Proyecto proyecto : proyectosSet) {
                             GUI.listarProyectos(proyecto);
                         }
                     }
@@ -68,7 +69,7 @@ public class ControllerMenu implements IControllerMenu {
 
 // Verificar si el usuario actual es el jefe del proyecto
                     if (Objects.equals(proyecto.getJefe(), sesion.getPersona().getUsuario())) {
-                        controladorProyectosJefe.controladorProyectosJefe(proyecto);
+                        controladorProyectosJefe.controladorProyectosJefe(proyecto, proyecto.getTareas());
                     } else {
                         // Verificar si el usuario actual es colaborador del proyecto
                         if (proyecto.esColaborador(sesion.getPersona().getUsuario())) {
