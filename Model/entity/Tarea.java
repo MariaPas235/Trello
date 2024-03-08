@@ -1,11 +1,12 @@
 package Model.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 
-public class Tarea {
+public class Tarea implements Serializable {
     private String nombre;
     private String personaAsignada;
     private String descripcion;

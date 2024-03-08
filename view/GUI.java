@@ -1,15 +1,14 @@
 package view;
 
+import IO.Teclado;
 import Interface.IGUI;
-import Model.entity.EstadoTarea;
-import Model.entity.Persona;
-import Model.entity.Tarea;
+import Model.entity.*;
 import Model.repo.RepoPersona;
 import Model.repo.RepoProyecto;
-import Model.entity.Proyecto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
@@ -18,6 +17,7 @@ public class GUI implements IGUI {
     Scanner teclado = new Scanner(System.in);
     static RepoPersona rp = RepoPersona.get_instance();
     static RepoProyecto rProyecto = RepoProyecto.get_instance();
+
     //test
     public void imprimirBienvenida() {
         System.out.println(".______    __   _______ .__   __. ____    ____  _______ .__   __.  __   _______    ______           ___         .___________..______       _______  __       __        ______   \n" +
@@ -28,27 +28,15 @@ public class GUI implements IGUI {
                 "|______/  |__| |_______||__| \\__|     \\__/     |_______||__| \\__| |__| |_______/  \\______/     /__/     \\__\\        |__|     | _| `._____||_______||_______||_______| \\______/ ");
     }
 
-    public String leeString(String msg) {
-        String entrada = "";
-        do {
-            System.out.print(msg + ": ");
-            try {
-                entrada = teclado.nextLine();
-            } catch (Exception e) {
-                teclado.next();
-            }
-        } while (entrada.isEmpty());
 
-        return entrada;
-    }
 
     @Override
     public Persona recogeDatosInicio() {
         String nombreUsuario;
         String contrasena;
         do {
-            nombreUsuario = leeString("Inserte su usuario");
-            contrasena = leeString("Inserte su contraseña");
+            nombreUsuario = Teclado.leeString("Inserte su usuario");
+            contrasena = Teclado.leeString("Inserte su contraseña");
         } while (!(rp.getByUserName(nombreUsuario) && rp.getBypassword(contrasena)));
         return rp.getByID(nombreUsuario);
     }
@@ -56,21 +44,21 @@ public class GUI implements IGUI {
     @Override
     public Persona recogeDatosRegistro() {
 
-        String nombrePersona = leeString("Inserte su nombre completo");
-        String nombreUsuario = leeString("Inserte su nombre de usuario");
+        String nombrePersona = Teclado.leeString("Inserte su nombre completo");
+        String nombreUsuario = Teclado.leeString("Inserte su nombre de usuario");
         while (!Persona.validarUsuario(nombreUsuario)) {
-            nombreUsuario = leeString("Introduce una nombre de usuario correcto");
+            nombreUsuario = Teclado.leeString("Introduce una nombre de usuario correcto");
         }
-        String contrasena = leeString("Inserte su contraseña (Debe tener al menos 8 caracteres, incluyendo 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes -> @$!.#_()%*?& <-)");
+        String contrasena = Teclado.leeString("Inserte su contraseña (Debe tener al menos 8 caracteres, incluyendo 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes -> @$!.#_()%*?& <-)");
         while (!Persona.validarContrasena(contrasena)) {
-            contrasena = leeString("Introduce una contraseña correcta");
+            contrasena = Teclado.leeString("Introduce una contraseña correcta");
         }
 
-        String mail = leeString("Inserte su mail");
+        String mail = Teclado.leeString("Inserte su mail");
 
         while (!Persona.validarCorreo(mail)) {
             System.out.println("Mail incorrecto");
-            mail = leeString("Introduce tu mail correctamente");
+            mail = Teclado.leeString("Introduce tu mail correctamente");
         }
 
         return new Persona(nombrePersona, nombreUsuario, contrasena, mail);
@@ -81,28 +69,12 @@ public class GUI implements IGUI {
         System.out.println("1. Registrarse");
         System.out.println("2. Iniciar sesion");
         System.out.println("3. Salir");
-        return leeNumero("Inserte una opción");
+        return Teclado.leeNumero("Inserte una opción");
     }
 
-    public int leeNumero(String msg) {
-        boolean aux = false;
-        int numero = 0;
-        Scanner teclado = new Scanner(System.in);
-        do {
-            System.out.print(msg + ": ");
-            try {
-                numero = teclado.nextInt();
-                aux = true;
-            } catch (java.util.InputMismatchException e) {
-                System.out.println("Entrada inválida. Introduce un número válido.");
-                teclado.next();
-            }
-        } while (!aux);
 
-        return numero;
-    }
 
-    public void bienvenidaApp(){
+    public void bienvenidaApp() {
         System.out.println(" _____                                _             ____                                                _   \n" +
                 " | ____|  ___   _ __     __ _    ___  (_)   ___     |  _ \\    ___   _ __   ___    ___    _ __     __ _  | |  \n" +
                 " |  _|   / __| | '_ \\   / _` |  / __| | |  / _ \\    | |_) |  / _ \\ | '__| / __|  / _ \\  | '_ \\   / _` | | |  \n" +
@@ -114,30 +86,80 @@ public class GUI implements IGUI {
     public int imprimirMenuProyectos() {
         System.out.println("1. Crear proyecto");
         System.out.println("2. Borrar proyecto");
-        System.out.println("3. Listar proyectos como colaborador");
-        System.out.println("4. Listar proyectos");
-        System.out.println("5. Seleccionar proyecto");
-        System.out.println("6. Cerrar Sesión");
-        return leeNumero("Inserte una opción");
+        System.out.println("3. Listar proyectos");
+        System.out.println("4. Seleccionar proyecto");
+        System.out.println("5. Cerrar Sesión");
+        return Teclado.leeNumero("Inserte una opción");
     }
 
     public Proyecto recogerDatosProyecto(String nombre) {
-        String nombreProyecto = leeString("Inserte el nombre de su proyecto");
-        String descripcion = leeString("Inserte una descripción de su proyecto");
-        LocalDate fechaCreacion = LocalDate.now();
-        String colaboradores = leeString("Añade los colaboradores de su proyecto");
-        String estadoDelProyecto = leeString("Inserte el estado del proyecto");
-        RepoProyecto rProyecto = RepoProyecto.get_instance();
-        Proyecto proyecto = new Proyecto(nombreProyecto, descripcion, fechaCreacion, nombre,new ArrayList<Persona>(),new ArrayList<Tarea>());
+        Proyecto proyecto = new Proyecto();
+        proyecto.setNombre(Teclado.leeString("Inserte el nombre de su proyecto"));
+        proyecto.setDescripcion(Teclado.leeString("Inserte una descripción de su proyecto"));
+        proyecto.setFechaCreacion(LocalDate.now());
+        proyecto.setColaboradores(añadirColaborador());
+        proyecto.setTareas(añadirTareas());
         return proyecto;
     }
 
+    public ArrayList<Colaborador> añadirColaborador() {
+        ArrayList<Colaborador> colaborador = new ArrayList<>();
+
+        boolean auxSN = true;
+        while (auxSN) {
+            Colaborador colaboradoraux = new Colaborador();
+            colaboradoraux.setUsuario(Teclado.leeString("Introduce el nombre del colaborador: "));
+            colaborador.add(colaboradoraux);
+            String respuesta = Teclado.leeString("Quieres añadir otro colaborador (s/n)? ");
+            auxSN = respuesta.equalsIgnoreCase("s");
+        }
+        return colaborador;
+    }
+
+    public ArrayList<Tarea> añadirTareas() {
+        ArrayList<Tarea> tarea = new ArrayList<>();
+        boolean auxSN = true;
+        while (auxSN) {
+            Tarea tarea1 = new Tarea();
+            tarea1.setNombre(Teclado.leeString("Introduce el nombre de la tarea: "));
+            tarea1.setDescripcion(Teclado.leeString("Introduce una descripcion: "));
+            tarea1.setFechaActual(LocalDateTime.now());
+            tarea1.setFechaInicio(LocalDate.now());
+            tarea1.setFechaLimite(añadirFechaFin());
+            tarea.add(tarea1);
+            String respuesta = Teclado.leeString("Quieres añadir otro colaborador (s/n)? ");
+            auxSN = respuesta.equalsIgnoreCase("s");
+        }
+        return tarea;
+    }
+
+    private static LocalDate añadirFechaFin() {
+        LocalDateTime ahora = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String fechaActualStr = formatter.format(ahora);
+
+        LocalDate fechaFinalizacion = null;
+
+        while (fechaFinalizacion == null) {
+            String fechaFinalizacionStr = Teclado.leeString("Introduce la fecha de finalización (formato AAAA-MM-DD):");
+
+            if (fechaFinalizacionStr.matches("\\d{4}-\\d{2}-\\d{2}") && fechaFinalizacionStr.compareTo(fechaActualStr) >= 0) {
+                fechaFinalizacion = LocalDate.parse(fechaFinalizacionStr, formatter);
+            } else {
+                System.out.println("Error: La fecha de finalización no puede ser anterior a la fecha actual o el formato es incorrecto. " +
+                        "Por favor, inténtalo de nuevo.");
+            }
+        }
+
+        return fechaFinalizacion;
+    }
     public String borrarProyecto() {
-        return leeString("Introduce el nombre del proyecto que quieres eliminar:");
+        return Teclado.leeString("Introduce el nombre del proyecto que quieres eliminar:");
     }
 
     public String seleccionarProyecto() {
-        return  leeString("Inserte el nombre de su proyecto");
+        return  Teclado.leeString("Inserte el nombre de su proyecto");
     }
 
     public void listarProyectos(Proyecto proyecto) {
@@ -155,16 +177,16 @@ public class GUI implements IGUI {
         System.out.println("3. Mover tarea");
         System.out.println("4. Asignar tarea");
         System.out.println("5. Editar tarea");
-        return leeNumero("Inserte una opción");
+        return Teclado.leeNumero("Inserte una opción");
     }
 
     public Tarea anadirTarea() {
         int dia,mes,ano;
-        String nombreTarea = leeString("Inserte el nombre de su tarea");
+        String nombreTarea = Teclado.leeString("Inserte el nombre de su tarea");
         String personaasignada = null;
         RepoPersona repoPersona = new RepoPersona();
         do {
-            String nombrePersona = leeString("Inserte nombre de la persona a cargo de la tarea");
+            String nombrePersona = Teclado.leeString("Inserte nombre de la persona a cargo de la tarea");
             Collection<Persona> personas = repoPersona.getAll();
             for (Persona persona : personas) {
                 if (persona.getUsuario().equals(nombrePersona)) {
@@ -174,18 +196,18 @@ public class GUI implements IGUI {
                 }
             }
         } while (personaasignada == null);
-        String descripcion = leeString("Inserte una descripción de su tarea");
+        String descripcion = Teclado.leeString("Inserte una descripción de su tarea");
         LocalDate fechaCreacion = LocalDate.now();
         do {
-             dia= leeNumero("Introduce el dia (con número) de finalización de la tarea");
+             dia= Teclado.leeNumero("Introduce el dia (con número) de finalización de la tarea");
         }while (dia>30 || dia<1);
 
         do {
-            mes= leeNumero("Introduce el mes (con número) de finalización de la tarea");
+            mes= Teclado.leeNumero("Introduce el mes (con número) de finalización de la tarea");
         }while (mes>12 || mes<1);
 
         do {
-            ano= leeNumero("Introduce el año (con número) de finalización de la tarea");
+            ano=Teclado.leeNumero("Introduce el año (con número) de finalización de la tarea");
         }while (ano<2024);
 
         LocalDate fechaFinalizacion = LocalDate.of(ano,mes,dia);

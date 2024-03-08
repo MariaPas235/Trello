@@ -1,13 +1,15 @@
 package Model.entity;
 
+import IO.Teclado;
 import Interface.IColaborador;
 import view.GUI;
 
+import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 import static Model.entity.EstadoTarea.*;
 
-public class Colaborador extends Persona implements IColaborador {
+public class Colaborador extends Persona implements IColaborador, Serializable {
     public Colaborador(){
         super("","","","");
     }
@@ -35,7 +37,7 @@ public class Colaborador extends Persona implements IColaborador {
 //Metodo para añadir comentarios a la tarea
     @Override
     public String anadirComentario(Tarea tarea, Proyecto proyecto, String comentario) {
-        comentario= GUI.leeString("Escriba un comentario: ");
+        comentario= Teclado.leeString("Escriba un comentario: ");
         tarea.setComentario(comentario);
         return tarea.getComentario();
     }

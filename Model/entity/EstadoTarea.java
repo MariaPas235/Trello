@@ -1,9 +1,10 @@
 package Model.entity;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum EstadoTarea {
+public enum EstadoTarea implements Serializable {
     //Enums de estado con valor asignado
     SININICIAR(1, "Sin iniciar"),
     PENDIENTE(2, "Pendiente"),

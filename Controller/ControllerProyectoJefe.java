@@ -1,5 +1,6 @@
 package Controller;
 
+import IO.Teclado;
 import Interface.IControllerProyectoJefe;
 import Model.entity.Colaborador;
 import Model.entity.Jefe;
@@ -24,7 +25,7 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
             System.out.println("Bienvenido! " + proyecto.getNombre());
             GUI.imprimeProyecto(proyecto);
             GUI.imprimirOpcionesDeTarea();
-            opcion= GUI.leeNumero("Introduce opcion deseada: ");
+            opcion= Teclado.leeNumero("Introduce opcion deseada: ");
             switch (opcion){
                 case 1:
                     jefe.anadirTarea();
@@ -33,7 +34,7 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
                     jefe.borrarTarea();
                     break;
                 case 3:
-                    jefe.anadirColaboradores();
+                    //jefe.anadirColaboradores();
                     break;
                 case 4:
                     jefe.eliminarColaboradores();

@@ -120,12 +120,12 @@ public class Persona implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(usuario, mail);
+        return Objects.hash(usuario, contrasena);
     }
 
     @Override
     public String toString() {
-        return "Persona[" + nombre + usuario + contrasena + mail + "]";
+        return "Persona[" + nombre + usuario  + mail + "]";
     }
 
 }

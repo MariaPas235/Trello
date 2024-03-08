@@ -10,10 +10,6 @@ public interface IGUI {
 
     int imprimirMenuInicio();
 
-    String leeString(String msg);
-
-    int leeNumero(String msg);
-
     Persona recogeDatosInicio();
 
     Persona recogeDatosRegistro();
