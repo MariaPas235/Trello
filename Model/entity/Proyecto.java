@@ -100,11 +100,17 @@ public class Proyecto implements Serializable {
 
 
     public boolean esColaborador(String usuario) {
-        // Suponiendo que tienes una lista de colaboradores en tu objeto Proyecto
+        boolean result=false;
         ArrayList<Colaborador> colaboradores = this.getColaboradores();
 
-        // Verificar si el usuario dado está en la lista de colaboradores
-        return colaboradores.contains(usuario);
+        // Verificar si alguno de los colaboradores tiene el mismo nombre de usuario
+        for (Colaborador colaborador : colaboradores) {
+            if (colaborador.getUsuario().equals(usuario)) {
+                result=true;
+            }
+        }
+
+        return result;
     }
     public ArrayList<Colaborador> añadirColaborador() {
         ArrayList<Colaborador> colaborador = new ArrayList<>();

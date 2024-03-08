@@ -34,10 +34,10 @@ public class Controller implements IController {
                     rPersona.save();
                     break;
                 case 2:
-                    Sesion.setGUI(new GUI());
+                    Sesion.iniciarSesion(new GUI(), GUI.recogeDatosInicio());
                     GUI.bienvenidaApp();
                     controladorMenu.controladorMenu(Sesion.getInstance());
-                    Sesion.getInstance().cerrarSesion();
+                    Sesion.cerrarSesion();
                     break;
                 case 3:
                     break;
