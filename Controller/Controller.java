@@ -37,6 +37,7 @@ public class Controller implements IController {
                     Sesion.setGUI(new GUI());
                     GUI.bienvenidaApp();
                     controladorMenu.controladorMenu(Sesion.getInstance());
+                    Sesion.getInstance().cerrarSesion();
                     break;
                 case 3:
                     break;

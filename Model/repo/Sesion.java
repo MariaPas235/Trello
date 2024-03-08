@@ -33,4 +33,7 @@ public class Sesion {
     public void setPersona(Persona persona){
         this.persona = persona;
     }
+    public void cerrarSesion() {
+        _instance = null;
+    }
 }
