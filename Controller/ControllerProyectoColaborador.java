@@ -5,10 +5,11 @@ import Interface.IControllerProyectoColaborador;
 import Model.entity.Colaborador;
 import Model.entity.Jefe;
 import Model.entity.Proyecto;
+import Model.entity.Tarea;
 import Model.repo.RepoProyecto;
 import view.GUI;
 
-import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class ControllerProyectoColaborador implements IControllerProyectoColaborador {
     view.GUI GUI = new GUI();
@@ -19,24 +20,21 @@ public class ControllerProyectoColaborador implements IControllerProyectoColabor
     public ControllerProyectoColaborador() {
     }
 
-    public  void controladorProyectosColaborador(Proyecto proyecto){
+    public  void controladorProyectosColaborador(Proyecto proyecto, ArrayList<Tarea> tareas){
         int opcion= 0;
         do{
             System.out.println("Bienvenido! " + proyecto.getNombre());
             GUI.imprimeProyecto(proyecto);
-            GUI.imprimirOpcionesDeTarea();
+            GUI.imprimirOpcionesDeTareaColaborador();
             opcion= Teclado.leeNumero("Introduce opcion deseada: ");
             switch (opcion){
                 case 1:
-                    //colaborador.actualizarEstadoTarea();
+                    colaborador.actualizarTarea(tareas);
                     break;
                 case 2:
-                   // colaborador.verComentario();
-                    break;
-                case 3:
-                    //colaborador.desasignarTarea();
+                    colaborador.verComentario(proyecto);
                     break;
             }
-        }while(!(opcion ==4));
+        }while(!(opcion ==3));
     }
 }

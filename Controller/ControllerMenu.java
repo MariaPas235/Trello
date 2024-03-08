@@ -73,7 +73,7 @@ public class ControllerMenu implements IControllerMenu {
                     } else {
                         // Verificar si el usuario actual es colaborador del proyecto
                         if (proyecto.esColaborador(sesion.getPersona().getUsuario())) {
-                            controllerProyectoColaborador.controladorProyectosColaborador(proyecto);
+                            controllerProyectoColaborador.controladorProyectosColaborador(proyecto,proyecto.getTareas());
                         } else {
                             // Si no es colaborador del proyecto
                             System.out.println("Usted no es colaborador del proyecto seleccionado.");

@@ -9,7 +9,6 @@ import Model.entity.Tarea;
 import Model.repo.RepoProyecto;
 import view.GUI;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class ControllerProyectoJefe implements IControllerProyectoJefe {
@@ -25,7 +24,7 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
         int opcion = 0;
         do {
             GUI.imprimeProyecto(proyecto);
-            GUI.imprimirOpcionesDeTarea();
+            GUI.imprimirOpcionesDeTareaJefe();
             opcion = Teclado.leeNumero("Introduce opcion deseada: ");
             switch (opcion) {
                 case 1:
