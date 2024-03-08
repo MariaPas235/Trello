@@ -25,8 +25,7 @@ public class ControllerProyectoColaborador implements IControllerProyectoColabor
         do{
             System.out.println("Bienvenido! " + proyecto.getNombre());
             GUI.imprimeProyecto(proyecto);
-            GUI.imprimirOpcionesDeTareaColaborador();
-            opcion= Teclado.leeNumero("Introduce opcion deseada: ");
+            opcion=GUI.imprimirOpcionesDeTareaColaborador();
             switch (opcion){
                 case 1:
                     colaborador.actualizarTarea(tareas);
