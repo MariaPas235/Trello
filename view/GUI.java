@@ -153,13 +153,9 @@ public class GUI implements IGUI {
         return Teclado.leeNumero("Inserte una opción");
     }
     public int imprimirOpcionesDeTareaColaborador() {
-        System.out.println("1. Añadir tarea");
-        System.out.println("2. Borrar tarea");
-        System.out.println("3. Añadir colaboradores");
-        System.out.println("4. Eliminar Colaboradores");
-        System.out.println("5. Asignar Tarea");
-        System.out.println("6. Actualizar Tarea");
-        System.out.println("7. Salir");
+        System.out.println("1. Actualizar Tarea");
+        System.out.println("2. Ver Comentario");
+        System.out.println("3. Salir");
         return Teclado.leeNumero("Inserte una opción");
     }
 
