@@ -142,7 +142,7 @@ public class GUI implements IGUI {
 
     }
 
-    public int imprimirOpcionesDeTarea() {
+    public int imprimirOpcionesDeTareaJefe() {
         System.out.println("1. Añadir tarea");
         System.out.println("2. Borrar tarea");
         System.out.println("3. Añadir colaboradores");
@@ -152,7 +152,16 @@ public class GUI implements IGUI {
         System.out.println("7. Salir");
         return Teclado.leeNumero("Inserte una opción");
     }
-
+    public int imprimirOpcionesDeTareaColaborador() {
+        System.out.println("1. Añadir tarea");
+        System.out.println("2. Borrar tarea");
+        System.out.println("3. Añadir colaboradores");
+        System.out.println("4. Eliminar Colaboradores");
+        System.out.println("5. Asignar Tarea");
+        System.out.println("6. Actualizar Tarea");
+        System.out.println("7. Salir");
+        return Teclado.leeNumero("Inserte una opción");
+    }
 
 
 
