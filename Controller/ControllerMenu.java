@@ -47,16 +47,37 @@ public class ControllerMenu implements IControllerMenu {
                             GUI.listarProyectos(proyecto);
                         }
                     }
+                    break;
                 case 4:
                     Proyecto proyecto;
-                    do {
-                         proyecto= rProyecto.getByID(GUI.seleccionarProyecto());
+                    boolean aux = false;
 
-                    }while (!rProyecto.getByName(GUI.seleccionarProyecto()));
-                    if(Objects.equals(proyecto.getJefe(), sesion.getPersona().getUsuario())){
+                    do {
+                        // Obtener el proyecto por su ID
+                        proyecto = rProyecto.getByID(GUI.seleccionarProyecto());
+
+                        if (proyecto != null) {
+                            // Si se encontró el proyecto, establecer aux a true y mostrar información del proyecto
+                            aux = true;
+                            System.out.println(proyecto.toString());
+                        } else {
+                            // Si no se encontró el proyecto, mostrar un mensaje de error
+                            System.out.println("El proyecto seleccionado no existe. Por favor, seleccione un proyecto válido.");
+                        }
+                    } while (!aux);
+
+// Verificar si el usuario actual es el jefe del proyecto
+                    if (Objects.equals(proyecto.getJefe(), sesion.getPersona().getUsuario())) {
                         controladorProyectosJefe.controladorProyectosJefe(proyecto);
-                    }else{
-                        controllerProyectoColaborador.controladorProyectosColaborador(proyecto);
+                    } else {
+                        // Verificar si el usuario actual es colaborador del proyecto
+                        if (proyecto.esColaborador(sesion.getPersona().getUsuario())) {
+                            controllerProyectoColaborador.controladorProyectosColaborador(proyecto);
+                        } else {
+                            // Si no es colaborador del proyecto
+                            System.out.println("Usted no es colaborador del proyecto seleccionado.");
+                            // Aquí puedes manejar la situación de otra manera, por ejemplo, mostrar un mensaje de error o redirigir a otra página.
+                        }
                     }
                     break;
             }

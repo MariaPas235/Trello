@@ -2,11 +2,12 @@ package Model.repo;
 import Model.entity.Proyecto;
 import Model.entity.Tarea;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class RepoTarea extends Library_proyect<Tarea,String>{
+public class RepoTarea extends Library_proyect<Tarea,String> implements Serializable {
     private final static String FILENAME = "Tasks.bin";
     private static RepoTarea _instance;
     private Set<Tarea> tareas;

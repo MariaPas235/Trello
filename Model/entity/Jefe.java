@@ -1,10 +1,12 @@
 package Model.entity;
 
 import Interface.IJefe;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Jefe extends Persona implements IJefe {
+public class Jefe extends Persona implements IJefe, Serializable {
     public Jefe() {
         super("", "", "", "");
     }
@@ -12,23 +14,28 @@ public class Jefe extends Persona implements IJefe {
     //Funciones que tiene el jefe de un proyecto
     //Funcion para añadir colaboradores en un proyecto
 
+    //@Override
+    //public String anadirColaboradores(ArrayList<Persona> colaboradores, String colaborador, ArrayList<Persona> persona) {
+      //  persona.getColaboradores();
+        //for(Persona persona : colaboradores){
+          //  for (Proyecto proyecto1: persona){
+            //    if(proyecto1.equals(persona)){
+
+              //  }
+           // }
+            //if (persona.getUsuario().equals(colaborador)){
+              //  colaboradores.add(persona);
+            //}
+        //}
+        //do{
+
+        //}while ((colaborador == persona.getJefe()));
+        //return null;
+    //}
+
     @Override
-    public String anadirColaboradores(ArrayList<Persona> colaboradores, String colaborador, ArrayList<Persona> persona) {
-        persona.getColaboradores();
-        for(Persona persona : colaboradores){
-            for (Proyecto proyecto1: persona){
-                if(proyecto1.equals(persona)){
+    public void anadirColaboradores() {
 
-                }
-            }
-            if (persona.getUsuario().equals(colaborador)){
-                colaboradores.add(persona);
-            }
-        }
-        do{
-
-        }while ((colaborador == persona.getJefe()));
-        return null;
     }
 
     //Funcion para eliminar colaboradores de un proyecto

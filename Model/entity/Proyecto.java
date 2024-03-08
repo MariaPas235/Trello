@@ -1,18 +1,20 @@
 package Model.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class Proyecto {
+public class Proyecto implements Serializable {
     private String nombre;
     private String descripcion;
     private LocalDate fechaCreacion;
     private String Jefe;
-    private ArrayList<Persona> colaboradores;
+    private ArrayList<Colaborador> colaboradores;
     private ArrayList<Tarea> tareas;
 
-    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion,String jefe, ArrayList<Persona> colaboradores, ArrayList<Tarea> tareas) {
+    public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion,String jefe, ArrayList<Colaborador> colaboradores, ArrayList<Tarea> tareas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
@@ -58,11 +60,11 @@ public class Proyecto {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public ArrayList<Persona> getColaboradores() {
+    public ArrayList<Colaborador> getColaboradores() {
         return colaboradores;
     }
 
-    public void setColaboradores(ArrayList<Persona> colaboradores) {
+    public void setColaboradores(ArrayList<Colaborador> colaboradores) {
         this.colaboradores = colaboradores;
     }
 
@@ -95,5 +97,13 @@ public class Proyecto {
 
     private  static final void jefeProyecto(){
 
+    }
+
+    public boolean esColaborador(String usuario) {
+        // Suponiendo que tienes una lista de colaboradores en tu objeto Proyecto
+        ArrayList<Colaborador> colaboradores = this.getColaboradores();
+
+        // Verificar si el usuario dado está en la lista de colaboradores
+        return colaboradores.contains(usuario);
     }
 }

@@ -1,5 +1,6 @@
 package Controller;
 
+import IO.Teclado;
 import Interface.IControllerProyectoColaborador;
 import Model.entity.Colaborador;
 import Model.entity.Jefe;
@@ -24,16 +25,16 @@ public class ControllerProyectoColaborador implements IControllerProyectoColabor
             System.out.println("Bienvenido! " + proyecto.getNombre());
             GUI.imprimeProyecto(proyecto);
             GUI.imprimirOpcionesDeTarea();
-            opcion= GUI.leeNumero("Introduce opcion deseada: ");
+            opcion= Teclado.leeNumero("Introduce opcion deseada: ");
             switch (opcion){
                 case 1:
-                    colaborador.actualizarEstadoTarea();
+                    //colaborador.actualizarEstadoTarea();
                     break;
                 case 2:
-                    colaborador.verComentario();
+                   // colaborador.verComentario();
                     break;
                 case 3:
-                    colaborador.desasignarTarea();
+                    //colaborador.desasignarTarea();
                     break;
             }
         }while(!(opcion ==4));
