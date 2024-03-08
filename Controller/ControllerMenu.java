@@ -4,13 +4,10 @@ import Interface.IControllerMenu;
 import Model.entity.Colaborador;
 import Model.entity.Jefe;
 import Model.entity.Proyecto;
-import Model.entity.Tarea;
 import Model.repo.RepoProyecto;
 import Model.repo.Sesion;
 import view.GUI;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Set;
 

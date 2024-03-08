@@ -1,15 +1,13 @@
 package Model.repo;
 
-import IO.Teclado;
+import Interface.IRepoProyecto;
 import Model.entity.Proyecto;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class RepoProyecto extends Library_proyect <Proyecto,String> implements Serializable {
+public class RepoProyecto extends Library_proyect <Proyecto,String> implements IRepoProyecto,Serializable {
     private final static String FILENAME = "Proyects.bin";
     private static RepoProyecto _instance;
     private Set<Proyecto> proyectos;

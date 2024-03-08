@@ -9,8 +9,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
-
+//La clase tarea implementa el serializable
 public class Tarea implements Serializable {
+    //Atrubtos de la clase tarea
     private String nombre;
     private String personaAsignada;
     private String descripcion;
@@ -21,6 +22,7 @@ public class Tarea implements Serializable {
     private String comentario;
 
     private EstadoTarea estadoTarea;
+    //Constructor de tarea
     public Tarea(String nombre, String personaAsignada, String descripcion, LocalDate fechaInicio, LocalDate fechaLimite, LocalDateTime fechaActual,String comentario, EstadoTarea estadoTarea) {
         this.nombre = nombre;
         this.personaAsignada = personaAsignada;
@@ -31,7 +33,7 @@ public class Tarea implements Serializable {
         this.comentario= comentario;
         this.estadoTarea= estadoTarea;
     }
-
+//Constructor que inicializa los atributos a 0
     public Tarea() {
         this("", "", "", LocalDate.now(), LocalDate.now(), LocalDateTime.now(),"",EstadoTarea.SININICIAR);
     }
@@ -119,9 +121,6 @@ public class Tarea implements Serializable {
         return "tarea[" + nombre + personaAsignada + descripcion + fechaInicio + fechaLimite + fechaActual + comentario +"]";
     }
 
-    public String getEstado() {
-        return null;
-    }
     public static ArrayList<Tarea> añadirTareas() {
         ArrayList<Tarea> tarea = new ArrayList<>();
         boolean auxSN = true;

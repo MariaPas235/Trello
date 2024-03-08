@@ -137,6 +137,7 @@ public class Colaborador extends Persona implements IColaborador, Serializable {
         return tarea.getComentario();
     }
 
+    @Override
     public void asignarTarea(Tarea tarea) {
         // Verificar si la tarea no ha sido asignada previamente
         if (!tareasAsignadas.contains(tarea)) {
@@ -147,6 +148,7 @@ public class Colaborador extends Persona implements IColaborador, Serializable {
         }
     }
 
+    @Override
     public void verComentario(Proyecto proyecto) {
         ArrayList<Tarea> tareas = proyecto.getTareas();
 
@@ -168,22 +170,22 @@ public class Colaborador extends Persona implements IColaborador, Serializable {
             if (opcion == 0) {
                 System.out.println("Operación cancelada.");
 
-            }else {
-
-            if (opcion < 1 || opcion > tareas.size()) {
-                System.out.println("Número de tarea inválido.");
-
-            }
-
-            Tarea tareaSeleccionada = tareas.get(opcion - 1);
-            String comentario = tareaSeleccionada.getComentario();
-
-            if (comentario != null && !comentario.isEmpty()) {
-                System.out.println("Comentario de la tarea '" + tareaSeleccionada.getNombre() + "': " + comentario);
             } else {
-                System.out.println("La tarea '" + tareaSeleccionada.getNombre() + "' no tiene ningún comentario.");
+
+                if (opcion < 1 || opcion > tareas.size()) {
+                    System.out.println("Número de tarea inválido.");
+
+                }
+
+                Tarea tareaSeleccionada = tareas.get(opcion - 1);
+                String comentario = tareaSeleccionada.getComentario();
+
+                if (comentario != null && !comentario.isEmpty()) {
+                    System.out.println("Comentario de la tarea '" + tareaSeleccionada.getNombre() + "': " + comentario);
+                } else {
+                    System.out.println("La tarea '" + tareaSeleccionada.getNombre() + "' no tiene ningún comentario.");
+                }
             }
         }
     }
-}
 }
