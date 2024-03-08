@@ -107,6 +107,7 @@ public class Proyecto implements Serializable {
         for (Colaborador colaborador : colaboradores) {
             if (colaborador.getUsuario().equals(usuario)) {
                 result=true;
+                break;
             }
         }
 
