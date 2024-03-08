@@ -12,10 +12,10 @@ import java.util.Set;
 public class RepoProyecto extends Library_proyect <Proyecto,String> implements Serializable {
     private final static String FILENAME = "Proyects.bin";
     private static RepoProyecto _instance;
-    private ArrayList<Proyecto> proyectos;
+    private Set<Proyecto> proyectos;
 
     private RepoProyecto() {
-        proyectos = new ArrayList<>();
+        proyectos = new HashSet<>();
     }
 
     public static RepoProyecto get_instance() {
@@ -46,22 +46,6 @@ public class RepoProyecto extends Library_proyect <Proyecto,String> implements S
             }
         }
         return result;
-    }
-    public static Proyecto listarProyectoporNombre(ArrayList<Proyecto> proyectos) {
-        String nombreProyecto;
-        Proyecto proyectoEncontrado = null;
-        do {
-            nombreProyecto = Teclado.leeString("Introduce el nombre del proyecto a buscar o pulse 'salir': ");
-            for (Proyecto proyecto : proyectos) {
-                if (proyecto.getNombre().equalsIgnoreCase(nombreProyecto)) {
-                    proyectoEncontrado = proyecto; // Asigna el proyecto encontrado
-                }
-            }
-            if (proyectoEncontrado == null) {
-                System.out.println("No se encontró ningún proyecto con ese nombre.");
-            }
-        } while (!nombreProyecto.equalsIgnoreCase("salir") && proyectoEncontrado == null);
-        return proyectoEncontrado; // Devuelve el proyecto encontrado o null si no se encontró ninguno
     }
     @Override
     public boolean getByName(String Name) {
