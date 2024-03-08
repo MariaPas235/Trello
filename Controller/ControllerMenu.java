@@ -60,7 +60,6 @@ public class ControllerMenu implements IControllerMenu {
                         if (proyecto != null) {
                             // Si se encontró el proyecto, establecer aux a true y mostrar información del proyecto
                             aux = true;
-                            System.out.println(proyecto.toString());
                         } else {
                             // Si no se encontró el proyecto, mostrar un mensaje de error
                             System.out.println("El proyecto seleccionado no existe. Por favor, seleccione un proyecto válido.");

@@ -24,8 +24,7 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
         int opcion = 0;
         do {
             GUI.imprimeProyecto(proyecto);
-            GUI.imprimirOpcionesDeTareaJefe();
-            opcion = Teclado.leeNumero("Introduce opcion deseada: ");
+            opcion = GUI.imprimirOpcionesDeTareaJefe();
             switch (opcion) {
                 case 1:
                     ArrayList<Tarea> tareasNuevas = jefe.anadirTarea();
