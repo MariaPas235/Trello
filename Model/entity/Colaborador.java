@@ -14,10 +14,12 @@ import java.util.Scanner;
 
 public class Colaborador extends Persona implements IColaborador, Serializable {
     private List<Tarea> tareasAsignadas;
-    public Colaborador(){
-        super("","","","");
+
+    public Colaborador() {
+        super("", "", "", "");
         tareasAsignadas = new ArrayList<>();
     }
+
     //Funciones que tiene un colaborador de un proyecto asignado
     view.GUI GUI = new GUI();
 
@@ -126,10 +128,11 @@ public class Colaborador extends Persona implements IColaborador, Serializable {
             }
         } while (opcion != 0);
     }
-//Metodo para añadir comentarios a la tarea
+
+    //Metodo para añadir comentarios a la tarea
     @Override
     public String anadirComentario(Tarea tarea, Proyecto proyecto, String comentario) {
-        comentario= Teclado.leeString("Escriba un comentario: ");
+        comentario = Teclado.leeString("Escriba un comentario: ");
         tarea.setComentario(comentario);
         return tarea.getComentario();
     }
@@ -143,6 +146,7 @@ public class Colaborador extends Persona implements IColaborador, Serializable {
             System.out.println("La tarea ya está asignada al colaborador.");
         }
     }
+
     public void verComentario(Proyecto proyecto) {
         ArrayList<Tarea> tareas = proyecto.getTareas();
 
@@ -151,10 +155,35 @@ public class Colaborador extends Persona implements IColaborador, Serializable {
 
         } else {
 
+            Scanner scanner = new Scanner(System.in);
+
             System.out.println("Lista de tareas disponibles:");
             for (int i = 0; i < tareas.size(); i++) {
                 System.out.println((i + 1) + ". " + tareas.get(i).getNombre());
             }
+
+            System.out.print("Seleccione el número de la tarea para ver su comentario (0 para cancelar): ");
+            int opcion = Integer.parseInt(scanner.nextLine());
+
+            if (opcion == 0) {
+                System.out.println("Operación cancelada.");
+
+            }else {
+
+            if (opcion < 1 || opcion > tareas.size()) {
+                System.out.println("Número de tarea inválido.");
+
+            }
+
+            Tarea tareaSeleccionada = tareas.get(opcion - 1);
+            String comentario = tareaSeleccionada.getComentario();
+
+            if (comentario != null && !comentario.isEmpty()) {
+                System.out.println("Comentario de la tarea '" + tareaSeleccionada.getNombre() + "': " + comentario);
+            } else {
+                System.out.println("La tarea '" + tareaSeleccionada.getNombre() + "' no tiene ningún comentario.");
+            }
         }
     }
+}
 }
