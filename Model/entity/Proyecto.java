@@ -5,7 +5,6 @@ import IO.Teclado;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -100,19 +99,20 @@ public class Proyecto implements Serializable {
 
 
     public boolean esColaborador(String usuario) {
-        boolean result=false;
+        boolean result = false;
         ArrayList<Colaborador> colaboradores = this.getColaboradores();
 
         // Verificar si alguno de los colaboradores tiene el mismo nombre de usuario
         for (Colaborador colaborador : colaboradores) {
             if (colaborador.getUsuario().equals(usuario)) {
-                result=true;
+                result = true;
                 break;
             }
         }
 
         return result;
     }
+
     public ArrayList<Colaborador> añadirColaborador() {
         ArrayList<Colaborador> colaborador = new ArrayList<>();
 

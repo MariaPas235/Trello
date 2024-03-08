@@ -7,9 +7,6 @@ import Model.repo.RepoProyecto;
 import Model.repo.Sesion;
 import view.GUI;
 
-import java.io.FileNotFoundException;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 public class Controller implements IController {
     GUI GUI = new GUI();

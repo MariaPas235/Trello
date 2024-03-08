@@ -3,7 +3,7 @@ package serializator;
 import java.io.*;
 
 public class Serializator {
-    //test
+
     /**
      * Método que serializa en disco cualquier tipo de objeto serializable
      * @param obj debe ser un objeto que implemente la interfaz Serialize
@@ -19,7 +19,7 @@ public class Serializator {
             oos.writeObject(obj);
             result=true;
         }catch (IOException e){
-            //novoy ha hacer nada por simplicidad
+
         }
 
         return  result;
@@ -31,7 +31,7 @@ public class Serializator {
         )){
             result=(T)ois.readObject();
         }catch (IOException | ClassNotFoundException e){
-            //novoy ha hacer nada por simplicidad
+
         }
         return result;
     }

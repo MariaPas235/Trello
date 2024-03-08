@@ -1,15 +1,12 @@
 package Model.repo;
 
+import Interface.IRepoPersona;
 import Model.entity.Persona;
-
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
-
 import static serializator.Security.hashPassword;
 
-public class RepoPersona extends library<Persona,String> {
+public class RepoPersona extends library<Persona,String> implements IRepoPersona {
     private final static String FILENAME= "Users.bin";
     private static RepoPersona _instance;
     private Set<Persona> personas;
