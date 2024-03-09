@@ -21,30 +21,26 @@ public class Controller implements IController {
     }
 
     @Override
-    public String controllerMain() {
+    public void controllerMain() {
         GUI.imprimirBienvenida();
         int opcion;
         do {
-            GUI.imprimirMenuInicio();
-            opcion = Teclado.leeNumero("Introduzca opción: ");
+            opcion=GUI.imprimirMenuInicio();
             switch (opcion) {
                 case 1:
                     Persona persona = GUI.recogeDatosRegistro();
                     rPersona.add(persona);
                     rPersona.save();
-                    break;
                 case 2:
                     Sesion.iniciarSesion(new GUI(), GUI.recogeDatosInicio());
                     GUI.bienvenidaApp();
                     controladorMenu.controladorMenu(Sesion.getInstance());
                     Sesion.cerrarSesion();
                     break;
-                case 3:
-                    break;
             }
-        } while (!(opcion == 3));
+        } while (opcion != 3);
 
-        return "Gracias por usar Trello. Hasta pronto （＾∀＾）ﾉｼ";
+        System.out.println("Gracias por usar Trello. Hasta pronto （＾∀＾）ﾉｼ");
 
 
     }
