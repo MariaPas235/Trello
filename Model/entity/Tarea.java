@@ -121,22 +121,7 @@ public class Tarea implements Serializable {
         return "tarea[" + nombre + personaAsignada + descripcion + fechaInicio + fechaLimite + fechaActual + comentario +"]";
     }
 
-    public static ArrayList<Tarea> añadirTareas() {
-        ArrayList<Tarea> tarea = new ArrayList<>();
-        boolean auxSN = true;
-        while (auxSN) {
-            Tarea tarea1 = new Tarea();
-            tarea1.setNombre(Teclado.leeString("Introduce el nombre de la tarea: "));
-            tarea1.setDescripcion(Teclado.leeString("Introduce una descripcion: "));
-            tarea1.setFechaActual(LocalDateTime.now());
-            tarea1.setFechaInicio(LocalDate.now());
-            tarea1.setFechaLimite(GUI.añadirFechaFin());
-            tarea.add(tarea1);
-            String respuesta = Teclado.leeString("Quieres añadir otra tarea (s/n)? ");
-            auxSN = respuesta.equalsIgnoreCase("s");
-        }
-        return tarea;
-    }
+
 }
 
 

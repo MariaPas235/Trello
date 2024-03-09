@@ -10,6 +10,7 @@ import Model.repo.RepoProyecto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GUI implements IGUI {
@@ -65,10 +66,12 @@ public class GUI implements IGUI {
     }
 
     @Override
-    public void imprimirMenuInicio() {
+    public int imprimirMenuInicio() {
         System.out.println("1. Registrarse");
         System.out.println("2. Iniciar sesion");
         System.out.println("3. Salir");
+        return Teclado.leeNumero("Inserte una opción");
+
     }
 
 
@@ -99,8 +102,9 @@ public class GUI implements IGUI {
         proyecto.setDescripcion(Teclado.leeString("Inserte una descripción de su proyecto"));
         proyecto.setFechaCreacion(LocalDate.now());
         proyecto.setColaboradores(proyecto.añadirColaborador());
-        proyecto.setTareas(Tarea.añadirTareas());
+        proyecto.setTareas(GUI.añadirTareas());
         proyecto.setJefe(nombre);
+
         return proyecto;
     }
 
@@ -185,5 +189,21 @@ public class GUI implements IGUI {
             System.out.printf("%-30s%-30s%-30s\n", nombreTarea, personaAsignada, estadoTarea);
         }
         System.out.println("========================================================================");
+    }
+    public static ArrayList<Tarea> añadirTareas() {
+        ArrayList<Tarea> tarea = new ArrayList<>();
+        boolean auxSN = true;
+        while (auxSN) {
+            Tarea tarea1 = new Tarea();
+            tarea1.setNombre(Teclado.leeString("Introduce el nombre de la tarea: "));
+            tarea1.setDescripcion(Teclado.leeString("Introduce una descripcion: "));
+            tarea1.setFechaActual(LocalDateTime.now());
+            tarea1.setFechaInicio(LocalDate.now());
+            tarea1.setFechaLimite(GUI.añadirFechaFin());
+            tarea.add(tarea1);
+            String respuesta = Teclado.leeString("Quieres añadir otra tarea (s/n)? ");
+            auxSN = respuesta.equalsIgnoreCase("s");
+        }
+        return tarea;
     }
 }

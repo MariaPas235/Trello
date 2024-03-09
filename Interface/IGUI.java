@@ -9,7 +9,7 @@ public interface IGUI {
     void imprimirBienvenida();
 
     //Funcion que muestra el menu de inicio si quiere registrarse o iniciar sesion un usuario y salir del programa
-    void imprimirMenuInicio();
+    int imprimirMenuInicio();
 
     //Funcion que recoge los datos del usuario al iniciar sesion
     Persona recogeDatosInicio();
