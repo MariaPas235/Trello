@@ -65,11 +65,10 @@ public class GUI implements IGUI {
     }
 
     @Override
-    public int imprimirMenuInicio() {
+    public void imprimirMenuInicio() {
         System.out.println("1. Registrarse");
         System.out.println("2. Iniciar sesion");
         System.out.println("3. Salir");
-        return Teclado.leeNumero("Inserte una opción");
     }
 
 
