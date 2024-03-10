@@ -4,6 +4,7 @@ import java.io.*;
 
 public class Serializator {
 
+    //Método que serializa en disco cualquier tipo de objeto serializable
     /**
      * Método que serializa en disco cualquier tipo de objeto serializable
      * @param obj debe ser un objeto que implemente la interfaz Serialize
@@ -24,6 +25,14 @@ public class Serializator {
 
         return  result;
     }
+
+    // Metodo que deserializa en disco cualquier tipo de objeto serializable
+    /**
+     * Metodo que deserializa en disco cualquier tipo de objeto serializable
+     * @param filename nombre del archvivo donde deserializar el objeto
+     * @return true si ha ido correctamente
+     * @param <T> Tipo de Objeto a deserializar
+     */
     public static <T> T desearize(String filename){
         T result = null;
         try (ObjectInputStream ois = new ObjectInputStream(

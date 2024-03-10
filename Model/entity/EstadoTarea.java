@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+//El enum implementa el serializable
 public enum EstadoTarea implements Serializable {
     //Enums de estado con valor asignado
     SININICIAR(1, "Sin iniciar"),

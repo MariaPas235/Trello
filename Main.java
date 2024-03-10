@@ -1,7 +1,7 @@
 import Controller.Controller;
 
-
-public class main {
+//Main donde se llama al contollerMain que inicia el programa
+public class Main {
     public static void main(String[] args) {
          Controller controller = new Controller();
          controller.controllerMain();

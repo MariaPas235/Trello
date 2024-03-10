@@ -5,8 +5,8 @@ import serializator.Serializator;
 import java.io.Serializable;
 import java.util.Collection;
 
-public abstract class Library_proyect<T,K> implements Serializable {
-    public static Library_proyect load(String filename){
+public abstract class LibraryProyect<T,K> implements Serializable {
+    public static LibraryProyect load(String filename){
         return Serializator.desearize(filename);
     }
     public  boolean save(String filename){

@@ -6,19 +6,17 @@ import Model.entity.Persona;
 import Model.entity.Proyecto;
 import Model.entity.Tarea;
 import Model.repo.RepoPersona;
-import Model.repo.RepoProyecto;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class GUI implements IGUI {
-    Scanner teclado = new Scanner(System.in);
     static RepoPersona rp = RepoPersona.get_instance();
-    static RepoProyecto rProyecto = RepoProyecto.get_instance();
 
-    //test
+    //Funcion que muestra el menu de bienvenida
     @Override
     public void imprimirBienvenida() {
         System.out.println(".______    __   _______ .__   __. ____    ____  _______ .__   __.  __   _______    ______           ___         .___________..______       _______  __       __        ______   \n" +
@@ -29,7 +27,16 @@ public class GUI implements IGUI {
                 "|______/  |__| |_______||__| \\__|     \\__/     |_______||__| \\__| |__| |_______/  \\______/     /__/     \\__\\        |__|     | _| `._____||_______||_______||_______| \\______/ ");
     }
 
+    //Funcion que recoge los datos de incio de sesion del usuario
 
+    /**
+     * Funcion que recoge los datos de inicio de sesion del usuario
+     *
+     * @return devuelve la persona asiganada al usuario introducido
+     * Pide por teclado al usuario su usuario y contraseña
+     * Si no coinciden con los datos almacenados en el repo del usuario dará error hasta
+     * que los datos de inicio sean correctos
+     */
     @Override
     public Persona recogeDatosInicio() {
         String nombreUsuario;
@@ -41,6 +48,16 @@ public class GUI implements IGUI {
         return rp.getByID(nombreUsuario);
     }
 
+    //Funcion que recoge los datos de registro de un usuario
+
+    /**
+     * Funcion que recoge los datos de registro de un usuario
+     *
+     * @return devuelve el usuario creado con sus atributos correctos
+     * Pide al usuario que introduzca su nombre completo y su usuario (sin coincidir con uno registrado)
+     * Pide por teclado una contraseña cumpliendo el patron de validacion de esta y si no es correcta pedira que se escriba de nuevo hasta cumplirlo
+     * Por ultimo, pide un mail que debe de cumplir tambien con el patron de validacion de mail y si no es correcto pedira que se escriba de nuevo hasta cumplirlo
+     */
     @Override
     public Persona recogeDatosRegistro() {
 
@@ -65,6 +82,13 @@ public class GUI implements IGUI {
 
     }
 
+    //Funcion que muestra el menu de inicio al iniciar el programa
+
+    /**
+     * Funcion que muestra el menu de inicio al iniciar el programa
+     *
+     * @return devuelve la opcion que ha introducido el usuario por teclado
+     */
     @Override
     public int imprimirMenuInicio() {
         System.out.println("1. Registrarse");
@@ -74,7 +98,7 @@ public class GUI implements IGUI {
 
     }
 
-
+    //Funcion que muestra el menu de bienvenida tras iniciar sesion
     @Override
     public void bienvenidaApp() {
         System.out.println(" _____                                _             ____                                                _   \n" +
@@ -85,6 +109,13 @@ public class GUI implements IGUI {
                 "               |_|                                                                                           ");
     }
 
+    //Funcion que muestra el menu de proyectos
+
+    /**
+     * Funcion que muestra el menu de proyectos
+     *
+     * @return devuelve la opcion que ha introducido el usuario por teclado
+     */
     @Override
     public int imprimirMenuProyectos() {
         System.out.println("1. Crear proyecto");
@@ -95,21 +126,21 @@ public class GUI implements IGUI {
         return Teclado.leeNumero("Inserte una opción");
     }
 
+    //Funcion que recoge los datos de un proyecto al crearlo
     @Override
     public Proyecto recogerDatosProyecto(String nombre) {
         Proyecto proyecto = new Proyecto();
         proyecto.setNombre(Teclado.leeString("Inserte el nombre de su proyecto"));
         proyecto.setDescripcion(Teclado.leeString("Inserte una descripción de su proyecto"));
         proyecto.setFechaCreacion(LocalDate.now());
-        proyecto.setColaboradores(proyecto.añadirColaborador());
-        proyecto.setTareas(GUI.añadirTareas());
+        proyecto.setColaboradores(proyecto.anadirColaborador());
+        proyecto.setTareas(GUI.anadirTareas());
         proyecto.setJefe(nombre);
-
         return proyecto;
     }
 
     //Metodo estatico para poner una fecha final
-    public static LocalDate añadirFechaFin() {
+    public static LocalDate anadirFechaFin() {
         LocalDateTime ahora = LocalDateTime.now();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -131,16 +162,31 @@ public class GUI implements IGUI {
         return fechaFinalizacion;
     }
 
+    //Funcion de eliminar proyetos pidiendo por teclado el nombre de este a borrar
+
+    /**
+     * Funcion de eliminar proyetos pidiendo por teclado el nombre de este a borrar
+     *
+     * @return devuelve el nombre del proyecto que ha introducido el usuario por teclado
+     */
     @Override
     public String borrarProyecto() {
         return Teclado.leeString("Introduce el nombre del proyecto que quieres eliminar:");
     }
 
+    //Funcion de seleccionar un proyecto pidiendo por teclado el nombre de este
+
+    /**
+     * Funcion de seleccionar un proyecto pidiendo por teclado el nombre de este
+     *
+     * @return devuelve el nombre del proyecto que ha introducido el usuario por teclado
+     */
     @Override
     public String seleccionarProyecto() {
         return Teclado.leeString("Inserte el nombre de su proyecto");
     }
 
+    //Funcion que lista los datos de un proyecto
     @Override
     public void listarProyectos(Proyecto proyecto) {
 
@@ -150,7 +196,13 @@ public class GUI implements IGUI {
         System.out.println("-----------------------------------");
 
     }
-@Override
+
+    //Funcion que muestra el menu de opciones de tareas del jefe
+    /**
+     * Funcion que muestra el menu de opciones de tareas del jefe
+     * @return devuelve la opcion que ha introducido el usuario por teclado
+     */
+    @Override
     public int imprimirOpcionesDeTareaJefe() {
         System.out.println("1. Añadir tarea");
         System.out.println("2. Borrar tarea");
@@ -161,7 +213,13 @@ public class GUI implements IGUI {
         System.out.println("7. Salir");
         return Teclado.leeNumero("Inserte una opción");
     }
-@Override
+
+    //Funcion que muestra las opciones de tarea de colaborador
+    /**
+     * Funcion que muestra las opciones de tarea de colaborado
+     * @return devuelve la opcion introducida por el usuario por teclado
+     */
+    @Override
     public int imprimirOpcionesDeTareaColaborador() {
         System.out.println("1. Actualizar Tarea");
         System.out.println("2. Ver Comentario");
@@ -169,7 +227,8 @@ public class GUI implements IGUI {
         return Teclado.leeNumero("Inserte una opción");
     }
 
-@Override
+    //Funcion que muestra todos los datos de un proyecto
+    @Override
     public void imprimeProyecto(Proyecto proyecto) {
         System.out.println("Nombre: " + proyecto.getNombre());
         System.out.println("Descripción: " + proyecto.getDescripcion());
@@ -190,7 +249,8 @@ public class GUI implements IGUI {
         }
         System.out.println("========================================================================");
     }
-    public static ArrayList<Tarea> añadirTareas() {
+
+    public static ArrayList<Tarea> anadirTareas() {
         ArrayList<Tarea> tarea = new ArrayList<>();
         boolean auxSN = true;
         while (auxSN) {
@@ -199,7 +259,7 @@ public class GUI implements IGUI {
             tarea1.setDescripcion(Teclado.leeString("Introduce una descripcion: "));
             tarea1.setFechaActual(LocalDateTime.now());
             tarea1.setFechaInicio(LocalDate.now());
-            tarea1.setFechaLimite(GUI.añadirFechaFin());
+            tarea1.setFechaLimite(GUI.anadirFechaFin());
             tarea.add(tarea1);
             String respuesta = Teclado.leeString("Quieres añadir otra tarea (s/n)? ");
             auxSN = respuesta.equalsIgnoreCase("s");

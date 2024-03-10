@@ -1,12 +1,8 @@
 package Model.entity;
 
-import IO.Teclado;
-import view.GUI;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Objects;
 
 //La clase tarea implementa el serializable
@@ -22,7 +18,7 @@ public class Tarea implements Serializable {
     private String comentario;
 
     private EstadoTarea estadoTarea;
-    //Constructor de tarea
+    //Constructor de tarea full equip con todos los atributos
     public Tarea(String nombre, String personaAsignada, String descripcion, LocalDate fechaInicio, LocalDate fechaLimite, LocalDateTime fechaActual,String comentario, EstadoTarea estadoTarea) {
         this.nombre = nombre;
         this.personaAsignada = personaAsignada;
@@ -33,11 +29,13 @@ public class Tarea implements Serializable {
         this.comentario= comentario;
         this.estadoTarea= estadoTarea;
     }
-//Constructor que inicializa los atributos a 0
+
+    //Constructor que inicializa los atributos a 0 y el estado en sin iniciar
     public Tarea() {
         this("", "", "", LocalDate.now(), LocalDate.now(), LocalDateTime.now(),"",EstadoTarea.SININICIAR);
     }
 
+    //Getters y setters de los atributos
     public String getNombre() {
         return nombre;
     }
@@ -102,6 +100,16 @@ public class Tarea implements Serializable {
         this.estadoTarea = estadoTarea;
     }
 
+    //El equals de la clase
+    /**
+     * Equals de la clase que comprueba si dos objetos (tareas) son iguales
+     * @param obj el objeto a analizar si es igual al objeto actual
+     * @return devuelve el resultado de la comparacion
+     * Si el objeto que se pasa (actual) es igual a uno anterior devuelve true
+     * Si el objeto anterior es nulo o las clases del objeto actual y dell anterior no son iguales devuelve false
+     * Por ultimo si no es nulo y de la misma clase que el objeto actual se hace un casting para un analisis mas detallado
+     * Devolvera true o false si la comparacion entre el nombre de la tarea actual y una anterior es igual o distinta
+     */
     @Override
     public boolean equals(Object obj) {
         boolean isEquals;
@@ -116,6 +124,11 @@ public class Tarea implements Serializable {
         return isEquals;
     }
 
+    //toString de la clase
+    /**
+     * toString de la clase
+     * @return devuelve todos los atributos de tarea que se imprimiran por pantalla al hacer llamamiento al toString de la clase
+     */
     @Override
     public String toString() {
         return "tarea[" + nombre + personaAsignada + descripcion + fechaInicio + fechaLimite + fechaActual + comentario +"]";
