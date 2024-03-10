@@ -5,22 +5,29 @@ import Model.entity.Colaborador;
 import Model.entity.Jefe;
 import Model.entity.Proyecto;
 import Model.entity.Tarea;
-import Model.repo.RepoProyecto;
 import view.GUI;
-
 import java.util.ArrayList;
 
+//La clase implementa las funciones de la interfaz IControllerProyectoJefe
 public class ControllerProyectoJefe implements IControllerProyectoJefe {
     view.GUI GUI = new GUI();
     Jefe jefe = new Jefe();
     Colaborador colaborador = new Colaborador();
-    static RepoProyecto rProyecto = RepoProyecto.get_instance();
 
     public ControllerProyectoJefe() {
     }
 
+    //Funcion que controla los proyectos en los que un usuario es jefe
+    /**
+     * Funcion que controla los proyectos en los que un usuario es jefe
+     * @param proyecto proyecto en el que el usuario es el jefe del proyecto
+     * @param tareas del arrayList de tareas que el jefe puede añadir en el proyecto entre otras funciones
+     * Primero llama a la funcion de mostrar el proyecto de la GUI.
+     * A continuacion muestra el menu del jefe de un proyectio con sus diferentes opciones de
+     * qué hacer en el proyecto y que hacer con las tareas (asignar tareas a x colaborador, borrar tareas...)
+     */
     public void controladorProyectosJefe(Proyecto proyecto, ArrayList<Tarea> tareas) {
-        int opcion = 0;
+        int opcion;
         do {
             GUI.imprimeProyecto(proyecto);
             opcion = GUI.imprimirOpcionesDeTareaJefe();
@@ -38,7 +45,7 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
                     jefe.borrarTarea(tareas);
                     break;
                 case 3:
-                    proyecto.añadirColaborador();
+                    proyecto.anadirColaborador();
                     break;
                 case 4:
                     proyecto.eliminarColaborador();

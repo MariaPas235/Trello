@@ -2,8 +2,6 @@ package Model.entity;
 
 import IO.Teclado;
 import Interface.IColaborador;
-import view.GUI;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,18 +10,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//La clase colaborador obtiene los atributos de Persona e implementa los metodos de la interfaz IColaborador y el Serializable
 public class Colaborador extends Persona implements IColaborador, Serializable {
+    //El colaborador tiene como atributos una lista de tareas de nombre tareasAsignadas
     private List<Tarea> tareasAsignadas;
-
+    //Contructor vacio de los atributos heredados inicializados a 0
+    //Se crea un arrayList vacio con la asignacion de la variable tareasAsignadas
     public Colaborador() {
         super("", "", "", "");
         tareasAsignadas = new ArrayList<>();
     }
 
     //Funciones que tiene un colaborador de un proyecto asignado
-    view.GUI GUI = new GUI();
 
     //Funcion de actualizar el estado de una tarea
+    /**
+     * Funcion de actualizar tareas del proyecto
+     * @param tareas la varibale de tareas del arrayList de tareas
+     * Si la lista de tareas está vacía, se muestra un aviso.
+     * Si hay tareas, se muestra la lista de tareas y sus posiciones.
+     * El usuario puede seleccionar una tarea para actualizarla.
+     * Se proporciona un menú de opciones para cambiar diferentes atributos de la tarea, como el nombre, la persona asignada, la descripción, las fechas de inicio y límite, el comentario y el estado de la tarea.
+     * Para las fechas de inicio y límite, se valida el formato de la fecha y se pide al usuario que introduzca una nueva fecha hasta que el formato sea correcto.
+     * Para el estado de la tarea, se muestran los estados disponibles y se pide al usuario que introduzca el nuevo estado.
+     * Si se introduce un valor no válido, se pide al usuario que introduzca un valor válido.
+     * Una vez que se ha realizado una actualización correctamente, se muestra un mensaje de confirmación.
+     * El usuario puede salir de la función en cualquier momento seleccionando la opción 0.
+     */
     @Override
     public void actualizarTarea(ArrayList<Tarea> tareas) {
         System.out.println("Actualización de Tareas:");
@@ -36,9 +49,7 @@ public class Colaborador extends Persona implements IColaborador, Serializable {
         for (int i = 0; i < tareas.size(); i++) {
             System.out.println((i + 1) + ". " + tareas.get(i).getNombre());
         }
-        int opcion = 0;
-        Scanner scanner = new Scanner(System.in);
-
+        int opcion;
         do {
             System.out.println("1. Nombre");
             System.out.println("2. Persona Asignada");
@@ -129,7 +140,15 @@ public class Colaborador extends Persona implements IColaborador, Serializable {
         } while (opcion != 0);
     }
 
-    //Metodo para añadir comentarios a la tarea
+    //Funcion para añadir comentarios a la tarea
+    /**
+     * Funcion para añadir comentarios a la tarea
+     * @param tarea la tarea a la que se va a añadir el comentario
+     * @param proyecto el proyecto de donde esta la tarea a la que se va a añadirle el comentario
+     * @param comentario el comentario de la tarea
+     * @return devuelve el comentario añadido a la tarea
+     * Se pide al usuario por teclado que añada un comentario a la tarea y lo guarda
+     */
     @Override
     public String anadirComentario(Tarea tarea, Proyecto proyecto, String comentario) {
         comentario = Teclado.leeString("Escriba un comentario: ");
@@ -137,6 +156,13 @@ public class Colaborador extends Persona implements IColaborador, Serializable {
         return tarea.getComentario();
     }
 
+//Funcion de asignar tarea
+    /**
+     * Funcion de asignar tarea si no estaba asignada
+     * @param tarea a asignar
+     * Si no hay una tarea asiganada se añade a la lista y muestra un mensaje de que ha sido asignada al colaborador
+     * Si la tarea ya estaba asiganada al colaborador mostara un mensaje
+     */
     @Override
     public void asignarTarea(Tarea tarea) {
         // Verificar si la tarea no ha sido asignada previamente
@@ -148,6 +174,16 @@ public class Colaborador extends Persona implements IColaborador, Serializable {
         }
     }
 
+//Funcion de ver comentario de una tarea
+    /**
+     * Funcion de ver comentario de una tarea
+     * @param proyecto proyecto donde se va a ver los comentarios
+     * Muestra un aviso de que no hay tareas en la lista si esta está vacia
+     * Si hay se muestra la lista de tares disponible
+     * Pide por teclado al usuario el numero de la tarea en la lista
+     * Si pone 0 sale de la funcion, si pone un numero invalido da error
+     * Si el numero de la tarea tiene comentario se mostrará por pantalla y si no tiene mostrara un mensaje de que no tiene comentarios la tarea
+     */
     @Override
     public void verComentario(Proyecto proyecto) {
         ArrayList<Tarea> tareas = proyecto.getTareas();

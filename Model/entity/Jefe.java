@@ -2,14 +2,13 @@ package Model.entity;
 
 import IO.Teclado;
 import Interface.IJefe;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import static view.GUI.añadirFechaFin;
+import static view.GUI.anadirFechaFin;
 
 //La clase jefe obiene los metodos por herencia de persona e implementa las funciones de Ijefe y el serializable
 public class Jefe extends Persona implements IJefe, Serializable {
@@ -46,7 +45,7 @@ public class Jefe extends Persona implements IJefe, Serializable {
             tarea1.setDescripcion(Teclado.leeString("Introduce una descripcion: "));
             tarea1.setFechaActual(LocalDateTime.now());
             tarea1.setFechaInicio(LocalDate.now());
-            tarea1.setFechaLimite(añadirFechaFin());
+            tarea1.setFechaLimite(anadirFechaFin());
             tarea.add(tarea1);
             String respuesta = Teclado.leeString("Quieres añadir otra tarea (s/n)? ");
             auxSN = respuesta.equalsIgnoreCase("s");
@@ -133,35 +132,14 @@ public class Jefe extends Persona implements IJefe, Serializable {
     /**
      * Funcion de actualizar tareas del proyecto
      * @param tareas la varibale de tareas del arrayList de tareas
-     * Primero comprueba si la lista de tareas esta vacia y si lo esta dira un aviso de que no hay ninguna disponible para actualizar
-     * Si hay tareas, a continuacion se muestra la lista de tareas y sus posiciones de la lista que hay disponibles que se reccorren con un for
-     * En el bucle lee el numero de la tarea de la lista por teclado del usuario para actualizar la tarea
-     * Se declara una variable opcion para elegir el cambio de los atributos de tarea
-     * 0 para salir de la funcion y el bucle
-     * 1 para cambiarle el nombre
-     * 2 para cambiar la persona asignada a la tarea
-     * 3 para cambiar la descripcion
-     * 4 para cambiar la fecha de incio
-     * 5 para cambiar la fecha limite
-     * 6 para cambiar el comentario
-     * 7 para cambiar el estado de la tarea
-     * A continuacion pide el atributo que hayas elegido de la opcion anterior por teclado
-     * En el switch se elige la opcion deseada para cambiar x atributo
-     * En las 3 primeras opciones pedirá la introducion del nuevo cambio en el atributo una vez elegida la opcion (1 nombre, 2 persona asignada y 3 descripcion)
-     * En la opcion 4 pide introducir una nueva fecha de inicio de tarea (inicializa en null ya que la tarea no tiene fecha de inicio de primeras) con una validacion por expresion regular para el formato de fecha correcto
-     * Si la fecha coincide con los requisitos de la expresion regular, nos dara como valida la fecha y se mostrará por pantalla
-     * Si no es asi, volvera a pedir una fecha de inicio hasta que cumpla el requisito de validacion
-     * En la opcion 5 pide introducir  una nueva fecha final/limite de la tarea (inicializa en null ya que la tarea no tiene fecha final/limite de primeras) con una validacion por expresion regular para el formato de fecha correcto
-     * Si la fecha coincide con los requisitos de la expresion regular, nos dara como valida la fecha y se mostrará por pantalla
-     * Si no es asi, volvera a pedir una fecha final/limite hasta que cumpla el requisito de validacion
-     * En la opcion 6 pide introducir el nuevo comentario de la tarea seleccionada
-     * La ultima opcion, la 7, es para cambiar el estado de una tarea (Sin iniciar, pendiente o acabada)
-     * Nos muestra por pantalla los 3 estados disponibles de la tarea
-     * Lo siguiente es la peticion al usuario para que introduzca el nuevo estado de tarea por teclado
-     * En el switch la opcion 1 es el estado de tarea sin iniciar, la 2 pendiente y el 3 acabada
-     * El 0 es para salir de la funcion y el bucle
-     * Si se introduce un valor no valido volvera a pedir que se introduzca un valor valido
-     * Si cumple una de las opciones correctamente, muestra un mensaje de que la tarea ha sido actualizada correctamente
+     * Si hay tareas disponibles, se muestra una lista de tareas y sus posiciones.
+     * El usuario selecciona una tarea para actualizarla ingresando su número.
+     * Se presenta un menú de opciones para cambiar diferentes atributos de la tarea, como el nombre, la persona asignada, la descripción, las fechas de inicio y límite, el comentario y el estado de la tarea.
+     * Dependiendo de la opción seleccionada, se pide al usuario que introduzca la nueva información. Para las fechas de inicio y límite, se valida el formato de la fecha y se pide al usuario que introduzca una nueva fecha hasta que el formato sea correcto.
+     * Para el estado de la tarea, se muestran los estados disponibles y se pide al usuario que introduzca el nuevo estado.
+     * Si se introduce un valor no válido, se pide al usuario que introduzca un valor válido.
+     * Una vez que se ha realizado una actualización correctamente, se muestra un mensaje de confirmación.
+     * El usuario puede salir de la función en cualquier momento seleccionando la opción 0.
      */
     @Override
     public void actualizarTarea(ArrayList<Tarea> tareas) {

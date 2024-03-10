@@ -5,7 +5,7 @@ import serializator.Serializator;
 import java.io.Serializable;
 import java.util.Collection;
 
-public abstract class library<T,K> implements Serializable {
+public abstract class Library<T,K> implements Serializable {
     public static Object load(String filename){
         return Serializator.desearize(filename);
     }
