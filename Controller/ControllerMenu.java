@@ -11,6 +11,7 @@ import view.GUI;
 import java.util.Objects;
 import java.util.Set;
 
+//La clase implementa los metodos de la interfaz IControllerMenu
 public class ControllerMenu implements IControllerMenu {
     view.GUI GUI = new GUI();
     Jefe jefe = new Jefe();
@@ -21,7 +22,16 @@ public class ControllerMenu implements IControllerMenu {
 
     public ControllerMenu() {
     }
+//Funcion del controlador del menu
 
+    /**
+     * Funcion del controlador del menu
+     * @param sesion el inicio de sesion de un usuario al entrar en el programa
+     * Primero nos muestra un mensaje de bienvenida junto al usuario tras iniciar sesion
+     * Se llama a la funcion del menu de opciones dd proyecto y elige una de las opiones
+     * A continuacion el proyecto dependiendo de la opcion  se guarda, se crea y añade o borra del repo de proyectos
+     * Tambien muestra todos los proyectos y su informacion guardados en el repo
+     */
     public void controladorMenu(Sesion sesion){
         int option = 0;
         do{
@@ -63,7 +73,7 @@ public class ControllerMenu implements IControllerMenu {
                         }
                     } while (!aux);
 
-// Verificar si el usuario actual es el jefe del proyecto
+                    // Verificar si el usuario actual es el jefe del proyecto
                     if (Objects.equals(proyecto.getJefe(), sesion.getPersona().getUsuario())) {
                         controladorProyectosJefe.controladorProyectosJefe(proyecto, proyecto.getTareas());
                     } else {

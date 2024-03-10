@@ -22,7 +22,7 @@ public class Tarea implements Serializable {
     private String comentario;
 
     private EstadoTarea estadoTarea;
-    //Constructor de tarea
+    //Constructor de tarea con todos los atributos
     public Tarea(String nombre, String personaAsignada, String descripcion, LocalDate fechaInicio, LocalDate fechaLimite, LocalDateTime fechaActual,String comentario, EstadoTarea estadoTarea) {
         this.nombre = nombre;
         this.personaAsignada = personaAsignada;
@@ -33,10 +33,11 @@ public class Tarea implements Serializable {
         this.comentario= comentario;
         this.estadoTarea= estadoTarea;
     }
-//Constructor que inicializa los atributos a 0
+    //Constructor vacio que inicializa los atributos a 0 y el estado en sin iniciar
     public Tarea() {
         this("", "", "", LocalDate.now(), LocalDate.now(), LocalDateTime.now(),"",EstadoTarea.SININICIAR);
     }
+    //Getters y setters de los atributos
 
     public String getNombre() {
         return nombre;
@@ -101,7 +102,16 @@ public class Tarea implements Serializable {
     public void setEstadoTarea(EstadoTarea estadoTarea) {
         this.estadoTarea = estadoTarea;
     }
-
+//Equals de la clase
+    /**
+     * Equals de la clase que comprueba si dos objetos (tareas) son iguales
+     * @param obj el objeto a analizar si es igual al objeto actual
+     * @return devuelve el resultado de la comparacion
+     * Si el objeto que se pasa (actual) es igual a uno anterior devuelve true
+     * Si el objeto anterior es nulo o las clases del objeto actual y dell anterior no son iguales devuelve false
+     * Por ultimo si no es nulo y de la misma clase que el objeto actual se hace un casting para un analisis mas detallado
+     * Devolvera true o false si la comparacion entre el nombre de la tarea actual y una anterior es igual o distinta
+     */
     @Override
     public boolean equals(Object obj) {
         boolean isEquals;
@@ -115,12 +125,29 @@ public class Tarea implements Serializable {
         }
         return isEquals;
     }
-
+//toString de la clase
+    /**
+     * toString de la clase
+     * @return devuelve todos los atributos de tarea que se imprimiran por pantalla al hacer llamamiento al toString de la clase
+     */
     @Override
     public String toString() {
         return "tarea[" + nombre + personaAsignada + descripcion + fechaInicio + fechaLimite + fechaActual + comentario +"]";
     }
+//Funcion de añadir tareas a un arrayList de tareas
 
+    /**
+     * Funcion de añadir tareas a un arrayList de tareas
+     * @return devuelve la lista de tareas añadidas al arrayList
+     *Se crea una lista vacía para almacenar las tareas.
+     *Se inicia un bucle que continuará hasta que el usuario decida no añadir más tareas.
+     *Dentro del bucle, se crea una nueva tarea vacía.
+     *Se pide al usuario que introduzca un nombre y una descripción para la tarea.
+     *Se establecen la fecha actual, la fecha de inicio y la fecha límite de la tarea. Por defecto, estas fechas están vacías.
+     *Se añade la tarea a la lista.
+     *Se pregunta al usuario si desea añadir otra tarea a la lista. Si el usuario responde con ‘s’ o ‘S’, se añade otra tarea.
+     *Si el usuario responde con ‘n’ o ‘N’, se termina el bucle y no se añaden más tareas.
+     */
     public static ArrayList<Tarea> añadirTareas() {
         ArrayList<Tarea> tarea = new ArrayList<>();
         boolean auxSN = true;

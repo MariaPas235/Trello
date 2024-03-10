@@ -12,12 +12,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+//La clase GUI implementa las funciones de la interfaz IGUI
 public class GUI implements IGUI {
     Scanner teclado = new Scanner(System.in);
     static RepoPersona rp = RepoPersona.get_instance();
     static RepoProyecto rProyecto = RepoProyecto.get_instance();
 
-    //test
+    //Funcion que muestra el menu de bienvenida
     @Override
     public void imprimirBienvenida() {
         System.out.println(".______    __   _______ .__   __. ____    ____  _______ .__   __.  __   _______    ______           ___         .___________..______       _______  __       __        ______   \n" +
@@ -28,7 +29,22 @@ public class GUI implements IGUI {
                 "|______/  |__| |_______||__| \\__|     \\__/     |_______||__| \\__| |__| |_______/  \\______/     /__/     \\__\\        |__|     | _| `._____||_______||_______||_______| \\______/ ");
     }
 
+    //Funcion que muestra el menu de incio al ejecutar el programa
+    @Override
+    public void imprimirMenuInicio() {
+        System.out.println("1. Registrarse");
+        System.out.println("2. Iniciar sesion");
+        System.out.println("3. Salir");
+    }
 
+//Funcion que recoge los datos de incio de sesion del usuario
+    /**
+     * Funcion que recoge los datos de inicio de sesion del usuario
+     * @return devuelve la persona asiganada al usuario introducido
+     * Pide por teclado al usuario su usuario y contraseña
+     * Si no coinciden con los datos almacenados en el repo del usuario dará error hasta
+     * que los datos de inicio sean correctos
+     */
     @Override
     public Persona recogeDatosInicio() {
         String nombreUsuario;
@@ -39,7 +55,14 @@ public class GUI implements IGUI {
         } while (!(rp.getByUserName(nombreUsuario) && rp.getBypassword(contrasena)));
         return rp.getByID(nombreUsuario);
     }
-
+//Funcion que recoge los datos de registro de un usuario
+    /**
+     * Funcion que recoge los datos de registro de un usuario
+     * @return devuelve el usuario creado con sus atributos correctos
+     * Pide al usuario que introduzca su nombre completo y su usuario (sin coincidir con uno registrado)
+     * Pide por teclado una contraseña cumpliendo el patron de validacion de esta y si no es correcta pedira que se escriba de nuevo hasta cumplirlo
+     * Por ultimo, pide un mail que debe de cumplir tambien con el patron de validacion de mail y si no es correcto pedira que se escriba de nuevo hasta cumplirlo
+     */
     @Override
     public Persona recogeDatosRegistro() {
 
@@ -63,14 +86,7 @@ public class GUI implements IGUI {
         return new Persona(nombrePersona, nombreUsuario, contrasena, mail);
 
     }
-
-    @Override
-    public void imprimirMenuInicio() {
-        System.out.println("1. Registrarse");
-        System.out.println("2. Iniciar sesion");
-        System.out.println("3. Salir");
-    }
-
+    //Funcion que muestra el menu de bienvenida tras iniciar sesion
 
     @Override
     public void bienvenidaApp() {
@@ -81,7 +97,7 @@ public class GUI implements IGUI {
                 " |_____| |___/ | .__/   \\__,_|  \\___| |_|  \\___/    |_|      \\___| |_|    |___/  \\___/  |_| |_|  \\__,_| |_|  \n" +
                 "               |_|                                                                                           ");
     }
-
+//Funcion que muestra el menu de proyectos y lee la opcion por teclado del usuario
     @Override
     public int imprimirMenuProyectos() {
         System.out.println("1. Crear proyecto");
@@ -91,6 +107,7 @@ public class GUI implements IGUI {
         System.out.println("5. Cerrar Sesión");
         return Teclado.leeNumero("Inserte una opción");
     }
+//Funcion que recoge los datos de un proyecto al crearlo
 
     @Override
     public Proyecto recogerDatosProyecto(String nombre) {
@@ -126,16 +143,17 @@ public class GUI implements IGUI {
 
         return fechaFinalizacion;
     }
-
+//Funcion de eliminar proyetos pidiendo por teclado el nombre de este a borrar
     @Override
     public String borrarProyecto() {
         return Teclado.leeString("Introduce el nombre del proyecto que quieres eliminar:");
     }
-
+//Funcion de seleccionar un proyecto pidiendo por teclado el nombre de este
     @Override
     public String seleccionarProyecto() {
         return Teclado.leeString("Inserte el nombre de su proyecto");
     }
+//Funcion que lista los datos de un proyecto
 
     @Override
     public void listarProyectos(Proyecto proyecto) {
@@ -146,7 +164,9 @@ public class GUI implements IGUI {
         System.out.println("-----------------------------------");
 
     }
-@Override
+    //Funcion que muestra el menu de opciones de tareas del jefe que devuelve la opcion por teclado de este
+
+    @Override
     public int imprimirOpcionesDeTareaJefe() {
         System.out.println("1. Añadir tarea");
         System.out.println("2. Borrar tarea");
@@ -157,13 +177,16 @@ public class GUI implements IGUI {
         System.out.println("7. Salir");
         return Teclado.leeNumero("Inserte una opción");
     }
-@Override
+    //Funcion que muestra las opciones de tarea de colaborador y deuelve la opcion elegida de este
+
+    @Override
     public int imprimirOpcionesDeTareaColaborador() {
         System.out.println("1. Actualizar Tarea");
         System.out.println("2. Ver Comentario");
         System.out.println("3. Salir");
         return Teclado.leeNumero("Inserte una opción");
     }
+//Funcion que muestra todos los datos de un proyecto
 
 @Override
     public void imprimeProyecto(Proyecto proyecto) {

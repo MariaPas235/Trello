@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+//La clase proyecto implementa el serializable
 public class Proyecto implements Serializable {
+    //Atributos de la clase
     private String nombre;
     private String descripcion;
     private LocalDate fechaCreacion;
@@ -16,6 +18,7 @@ public class Proyecto implements Serializable {
     private ArrayList<Colaborador> colaboradores;
     private ArrayList<Tarea> tareas;
 
+    //Constructor con los atrubtos de la clase
     public Proyecto(String nombre, String descripcion, LocalDate fechaCreacion, String jefe, ArrayList<Colaborador> colaboradores, ArrayList<Tarea> tareas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -24,12 +27,12 @@ public class Proyecto implements Serializable {
         this.colaboradores = colaboradores;
         this.tareas = tareas;
     }
-
+//Constrcutor vacio que inicializa los atributos a 0
     public Proyecto() {
         this("", "", LocalDate.now(), "", new ArrayList<>(), new ArrayList<>());
     }
 
-
+//Getters y setters de los atributos de la clase
     public String getNombre() {
         return nombre;
     }
@@ -78,6 +81,16 @@ public class Proyecto implements Serializable {
         this.tareas = tareas;
     }
 
+//Equals de la clase
+    /**
+     * Equals de la clase que comprueba si dos objetos (proyectos) son iguales
+     * @param obj el objeto a analizar si es igual al objeto actual
+     * @return devuelve el resultado de la comparacion
+     * Si el objeto que se pasa (actual) es igual a uno anterior devuelve true
+     * Si el objeto anterior es nulo o las clases del objeto actual y dell anterior no son iguales devuelve false
+     * Por ultimo si no es nulo y de la misma clase que el objeto actual se hace un casting para un analisis mas detallado
+     * Devolvera true o false si la comparacion del nombre del proyecto actual y uno anterior es igual o distinta
+     */
     @Override
     public boolean equals(Object obj) {
         boolean isEquals;
