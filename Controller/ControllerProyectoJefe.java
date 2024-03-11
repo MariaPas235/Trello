@@ -34,7 +34,7 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
             opcion = GUI.imprimirOpcionesDeTareaJefe();
             switch (opcion) {
                 case 1:
-                    ArrayList<Tarea> tareasNuevas = jefe.anadirTarea();
+                    ArrayList<Tarea> tareasNuevas = GUI.anadirTareas();
                     if (tareasNuevas != null && !tareasNuevas.isEmpty()) {
                         proyecto.getTareas().addAll(tareasNuevas);
                         System.out.println("Tarea(s) añadida(s) correctamente.");
@@ -43,7 +43,7 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
                     }
                     break;
                 case 2:
-                    jefe.borrarTarea(tareas);
+                    GUI.borrarTarea(tareas);
                     break;
                 case 3:
                     proyecto.anadirColaborador();
@@ -52,10 +52,10 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
                     proyecto.eliminarColaborador();
                     break;
                 case 5:
-                    jefe.asignarTarea(tareas,colaborador);
+                    GUI.asignarTarea(tareas,colaborador);
                     break;
                 case 6:
-                    jefe.actualizarTarea(tareas);
+                    GUI.actualizarTarea(tareas);
                     break;
             }
         } while (!(opcion == 7));
