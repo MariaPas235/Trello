@@ -33,13 +33,33 @@ public class ControllerMenu implements IControllerMenu {
         do{
             System.out.println("Hola! " + sesion.getPersona().getUsuario());
             option= GUI.imprimirMenuProyectos();
+            Proyecto proyectoaux;
             switch (option){
                 case 1:
                     rProyecto.add( GUI.recogerDatosProyecto(sesion.getPersona().getUsuario()));
                     rProyecto.save();
                     break;
                 case 2:
-                    rProyecto.delete(GUI.borrarProyecto());
+                    boolean aux = false;
+
+                    do {
+                        // Obtener el proyecto por su ID
+                        proyectoaux = rProyecto.getByID(GUI.seleccionarProyecto());
+
+                        if (proyectoaux != null) {
+                            // Si se encontró el proyecto, establecer aux a true y mostrar información del proyecto
+                            aux = true;
+                        } else {
+                            // Si no se encontró el proyecto, mostrar un mensaje de error
+                            System.out.println("El proyecto seleccionado no existe. Por favor, seleccione un proyecto válido.");
+                        }
+                    } while (!aux);
+                    if (Objects.equals(proyectoaux.getJefe(), sesion.getPersona().getUsuario())) {
+                        rProyecto.delete(GUI.borrarProyecto());
+                    }else{
+                        System.out.println("Usted No puede borrar este proyecto porque no es el jefe");
+                    }
+                    proyectoaux = null;
                     break;
                 case 3:
                     Set<Proyecto> proyectosSet = (Set<Proyecto>) rProyecto.getAll();
@@ -48,19 +68,21 @@ public class ControllerMenu implements IControllerMenu {
                     } else {
                         System.out.println("Proyectos creados:");
                         for (Proyecto proyecto : proyectosSet) {
-                            GUI.listarProyectos(proyecto);
+                            // Verificar si el usuario actual es el jefe del proyecto o si es colaborador del proyecto
+                            if (Objects.equals(proyecto.getJefe(), sesion.getPersona().getUsuario()) || proyecto.esColaborador(sesion.getPersona().getUsuario())) {
+                                GUI.listarProyectos(proyecto);
+                            }
                         }
                     }
                     break;
                 case 4:
-                    Proyecto proyecto;
-                    boolean aux = false;
+                    aux = false;
 
                     do {
                         // Obtener el proyecto por su ID
-                        proyecto = rProyecto.getByID(GUI.seleccionarProyecto());
+                        proyectoaux = rProyecto.getByID(GUI.seleccionarProyecto());
 
-                        if (proyecto != null) {
+                        if (proyectoaux != null) {
                             // Si se encontró el proyecto, establecer aux a true y mostrar información del proyecto
                             aux = true;
                         } else {
@@ -70,12 +92,12 @@ public class ControllerMenu implements IControllerMenu {
                     } while (!aux);
 
                     // Verificar si el usuario actual es el jefe del proyecto
-                    if (Objects.equals(proyecto.getJefe(), sesion.getPersona().getUsuario())) {
-                        controladorProyectosJefe.controladorProyectosJefe(proyecto, proyecto.getTareas());
+                    if (Objects.equals(proyectoaux.getJefe(), sesion.getPersona().getUsuario())) {
+                        controladorProyectosJefe.controladorProyectosJefe(proyectoaux, proyectoaux.getTareas());
                     } else {
                         // Verificar si el usuario actual es colaborador del proyecto
-                        if (proyecto.esColaborador(sesion.getPersona().getUsuario())) {
-                            controllerProyectoColaborador.controladorProyectosColaborador(proyecto,proyecto.getTareas());
+                        if (proyectoaux.esColaborador(sesion.getPersona().getUsuario())) {
+                            controllerProyectoColaborador.controladorProyectosColaborador(proyectoaux,proyectoaux.getTareas());
                         } else {
                             // Si no es colaborador del proyecto
                             System.out.println("Usted no es colaborador del proyecto seleccionado.");
