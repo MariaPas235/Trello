@@ -29,7 +29,8 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
     public void controladorProyectosJefe(Proyecto proyecto, ArrayList<Tarea> tareas) {
         int opcion;
         do {
-            GUI.imprimeProyecto(proyecto);
+            GUI.imprimirCabecera();
+            GUI.asignarTarea(proyecto);
             opcion = GUI.imprimirOpcionesDeTareaJefe();
             switch (opcion) {
                 case 1:

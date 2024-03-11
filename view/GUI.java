@@ -2,6 +2,7 @@ package view;
 
 import IO.Teclado;
 import Interface.IGUI;
+import Model.entity.EstadoTarea;
 import Model.entity.Persona;
 import Model.entity.Proyecto;
 import Model.entity.Tarea;
@@ -265,5 +266,28 @@ public class GUI implements IGUI {
             auxSN = respuesta.equalsIgnoreCase("s");
         }
         return tarea;
+    }
+
+
+    public void imprimirCabecera(){
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("|                           SIN INICIAR                           |                            PENDIENTE                            |                            ACABADA                            |");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+    }
+
+    public void asignarTarea(Proyecto proyecto){
+
+        for (Tarea tarea : proyecto.getTareas()) {
+            if (tarea.getEstadoTarea().equals(EstadoTarea.SININICIAR)) {
+                System.out.println("|                            " + tarea.getNombre()+" ( "+(tarea.getPersonaAsignada()) +" )                          |                                                                 |                                                               |");
+
+            }else if (tarea.getEstadoTarea().equals(EstadoTarea.PENDIENTE)) {
+                System.out.println("|                                                            |                              "+ tarea.getNombre()+" ( "+(tarea.getPersonaAsignada()) +" )                              |                                                               |");
+            }else {
+                System.out.println("|                                                            |                                                                 |                                  "+ tarea.getNombre()+" ( "+(tarea.getPersonaAsignada()) +" )                        |");
+            }
+        }
+
     }
 }

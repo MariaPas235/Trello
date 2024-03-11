@@ -43,4 +43,6 @@ public interface IGUI {
 
     //Funcion que muestra todos los datos de un proyecto
     void imprimeProyecto(Proyecto proyecto);
+
+     void imprimirCabecera();
 }
