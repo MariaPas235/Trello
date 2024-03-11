@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import static serializator.Security.hashPassword;
 
-public class RepoPersona extends Library<Persona,String> implements IRepoPersona {
+public class RepoPersona extends library<Persona,String> implements IRepoPersona {
     private final static String FILENAME= "Users.bin";
     private static RepoPersona _instance;
     private Set<Persona> personas;

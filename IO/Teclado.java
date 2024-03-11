@@ -12,7 +12,7 @@ public class Teclado {
         cadenaUsuario = teclado.nextLine();
         if (cadenaUsuario.isEmpty() ||  cadenaUsuario.isBlank()) {
             do {
-                Teclado.imprimirCadena("Aqui no hay na... ponme algo niño");
+                Teclado.imprimirCadena("Por favor introduzca los datos");
                 cadenaUsuario = teclado.nextLine();
             } while (cadenaUsuario.isEmpty()|| cadenaUsuario.isBlank());
         }
@@ -28,7 +28,7 @@ public class Teclado {
                 teclado.nextLine();
                 entradaValida = true;
             } catch (InputMismatchException e) {
-                System.out.println("Error: Introduce un número.");
+                System.out.println("Introduce un número por favor");
                 teclado.nextLine();
             }
         } while (!entradaValida);
