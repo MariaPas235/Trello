@@ -314,39 +314,40 @@ public class GUI implements IGUI {
     //Funcion para asignar tareas a los usuarios colaboradores de un proyecto
     /**
      * Funcion para asignar tareas a los colaboradores de un proyecto
-     * @param tareas la variable de las tareas del arrayList
+     *
+     * @param tareas      la variable de las tareas del arrayList
      * @param colaborador la variable de colaborador para asignarles tareas del arrayList
-     * Primero comprueba si la lista de tareas esta vacia y si lo esta  dira un aviso de que no hay ninguna disponible para asignar
-     * Si hay tareas, a continuacion se muestra la lista de tareas y sus posiciones de la lista que hay disponibles que se reccorren con un for
-     * Se declara una variable opcion
-     * En el bucle lee el numero de la tarea de la lista por teclado del usuario para asignar la tarea
-     * Si la opcion es menor a cero o mayor a la cantidad de tareas que hay imprime un error
-     * Si la opcion es distinta a 0 se le asignara el numero de la tarea de la lista introducido por teclado al colaborador correctamente
-     * Si la opcion es 0 sale de la funcion de asignar tareas y sale del bucle
+     *                    Primero comprueba si la lista de tareas esta vacia y si lo esta  dira un aviso de que no hay ninguna disponible para asignar
+     *                    Si hay tareas, a continuacion se muestra la lista de tareas y sus posiciones de la lista que hay disponibles que se reccorren con un for
+     *                    Se declara una variable opcion
+     *                    En el bucle lee el numero de la tarea de la lista por teclado del usuario para asignar la tarea
+     *                    Si la opcion es menor a cero o mayor a la cantidad de tareas que hay imprime un error
+     *                    Si la opcion es distinta a 0 se le asignara el numero de la tarea de la lista introducido por teclado al colaborador correctamente
+     *                    Si la opcion es 0 sale de la funcion de asignar tareas y sale del bucle
+     * @return
      */
     @Override
-    public void asignarTarea(ArrayList<Tarea> tareas, Colaborador colaborador) {
+    public boolean asignarTarea(ArrayList<Tarea> tareas, Colaborador colaborador) {
+        boolean result = true;
         System.out.println("Asignación de Tareas:");
+
         if (tareas.isEmpty()) {
             System.out.println("No hay tareas disponibles para asignar.");
-            return;
+            result = false;
         }
 
-        System.out.println("Lista de tareas disponibles:");
-        for (int i = 0; i < tareas.size(); i++) {
-            System.out.println((i + 1) + ". " + tareas.get(i).getNombre());
-        }
-
-        int opcion;
-        do {
-            opcion = Teclado.leeNumero("Seleccione el número de tarea a asignar (0 para salir): ");
-            if (opcion < 0 || opcion > tareas.size()) {
-                System.out.println("Opción inválida. Por favor, seleccione una tarea válida.");
-            } else if (opcion != 0) {
-                colaborador.asignarTarea(tareas.get(opcion - 1));
-                System.out.println("Tarea asignada correctamente.");
+        String nombreTarea = Teclado.leeString("Ingrese el nombre de la tarea: ");
+        String nombrePersonaAsignada = Teclado.leeString("Ingrese el nombre de la persona asignada: ");
+        // Buscar la tarea por su nombre
+        if (result) {
+            for (Tarea tarea : tareas) {
+                if (tarea.getNombre().equals(nombreTarea)) {
+                    tarea.setPersonaAsignada(nombrePersonaAsignada);
+                    System.out.println("Persona asignada correctamente a la tarea.");
+                }
             }
-        } while (opcion != 0);
+        }
+        return result;
     }
 
     //Funcion de borrar tareas del proyecto
