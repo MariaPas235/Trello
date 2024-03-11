@@ -1,7 +1,11 @@
 package Interface;
 
+import Model.entity.Colaborador;
 import Model.entity.Persona;
 import Model.entity.Proyecto;
+import Model.entity.Tarea;
+
+import java.util.ArrayList;
 
 //Metodos que implementamos en la GUI (Vista)
 public interface IGUI {
@@ -45,4 +49,14 @@ public interface IGUI {
     void imprimeProyecto(Proyecto proyecto);
 
      void imprimirCabecera();
+
+
+    //Funcion para asignar tareas a los colaboradores
+    void asignarTarea(ArrayList<Tarea> tareas, Colaborador colaborador);
+
+    //Funcion para borrar una tarea del proyecto
+    void borrarTarea(ArrayList<Tarea> tareas);
+
+    //Funcion para actualizar una tarea (nombre,descripcion...)
+    void actualizarTarea(ArrayList<Tarea> tareas);
 }
