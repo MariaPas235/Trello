@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class RepoProyecto extends LibraryProyect<Proyecto,String> implements IRepoProyecto,Serializable {
-    private final static String FILENAME = "Proyects.bin";
+    private final static String FILENAME = "/src/Proyects.bin";
     private static RepoProyecto _instance;
     private Set<Proyecto> proyectos;
 
