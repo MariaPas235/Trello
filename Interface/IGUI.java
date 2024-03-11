@@ -52,7 +52,7 @@ public interface IGUI {
 
 
     //Funcion para asignar tareas a los colaboradores
-    void asignarTarea(ArrayList<Tarea> tareas, Colaborador colaborador);
+    boolean asignarTarea(ArrayList<Tarea> tareas, Colaborador colaborador);
 
     //Funcion para borrar una tarea del proyecto
     void borrarTarea(ArrayList<Tarea> tareas);
