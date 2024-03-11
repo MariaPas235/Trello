@@ -196,8 +196,10 @@ public class GUI implements IGUI {
     }
 
     //Funcion que muestra el menu de opciones de tareas del jefe
+
     /**
      * Funcion que muestra el menu de opciones de tareas del jefe
+     *
      * @return devuelve la opcion que ha introducido el usuario por teclado
      */
     @Override
@@ -213,8 +215,10 @@ public class GUI implements IGUI {
     }
 
     //Funcion que muestra las opciones de tarea de colaborador
+
     /**
      * Funcion que muestra las opciones de tarea de colaborado
+     *
      * @return devuelve la opcion introducida por el usuario por teclado
      */
     @Override
@@ -249,8 +253,8 @@ public class GUI implements IGUI {
     }
 
 
-
     //Funcion para añadir tareas a un proyecto
+
     /**
      * Funcion de añadir tareas a un proyecto
      * Primero se instancia de arrayList de tarea quede inicializa vacia
@@ -286,27 +290,54 @@ public class GUI implements IGUI {
     }
 
 
-    public void imprimirCabecera(){
+    public void imprimirCabecera() {
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("|                           SIN INICIAR                           |                            PENDIENTE                            |                            ACABADA                            |");
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
     }
 
-    public void asignarTarea(Proyecto proyecto){
+    public void asignarTarea(Proyecto proyecto) {
 
         for (Tarea tarea : proyecto.getTareas()) {
             if (tarea.getEstadoTarea().equals(EstadoTarea.SININICIAR)) {
-                System.out.println("|                            " + tarea.getNombre()+" ( "+(tarea.getPersonaAsignada()) +" )                          |                                                                 |                                                               |");
+                System.out.println("|"+generarCadenaVacia(espacioencadalado(proyecto)) + tarea.getNombre() + " ( " + (tarea.getPersonaAsignada()) + " )"+generarCadenaVacia(espacioencadalado(proyecto))+"|                                                                 |                                                               |");
 
-            }else if (tarea.getEstadoTarea().equals(EstadoTarea.PENDIENTE)) {
-                System.out.println("|                                                            |                              "+ tarea.getNombre()+" ( "+(tarea.getPersonaAsignada()) +" )                              |                                                               |");
-            }else {
-                System.out.println("|                                                            |                                                                 |                                  "+ tarea.getNombre()+" ( "+(tarea.getPersonaAsignada()) +" )                        |");
+            } else if (tarea.getEstadoTarea().equals(EstadoTarea.PENDIENTE)) {
+                System.out.println("|                                                            |"+generarCadenaVacia(espacioencadalado(proyecto)) + tarea.getNombre() + " ( " + (tarea.getPersonaAsignada()) + " )"+generarCadenaVacia(espacioencadalado(proyecto))+"|                                                               |");
+            } else {
+                System.out.println("|                                                            |                                                                 |"+generarCadenaVacia(espacioencadalado(proyecto)) + tarea.getNombre() + " ( " + (tarea.getPersonaAsignada()) + " )"+generarCadenaVacia(espacioencadalado(proyecto))+"|");
             }
             //toString().substring();
+
+        }
+    }
+
+    public static int espacioencadalado(Proyecto proyecto) {
+        int suma=0;
+        int espacioencadalado=0;
+        for (Tarea tarea : proyecto.getTareas()) {
+            suma = tarea.getNombre().length() + tarea.getPersonaAsignada().length();
+            if (tarea.getEstadoTarea().equals(EstadoTarea.SININICIAR) || tarea.getEstadoTarea().equals(EstadoTarea.PENDIENTE)) {
+                espacioencadalado = (66 - suma) / 2;
+            } else {
+                espacioencadalado = (64 - suma) / 2;
+            }
+
+        }
+        return espacioencadalado;
+    }
+
+
+
+    public static String generarCadenaVacia(int longitud) {
+
+        if (longitud < 0) {
+            System.out.println("La longitud no puede ser negativa.");
         }
 
+        // Crea una cadena de caracteres vacíos con la longitud especificada
+        return new String(new char[longitud]);
     }
 
 
