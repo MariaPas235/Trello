@@ -2,9 +2,10 @@ package Interface;
 
 import Model.entity.Persona;
 
+import java.io.Serializable;
 import java.util.Collection;
 //Funciones que se implementan en la clase de repo de personas
-public interface IRepoPersona {
+public interface IRepoPersona extends Serializable {
     Persona add(Persona data);
     Persona getByID(String id);
     //Funcion que obtiene todas las personas de la collecion

@@ -5,6 +5,7 @@ import Interface.IGUI;
 import Model.entity.*;
 import Model.repo.RepoPersona;
 
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -39,11 +40,18 @@ public class GUI implements IGUI {
     public Persona recogeDatosInicio() {
         String nombreUsuario;
         String contrasena;
-        do {
+
             nombreUsuario = Teclado.leeString("Inserte su usuario");
             contrasena = Teclado.leeString("Inserte su contraseña");
-        } while (!(rp.getByUserName(nombreUsuario) && rp.getBypassword(contrasena)));
-        return rp.getByID(nombreUsuario);
+
+        Persona tryLogging = new Persona("Logging");
+        tryLogging.setUsuario(nombreUsuario);
+        try {
+            tryLogging.setContrasena(contrasena);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+        return tryLogging;
     }
 
     //Funcion que recoge los datos de registro de un usuario
@@ -300,8 +308,21 @@ public class GUI implements IGUI {
     public void asignarTarea(Proyecto proyecto) {
 
         for (Tarea tarea : proyecto.getTareas()) {
+
+            String nombreTarea = tarea.getNombre().length()>20?tarea.getNombre().substring(0,17)+"...":tarea.getNombre();
+            String nombreColaborador = tarea.getPersonaAsignada().length()>20?tarea.getPersonaAsignada().substring(0,17)+"...":tarea.getPersonaAsignada();
+
+            int nCaracteres = nombreTarea.length()+nombreColaborador.length()-1-1-1-1-1;
+            int espaciosAIntroducir = 65-nCaracteres;
+            String espacios="";
+            for(int i=0;i<espaciosAIntroducir/2;i++){
+                espacios+=" ";
+            }
+
             if (tarea.getEstadoTarea().equals(EstadoTarea.SININICIAR)) {
-                System.out.println("|"+generarCadenaVacia(espacioencadalado(proyecto)) + tarea.getNombre() + " ( " + (tarea.getPersonaAsignada()) + " )"+generarCadenaVacia(espacioencadalado(proyecto))+"|                                                                 |                                                               |");
+
+
+                System.out.println("|"+espacios+nombreTarea+" ("+nombreColaborador+")"+espacios);
 
             } else if (tarea.getEstadoTarea().equals(EstadoTarea.PENDIENTE)) {
                 System.out.println("|                                                            |"+generarCadenaVacia(espacioencadalado(proyecto)) + tarea.getNombre() + " ( " + (tarea.getPersonaAsignada()) + " )"+generarCadenaVacia(espacioencadalado(proyecto))+"|                                                               |");

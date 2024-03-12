@@ -154,7 +154,20 @@ public class Persona implements Serializable {
             isEquals = false;
         } else {
             Persona persona = (Persona) obj;
-            return Objects.equals(nombre, persona.nombre) && Objects.equals(usuario, persona.usuario) && Objects.equals(mail, persona.mail);
+            return Objects.equals(usuario, persona.usuario) || Objects.equals(mail, persona.mail);
+        }
+        return isEquals;
+    }
+
+    public boolean equalsCredential(Object obj) {
+        boolean isEquals;
+        if (this == obj) {
+            isEquals = true;
+        } else if (obj == null || getClass() != obj.getClass()) {
+            isEquals = false;
+        } else {
+            Persona persona = (Persona) obj;
+            return Objects.equals(usuario, persona.usuario) && Objects.equals(contrasena, persona.contrasena);
         }
         return isEquals;
     }

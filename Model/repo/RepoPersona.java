@@ -9,11 +9,11 @@ import static serializator.Security.hashPassword;
 //La clase implementa los metodos de la interfaz IRepoPersona
 //La clase hereda atributos de la clase abstracta Library
 public class RepoPersona extends library<Persona,String> implements IRepoPersona {
-    private final static String FILENAME= "/src/Users.bin";
+    private final static String FILENAME= "Users.bin";
     private static RepoPersona _instance;
     private Set<Persona> personas;
     //Constructor que crea una instancia de persona y crea una coleccion para almacenar personas
-    public RepoPersona(){
+    private RepoPersona(){
         personas= new HashSet<>();
     }
     //Funcion estática que coge una instancia de RepoPersona
@@ -45,6 +45,7 @@ public class RepoPersona extends library<Persona,String> implements IRepoPersona
         if(personas.add(data)){
             result=data;
         }
+        save();
         return result;
     }
 //Funcion de obtener una persona (usuario) por ID
@@ -112,8 +113,20 @@ public class RepoPersona extends library<Persona,String> implements IRepoPersona
                 result = true;
             }
         }
+        save();
         return result;
     }
+    public Persona login(Persona pl) {
+        Persona result=null;
+        for(Persona p : personas){
+            if(p.equalsCredential(pl)){
+                result=p;
+                break;
+            }
+        }
+        return result;
+    }
+
     //Funcion que busca una persona por su usuario
     @Override
     public boolean getByUserName(String username) {

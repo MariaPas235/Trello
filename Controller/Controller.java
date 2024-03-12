@@ -12,7 +12,7 @@ public class Controller implements IController {
     GUI GUI = new GUI();
     //Se crea una instancia de la clase RepoPersona asignada a la variable rPersona
     //static indica que rPersona es una variable de clase que es compartida por todas las instancias de la clase en la que se declara
-    static RepoPersona rPersona = new RepoPersona();
+    RepoPersona rPersona = RepoPersona.get_instance();
     //Se crea una nueva instancia de la clase ControllerMenu asignada a la variable controladorMenu
     ControllerMenu controladorMenu = new ControllerMenu();
 
@@ -48,12 +48,16 @@ public class Controller implements IController {
                     GUI.imprimirCabecera();
                     Persona persona = GUI.recogeDatosRegistro();
                     rPersona.add(persona);
-                    rPersona.save();
                     break;
                 case 2:
-                    Sesion.iniciarSesion(new GUI(), GUI.recogeDatosInicio());
+                    Persona logged=null;
+                    do {
+                        Persona p = GUI.recogeDatosInicio();
+                        logged = rPersona.login(p);
+                    }while(logged==null);
+                    Sesion.iniciarSesion(logged);
                     GUI.bienvenidaApp();
-                    controladorMenu.controladorMenu(Sesion.getInstance());
+                    controladorMenu.controladorMenu();
                     Sesion.cerrarSesion();
                     break;
             }
