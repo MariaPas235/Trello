@@ -7,7 +7,7 @@ import java.util.Collection;
 
 //La clase abstracta implementa el serializador
 //Funciones de la clase abstracta
-public abstract class library<T, K> implements Serializable {
+public abstract class LibraryPerson<T, K> implements Serializable {
     // Funcion para cargar datos desde un archivo
 
     /**

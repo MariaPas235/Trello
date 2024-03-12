@@ -56,6 +56,7 @@ public class GUITAREA implements IGUITAREA {
 
     /**
      * Funcion de añadir tareas a un proyecto
+     * @return devuelve el array de tareas añadidas
      * Primero se instancia de arrayList de tarea quede inicializa vacia
      * Se crea un boolean para comprobar si el usuario jefe quiere añadir mas tareas
      * El bucle while se ejecuta mientras que auxSN sea true
@@ -68,7 +69,6 @@ public class GUITAREA implements IGUITAREA {
      * Si la respuesta es s seguira añadiendo tareas si es n sale del bucle
      * (Se ha aplicado el caso de ignoreCase de mayusculas y minusculas por lo que s/n y S/N es lo mismo)
      *
-     * @return devuelve el array de tareas añadidas
      */
 
     @Override
@@ -88,6 +88,7 @@ public class GUITAREA implements IGUITAREA {
         }
         return tarea;
     }
+
     //Metodo estatico para poner una fecha final
     @Override
     public  LocalDate anadirFechaFin() {
@@ -164,7 +165,7 @@ public class GUITAREA implements IGUITAREA {
      *               Si se introduce un valor no válido, se pide al usuario que introduzca un valor válido.
      *               Una vez que se ha realizado una actualización correctamente, se muestra un mensaje de confirmación.
      *               El usuario puede salir de la función en cualquier momento seleccionando la opción 0.
-     * @return
+     * @return el resultado de la operacion
      */
 
 
@@ -186,7 +187,7 @@ public class GUITAREA implements IGUITAREA {
 
             int opcion;
             do {
-                System.out.println("");
+                System.out.println(" ");
                 System.out.println("===========================================");
                 System.out.println("=              1. Nombre                  =");
                 System.out.println("=              2. Persona Asignada        =");
@@ -296,7 +297,7 @@ public class GUITAREA implements IGUITAREA {
      *                    Si la opcion es menor a cero o mayor a la cantidad de tareas que hay imprime un error
      *                    Si la opcion es distinta a 0 se le asignara el numero de la tarea de la lista introducido por teclado al colaborador correctamente
      *                    Si la opcion es 0 sale de la funcion de asignar tareas y sale del bucle
-     * @return
+     * @return el resultado de la operacion
      */
     @Override
     public boolean asignarTarea(ArrayList<Tarea> tareas, Colaborador colaborador) {

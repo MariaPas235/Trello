@@ -158,7 +158,7 @@ public class Persona implements Serializable {
         }
         return isEquals;
     }
-
+//Funcion que compara las credenciales del usuario para confirmar que son correctas
     public boolean equalsCredential(Object obj) {
         boolean isEquals;
         if (this == obj) {

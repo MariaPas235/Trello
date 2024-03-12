@@ -4,7 +4,6 @@ import Interface.IController;
 import Model.entity.Persona;
 import Model.repo.RepoPersona;
 import Model.repo.Sesion;
-import view.GUI;
 import view.GUIMENU;
 
 //La clase controlador implementa las funciones de la interfaz IController

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Teclado {
     //Atributos de la clase teclado (teclado estático)
-    private  static Scanner teclado = new Scanner(System.in);
+    private static Scanner teclado = new Scanner(System.in);
     //Funcion estatica que lee una cadena de String que escriba el usuario por teclado
     /**
      * Funcion estatica que lee una cadena de String que escriba el usuario por teclado

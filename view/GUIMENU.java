@@ -89,7 +89,7 @@ public class GUIMENU implements IGUIMENU {
      */
     @Override
     public int imprimirMenuInicio() {
-        System.out.println("");
+        System.out.println(" ");
         System.out.println("===============================");
         System.out.println("=     1. Registrarse          =");
         System.out.println("=     2. Iniciar sesion       =");
@@ -99,10 +99,12 @@ public class GUIMENU implements IGUIMENU {
         return Teclado.leeNumero("Inserte una opción");
 
     }
+    //Funcion que lee la persona que se pasa por teclado
     @Override
     public String IntroducePersonaBorrar(){
         return "* Introduce la persona que quieres borrar: \n";
     }
+    //Funcion que confirma o no la eliminacion del usuario
     @Override
     public boolean EstaSeguro() {
         String respuesta = Teclado.leeString("¿Estás seguro? (si/no)"); // Convertir la respuesta a minúsculas para compararla de forma insensible a mayúsculas
