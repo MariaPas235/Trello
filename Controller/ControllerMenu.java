@@ -14,7 +14,7 @@ public class ControllerMenu implements IControllerMenu {
     view.GUI GUI = new GUI();
     ControllerProyectoJefe controladorProyectosJefe = new ControllerProyectoJefe();
     ControllerProyectoColaborador controllerProyectoColaborador = new ControllerProyectoColaborador();
-    static RepoProyecto rProyecto = RepoProyecto.get_instance();
+    RepoProyecto rProyecto = RepoProyecto.get_instance();
 
     public ControllerMenu() {
     }
@@ -28,7 +28,8 @@ public class ControllerMenu implements IControllerMenu {
      * A continuacion el proyecto dependiendo de la opcion  se guarda, se crea y añade o borra del repo de proyectos
      * Tambien muestra todos los proyectos y su informacion guardados en el repo
      */
-    public void controladorMenu(Sesion sesion){
+    public void controladorMenu(){
+        Sesion sesion = Sesion.getInstance();
         int option;
         do{
             System.out.println("Hola! " + sesion.getPersona().getUsuario());
