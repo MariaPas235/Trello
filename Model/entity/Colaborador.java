@@ -1,6 +1,8 @@
 package Model.entity;
+
 import IO.Teclado;
 import Interface.IColaborador;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
 public class Colaborador extends Persona implements IColaborador, Serializable {
     //El colaborador tiene como atributos una lista de tareas de nombre tareasAsignadas
     public List<Tarea> tareasAsignadas;
+
     //Contructor vacio de los atributos heredados inicializados a 0
     //Se crea un arrayList vacio con la asignacion de la variable tareasAsignadas
     public Colaborador() {
@@ -18,14 +21,16 @@ public class Colaborador extends Persona implements IColaborador, Serializable {
 
 
 //Funcion de ver comentario de una tarea
+
     /**
      * Funcion de ver comentario de una tarea
+     *
      * @param proyecto proyecto donde se va a ver los comentarios
-     * Muestra un aviso de que no hay tareas en la lista si esta está vacia
-     * Si hay se muestra la lista de tares disponible
-     * Pide por teclado al usuario el numero de la tarea en la lista
-     * Si pone 0 sale de la funcion, si pone un numero invalido da error
-     * Si el numero de la tarea tiene comentario se mostrará por pantalla y si no tiene mostrara un mensaje de que no tiene comentarios la tarea
+     *                 Muestra un aviso de que no hay tareas en la lista si esta está vacia
+     *                 Si hay se muestra la lista de tares disponible
+     *                 Pide por teclado al usuario el numero de la tarea en la lista
+     *                 Si pone 0 sale de la funcion, si pone un numero invalido da error
+     *                 Si el numero de la tarea tiene comentario se mostrará por pantalla y si no tiene mostrara un mensaje de que no tiene comentarios la tarea
      */
     @Override
     public void verComentario(Proyecto proyecto) {

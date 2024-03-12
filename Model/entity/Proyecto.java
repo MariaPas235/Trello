@@ -25,12 +25,13 @@ public class Proyecto implements Serializable {
         this.colaboradores = colaboradores;
         this.tareas = tareas;
     }
-//Constructor vacio que inicializa los atributos a 0
+
+    //Constructor vacio que inicializa los atributos a 0
     public Proyecto() {
         this("", "", LocalDate.now(), "", new ArrayList<>(), new ArrayList<>());
     }
 
-//Getters y setters de los atributos
+    //Getters y setters de los atributos
     public String getNombre() {
         return nombre;
     }
@@ -80,8 +81,10 @@ public class Proyecto implements Serializable {
     }
 
 //Equals de la clase Proyecto
+
     /**
      * Equals de la clase que comprueba si dos objetos (proyectos) son iguales
+     *
      * @param obj el objeto a analizar si es igual al objeto actual
      * @return devuelve el resultado de la comparacion
      * Si el objeto que se pasa (actual) es igual a uno anterior devuelve true
@@ -104,8 +107,10 @@ public class Proyecto implements Serializable {
     }
 
     //toString de la clase
+
     /**
-     *toString de la clase
+     * toString de la clase
+     *
      * @return devuelve los atributos de persona y se imprimiran por pantalla al hacer el llamamiento de toString
      * en x clase
      */
@@ -114,7 +119,7 @@ public class Proyecto implements Serializable {
         return "proyecto[" + nombre + descripcion + LocalDate.now() + tareas + colaboradores + "]";
     }
 
-//Funcion que verifica los colaboradores de un proyecto
+    //Funcion que verifica los colaboradores de un proyecto
     public boolean esColaborador(String usuario) {
         boolean result = false;
         ArrayList<Colaborador> colaboradores = this.getColaboradores();

@@ -99,11 +99,13 @@ public class GUIMENU implements IGUIMENU {
         return Teclado.leeNumero("Inserte una opción");
 
     }
+
     //Funcion que lee la persona que se pasa por teclado
     @Override
-    public String IntroducePersonaBorrar(){
+    public String IntroducePersonaBorrar() {
         return "* Introduce la persona que quieres borrar: \n";
     }
+
     //Funcion que confirma o no la eliminacion del usuario
     @Override
     public boolean EstaSeguro() {

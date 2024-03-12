@@ -43,6 +43,7 @@ public enum EstadoTarea implements Serializable {
 
     /**
      * El uso de este método es obtener una instancia de EstadoTarea a partir de un nombre de estado representado por la cadena estado
+     *
      * @param estado es el nombre del estado
      * @return devuelve el nombre del estado escrito si es valido, si no, da un error de expcepcion
      */

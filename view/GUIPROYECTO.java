@@ -18,7 +18,7 @@ public class GUIPROYECTO implements IGUIPROYECTO {
      *
      * @return devuelve la opcion que ha introducido el usuario por teclado
      */
-@Override
+    @Override
     public int imprimirMenuProyectos() {
         System.out.println("");
         System.out.println("====================================");
@@ -32,7 +32,7 @@ public class GUIPROYECTO implements IGUIPROYECTO {
     }
 
     //Funcion que recoge los datos de un proyecto al crearlo
-@Override
+    @Override
     public Proyecto recogerDatosProyecto(String nombre) {
         Proyecto proyecto = new Proyecto();
         proyecto.setNombre(Teclado.leeString("* Inserte el nombre de su proyecto:"));
@@ -51,7 +51,7 @@ public class GUIPROYECTO implements IGUIPROYECTO {
      *
      * @return devuelve el nombre del proyecto que ha introducido el usuario por teclado
      */
-@Override
+    @Override
     public String borrarProyecto() {
         return Teclado.leeString("* Introduce el nombre del proyecto que quieres eliminar:");
     }
@@ -63,13 +63,13 @@ public class GUIPROYECTO implements IGUIPROYECTO {
      *
      * @return devuelve el nombre del proyecto que ha introducido el usuario por teclado
      */
-@Override
+    @Override
     public String seleccionarProyecto() {
         return Teclado.leeString("* Inserte el nombre del proyecto al que quiere acceder:");
     }
 
     //Funcion que lista los datos de un proyecto
-@Override
+    @Override
     public void listarProyectos(Proyecto proyecto) {
         System.out.println("");
         System.out.println("Nombre: " + proyecto.getNombre());
@@ -81,6 +81,7 @@ public class GUIPROYECTO implements IGUIPROYECTO {
 
     /**
      * Funcion de añadir colaboradores al proyecto
+     *
      * @return el colaborador añadido al proyecto
      */
     @Override
@@ -100,6 +101,7 @@ public class GUIPROYECTO implements IGUIPROYECTO {
 
     /**
      * Funcion de eliminar colaboradores del proyecto
+     *
      * @param colaboradores del proyecto
      */
     @Override
