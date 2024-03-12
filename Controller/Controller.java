@@ -5,11 +5,12 @@ import Model.entity.Persona;
 import Model.repo.RepoPersona;
 import Model.repo.Sesion;
 import view.GUI;
+import view.GUIMENU;
 
 //La clase controlador implementa las funciones de la interfaz IController
 public class Controller implements IController {
     //Se crea una nueva instancia de la clase GUI asignada a la variable de la GUI
-    GUI GUI = new GUI();
+    GUIMENU GUIMENU =new GUIMENU();
     //Se crea una instancia de la clase RepoPersona asignada a la variable rPersona
     //static indica que rPersona es una variable de clase que es compartida por todas las instancias de la clase en la que se declara
     RepoPersona rPersona = RepoPersona.get_instance();
@@ -39,32 +40,31 @@ public class Controller implements IController {
      */
     @Override
     public void controllerMain() {
-        GUI.imprimirBienvenida();
+        GUIMENU.imprimirBienvenida();
         int opcion;
         do {
-            opcion=GUI.imprimirMenuInicio();
+            opcion=GUIMENU.imprimirMenuInicio();
             switch (opcion) {
                 case 1:
-                    Persona persona = GUI.recogeDatosRegistro();
+                    Persona persona = GUIMENU.recogeDatosRegistro();
                     rPersona.add(persona);
                     break;
                 case 2:
                     Persona logged=null;
                     do {
-                        Persona p = GUI.recogeDatosInicio();
+                        Persona p = GUIMENU.recogeDatosInicio();
                         logged = rPersona.login(p);
                     }while(logged==null);
                     Sesion.iniciarSesion(logged);
-                    GUI.bienvenidaApp();
+                    GUIMENU.bienvenidaApp();
                     controladorMenu.controladorMenu();
                     Sesion.cerrarSesion();
                     break;
                 case 3:
-                    GUI.IntroducePersonaBorrar();
-                    Persona persona1 = GUI.recogeDatosInicio();
-                    if(GUI.EstaSeguro()) {
+                    GUIMENU.IntroducePersonaBorrar();
+                    Persona persona1 = GUIMENU.recogeDatosInicio();
+                    if(GUIMENU.EstaSeguro()) {
                         rPersona.delete(persona1.getNombre());
-                        rPersona.save();
                     }
                     break;
             }
