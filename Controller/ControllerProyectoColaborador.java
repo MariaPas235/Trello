@@ -6,11 +6,14 @@ import Model.entity.Colaborador;
 import Model.entity.Proyecto;
 import Model.entity.Tarea;
 import view.GUI;
+import view.GUITAREA;
+
 import java.util.ArrayList;
 
 //La clase implementa los metodos de la interfaz de IControllerPoyectoColaborador
 public class ControllerProyectoColaborador implements IControllerProyectoColaborador {
     view.GUI GUI = new GUI();
+    view.GUITAREA GUITAREA = new GUITAREA();
     Colaborador colaborador= new Colaborador();
 
     public ControllerProyectoColaborador() {
@@ -28,11 +31,11 @@ public class ControllerProyectoColaborador implements IControllerProyectoColabor
         int opcion;
         do{
             GUI.imprimirCabecera();
-            GUI.asignarTarea(proyecto);
-            opcion=GUI.imprimirOpcionesDeTareaColaborador();
+            GUI.espacioTrabajo(proyecto);
+            opcion=GUITAREA.imprimirOpcionesDeTareaColaborador();
             switch (opcion){
                 case 1:
-                    GUI.actualizarTarea(tareas);
+                    GUITAREA.actualizarTarea(tareas);
                     break;
                 case 2:
                     colaborador.verComentario(proyecto);

@@ -1,17 +1,15 @@
 package Controller;
-
 import Interface.IControllerMenu;
 import Model.entity.Proyecto;
 import Model.repo.RepoProyecto;
 import Model.repo.Sesion;
-import view.GUI;
-
+import view.GUIPROYECTO;
 import java.util.Objects;
 import java.util.Set;
 
 //La clase implementa los metodos de la interfaz IControllerMenu
 public class ControllerMenu implements IControllerMenu {
-    view.GUI GUI = new GUI();
+    view.GUIPROYECTO GUIPROYECTO = new GUIPROYECTO();
     ControllerProyectoJefe controladorProyectosJefe = new ControllerProyectoJefe();
     ControllerProyectoColaborador controllerProyectoColaborador = new ControllerProyectoColaborador();
     RepoProyecto rProyecto = RepoProyecto.get_instance();
@@ -32,18 +30,18 @@ public class ControllerMenu implements IControllerMenu {
         int option;
         do{
             System.out.println("Hola! " + sesion.getPersona().getUsuario());
-            option= GUI.imprimirMenuProyectos();
+            option= GUIPROYECTO.imprimirMenuProyectos();
             Proyecto proyectoaux;
             switch (option){
                 case 1:
-                    rProyecto.add( GUI.recogerDatosProyecto(sesion.getPersona().getUsuario()));
+                    rProyecto.add( GUIPROYECTO.recogerDatosProyecto(sesion.getPersona().getUsuario()));
                     break;
                 case 2:
                     boolean aux = false;
 
                     do {
                         // Obtener el proyecto por su ID
-                        proyectoaux = rProyecto.getByID(GUI.seleccionarProyecto());
+                        proyectoaux = rProyecto.getByID(GUIPROYECTO.seleccionarProyecto());
 
                         if (proyectoaux != null) {
                             // Si se encontró el proyecto, establecer aux a true y mostrar información del proyecto
@@ -54,11 +52,10 @@ public class ControllerMenu implements IControllerMenu {
                         }
                     } while (!aux);
                     if (Objects.equals(proyectoaux.getJefe(), sesion.getPersona().getUsuario())) {
-                        rProyecto.delete(GUI.borrarProyecto());
+                        rProyecto.delete(GUIPROYECTO.borrarProyecto());
                     }else{
                         System.out.println("Usted No puede borrar este proyecto porque no es el jefe");
                     }
-                    proyectoaux = null;
                     break;
                 case 3:
                     Set<Proyecto> proyectosSet = (Set<Proyecto>) rProyecto.getAll();
@@ -69,7 +66,7 @@ public class ControllerMenu implements IControllerMenu {
                         for (Proyecto proyecto : proyectosSet) {
                             // Verificar si el usuario actual es el jefe del proyecto o si es colaborador del proyecto
                             if (Objects.equals(proyecto.getJefe(), sesion.getPersona().getUsuario()) || proyecto.esColaborador(sesion.getPersona().getUsuario())) {
-                                GUI.listarProyectos(proyecto);
+                                GUIPROYECTO.listarProyectos(proyecto);
                             }
                         }
                     }
@@ -79,7 +76,7 @@ public class ControllerMenu implements IControllerMenu {
 
                     do {
                         // Obtener el proyecto por su ID
-                        proyectoaux = rProyecto.getByID(GUI.seleccionarProyecto());
+                        proyectoaux = rProyecto.getByID(GUIPROYECTO.seleccionarProyecto());
 
                         if (proyectoaux != null) {
                             // Si se encontró el proyecto, establecer aux a true y mostrar información del proyecto

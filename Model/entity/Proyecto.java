@@ -125,57 +125,10 @@ public class Proyecto implements Serializable {
         for (Colaborador colaborador : colaboradores) {
             if (colaborador.getUsuario().equals(usuario)) {
                 result = true;
-                break;
             }
         }
 
         return result;
     }
 
-    public ArrayList<Colaborador> anadirColaborador() {
-        ArrayList<Colaborador> colaborador = new ArrayList<>();
-
-        boolean auxSN = true;
-        while (auxSN) {
-            Colaborador colaboradoraux = new Colaborador();
-            colaboradoraux.setUsuario(Teclado.leeString("Introduce el nombre del colaborador: "));
-            colaborador.add(colaboradoraux);
-            String respuesta = Teclado.leeString("Quieres añadir otro colaborador (s/n)? ");
-            auxSN = respuesta.equalsIgnoreCase("s");
-        }
-        return colaborador;
-    }
-
-    public void eliminarColaborador() {
-        Scanner scanner = new Scanner(System.in);
-
-        if (colaboradores.isEmpty()) {
-            System.out.println("No hay colaboradores en el proyecto.");
-
-        } else {
-
-            System.out.println("Colaboradores actuales:");
-            for (int i = 0; i < colaboradores.size(); i++) {
-                System.out.println((i + 1) + ". " + colaboradores.get(i).getNombre());
-            }
-
-            System.out.println("Seleccione el número del colaborador que desea eliminar (0 para cancelar):");
-            int opcion = Integer.parseInt(scanner.nextLine());
-
-            if (opcion == 0) {
-                System.out.println("Operación cancelada.");
-
-            } else {
-
-
-                if (opcion < 1 || opcion > colaboradores.size()) {
-                    System.out.println("Número de colaborador inválido.");
-                } else {
-
-                    Colaborador colaboradorEliminado = colaboradores.remove(opcion - 1);
-                    System.out.println("Colaborador " + colaboradorEliminado.getNombre() + " eliminado correctamente.");
-                }
-            }
-        }
-    }
 }

@@ -6,12 +6,16 @@ import Model.entity.Jefe;
 import Model.entity.Proyecto;
 import Model.entity.Tarea;
 import view.GUI;
+import view.GUIPROYECTO;
+import view.GUITAREA;
+
 import java.util.ArrayList;
 
 //La clase implementa las funciones de la interfaz IControllerProyectoJefe
 public class ControllerProyectoJefe implements IControllerProyectoJefe {
     view.GUI GUI = new GUI();
-    Jefe jefe = new Jefe();
+    view.GUIPROYECTO GUIPROYECTO = new GUIPROYECTO();
+    view.GUITAREA GUITAREA = new GUITAREA();
     Colaborador colaborador = new Colaborador();
 
     public ControllerProyectoJefe() {
@@ -30,11 +34,11 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
         int opcion;
         do {
             GUI.imprimirCabecera();
-            GUI.asignarTarea(proyecto);
-            opcion = GUI.imprimirOpcionesDeTareaJefe();
+            GUI.espacioTrabajo(proyecto);
+            opcion = GUITAREA.imprimirOpcionesDeTareaJefe();
             switch (opcion) {
                 case 1:
-                    ArrayList<Tarea> tareasNuevas = GUI.anadirTareas();
+                    ArrayList<Tarea> tareasNuevas = GUITAREA.anadirTareas();
                     if (tareasNuevas != null && !tareasNuevas.isEmpty()) {
                         proyecto.getTareas().addAll(tareasNuevas);
                         System.out.println("Tarea(s) añadida(s) correctamente.");
@@ -43,19 +47,19 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
                     }
                     break;
                 case 2:
-                    GUI.borrarTarea(tareas);
+                    GUITAREA.borrarTarea(tareas);
                     break;
                 case 3:
-                    proyecto.anadirColaborador();
+                    GUIPROYECTO.anadirColaborador();
                     break;
                 case 4:
-                    proyecto.eliminarColaborador();
+                    GUIPROYECTO.eliminarColaborador(proyecto.getColaboradores());
                     break;
                 case 5:
-                    GUI.asignarTarea(tareas,colaborador);
+                    GUITAREA.asignarTarea(tareas,colaborador);
                     break;
                 case 6:
-                    GUI.actualizarTarea(tareas);
+                    GUITAREA.actualizarTarea(tareas);
                     break;
             }
         } while (!(opcion == 7));
