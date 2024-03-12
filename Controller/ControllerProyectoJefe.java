@@ -2,7 +2,6 @@ package Controller;
 
 import Interface.IControllerProyectoJefe;
 import Model.entity.Colaborador;
-import Model.entity.Jefe;
 import Model.entity.Proyecto;
 import Model.entity.Tarea;
 import view.GUI;

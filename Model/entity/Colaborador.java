@@ -4,7 +4,6 @@ import Interface.IColaborador;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 //La clase colaborador obtiene los atributos de Persona e implementa los metodos de la interfaz IColaborador y el Serializable
 public class Colaborador extends Persona implements IColaborador, Serializable {

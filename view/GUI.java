@@ -1,14 +1,15 @@
 package view;
+import Interface.IGUI;
 import Model.entity.*;
-public class GUI {
-
+public class GUI implements IGUI {
+@Override
     public void imprimirCabecera() {
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("|                           SIN INICIAR                           |                            PENDIENTE                            |                            ACABADA                            |");
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
     }
-
+@Override
     public void espacioTrabajo(Proyecto proyecto) {
 
         for (Tarea tarea : proyecto.getTareas()) {

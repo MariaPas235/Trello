@@ -1,6 +1,5 @@
 package Interface;
 
-import Model.repo.Sesion;
 
 //Funcinoes que se implementan en la clase controller menu
 public interface IControllerMenu {

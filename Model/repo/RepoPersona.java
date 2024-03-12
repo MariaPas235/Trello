@@ -8,7 +8,7 @@ import static serializator.Security.hashPassword;
 
 //La clase implementa los metodos de la interfaz IRepoPersona
 //La clase hereda atributos de la clase abstracta Library
-public class RepoPersona extends library<Persona,String> implements IRepoPersona {
+public class RepoPersona extends LibraryPerson<Persona,String> implements IRepoPersona {
     private final static String FILENAME= "Users.bin";
     private static RepoPersona _instance;
     private Set<Persona> personas;

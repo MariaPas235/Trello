@@ -1,6 +1,5 @@
 package Model.repo;
 
-import Interface.IGUI;
 import Model.entity.Persona;
 
 public class Sesion {

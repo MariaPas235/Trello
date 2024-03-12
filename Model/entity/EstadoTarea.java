@@ -26,7 +26,7 @@ public enum EstadoTarea implements Serializable {
         return valor;
     }
 
-    /**
+    /*
      * static: este metodo estatico crea un HashMap con la variable ESTADO_TAREA_MAP
      * for-each: Se recorren todos los valores del enum EstadoTarea utilizando el método values()
         estadotarea agrega una entrada al mapa creado

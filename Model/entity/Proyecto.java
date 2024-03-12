@@ -1,12 +1,10 @@
 package Model.entity;
 
-import IO.Teclado;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
 
 //La clase proyecto implementa el serializable
 public class Proyecto implements Serializable {
@@ -130,5 +128,4 @@ public class Proyecto implements Serializable {
 
         return result;
     }
-
 }

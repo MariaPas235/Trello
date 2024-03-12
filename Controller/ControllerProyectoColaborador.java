@@ -1,6 +1,5 @@
 package Controller;
 
-
 import Interface.IControllerProyectoColaborador;
 import Model.entity.Colaborador;
 import Model.entity.Proyecto;
