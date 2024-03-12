@@ -9,30 +9,20 @@ public class Sesion {
     private static IGUI GUI;
     private Persona persona;
 
-    // Constructor privado para evitar la creación de instancias directamente
-    private Sesion(IGUI gui, Persona persona) {
-        GUI = gui;
-        this.persona = persona;
-    }
-
-    // Método para establecer la instancia de IGUI
-    public static void setGUI(IGUI gui) {
-        GUI = gui;
-    }
-
-    // Método para iniciar sesión con una persona
-    public static void iniciarSesion(IGUI gui, Persona persona) {
-        if (_instance == null) {
-            _instance = new Sesion(gui, persona);
-        } else {
-            System.out.println("Ya hay una sesión activa. Cierra la sesión actual antes de iniciar una nueva.");
-        }
-    }
     //Constructor vacio
     private Sesion(){}
     //Constructor con los atributos
     public Sesion(Persona persona){
         this.persona = persona;
+    }
+
+    // Método para iniciar sesión con una persona
+    public static void iniciarSesion(Persona persona) {
+        if (_instance == null) {
+            _instance = new Sesion(persona);
+        } else {
+            System.out.println("Ya hay una sesión activa. Cierra la sesión actual antes de iniciar una nueva.");
+        }
     }
 //Funcion que obtiene la instancia del inicio de sesion de un usuario
 

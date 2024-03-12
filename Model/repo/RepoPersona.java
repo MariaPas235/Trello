@@ -9,7 +9,7 @@ import static serializator.Security.hashPassword;
 //La clase implementa los metodos de la interfaz IRepoPersona
 //La clase hereda atributos de la clase abstracta Library
 public class RepoPersona extends library<Persona,String> implements IRepoPersona {
-    private final static String FILENAME= "/src/Users.bin";
+    private final static String FILENAME= "src/Users.bin";
     private static RepoPersona _instance;
     private Set<Persona> personas;
     //Constructor que crea una instancia de persona y crea una coleccion para almacenar personas
@@ -109,6 +109,7 @@ public class RepoPersona extends library<Persona,String> implements IRepoPersona
             Persona persona = iterator.next();
             if (persona.getNombre().equals(nombrePersona)) {
                 iterator.remove();
+                save();
                 result = true;
             }
         }

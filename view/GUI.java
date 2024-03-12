@@ -91,9 +91,20 @@ public class GUI implements IGUI {
     public int imprimirMenuInicio() {
         System.out.println("1. Registrarse");
         System.out.println("2. Iniciar sesion");
-        System.out.println("3. Salir");
+        System.out.println("3. Borrar Usuario");
+        System.out.println("4. Salir");
         return Teclado.leeNumero("Inserte una opción");
 
+    }
+    //Funcion que manda un mensaje al controlador para indicar que se va hacer
+    @Override
+    public String IntroducePersonaBorrar(){
+        return "Introduce la persona que quieres borrar\n";
+    }
+    @Override
+    public boolean EstaSeguro() {
+        String respuesta = Teclado.leeString("¿Estás seguro? (si/no)"); // Convertir la respuesta a minúsculas para compararla de forma insensible a mayúsculas
+        return respuesta.equals("si");
     }
 
     //Funcion que muestra el menu de bienvenida tras iniciar sesion
@@ -252,22 +263,12 @@ public class GUI implements IGUI {
 
     //Funcion para añadir tareas a un proyecto
     /**
-     * Funcion de añadir tareas a un proyecto
-     * Primero se instancia de arrayList de tarea quede inicializa vacia
-     * Se crea un boolean para comprobar si el usuario jefe quiere añadir mas tareas
-     * El bucle while se ejecuta mientras que auxSN sea true
-     * Dentro de este bucle se crea una instancia de tarea
-     * Se le pide al usuario jefe introducir el nombre de la tarea a añadir por teclado con la funcion leeString
-     * Se le pide al usuario jefe introducir la descripcion de la tarea por teclado con la funcion leeString
-     * Se le añade la fecha de creacion con la fecha actual, la fecha de inicio de la tarea y la fecha final de esta
-     * Finalmente se añade la tarea
-     * A continuacion se le pide al usuario jefe si quiere seguir añadiendo tareas
-     * Si la respuesta es s seguira añadiendo tareas si es n sale del bucle
-     * (Se ha aplicado el caso de ignoreCase de mayusculas y minusculas por lo que s/n y S/N es lo mismo)
+     * Función para añadir tareas a un proyecto:
      *
-     * @return devuelve el array de tareas añadidas
+     * - Crea y añade tareas al proyecto según la entrada del usuario.
+     * - Pregunta al usuario si desea seguir añadiendo tareas.
+     * - Devuelve el conjunto de tareas añadidas al proyecto.
      */
-
     public static ArrayList<Tarea> anadirTareas() {
         ArrayList<Tarea> tarea = new ArrayList<>();
         boolean auxSN = true;
@@ -313,19 +314,18 @@ public class GUI implements IGUI {
 
     //Funcion para asignar tareas a los usuarios colaboradores de un proyecto
     /**
-     * Funcion para asignar tareas a los colaboradores de un proyecto
+     * Función para asignar tareas a los colaboradores de un proyecto.
      *
-     * @param tareas      la variable de las tareas del arrayList
-     * @param colaborador la variable de colaborador para asignarles tareas del arrayList
-     *                    Primero comprueba si la lista de tareas esta vacia y si lo esta  dira un aviso de que no hay ninguna disponible para asignar
-     *                    Si hay tareas, a continuacion se muestra la lista de tareas y sus posiciones de la lista que hay disponibles que se reccorren con un for
-     *                    Se declara una variable opcion
-     *                    En el bucle lee el numero de la tarea de la lista por teclado del usuario para asignar la tarea
-     *                    Si la opcion es menor a cero o mayor a la cantidad de tareas que hay imprime un error
-     *                    Si la opcion es distinta a 0 se le asignara el numero de la tarea de la lista introducido por teclado al colaborador correctamente
-     *                    Si la opcion es 0 sale de la funcion de asignar tareas y sale del bucle
-     * @return
+     * @param tareas: ArrayList que contiene las tareas disponibles.
+     * @param colaborador: Colaborador al que se asignarán las tareas.
+     *
+     * - Comprueba si la lista de tareas está vacía; si lo está, muestra un aviso.
+     * - Si hay tareas disponibles, muestra la lista de tareas y solicita al usuario que elija una tarea para asignar.
+     * - Asigna la tarea seleccionada al colaborador especificado.
+     * - Si la opción seleccionada está fuera de rango, muestra un mensaje de error.
+     * - Permite salir de la función si se selecciona la opción '0'.
      */
+
     @Override
     public boolean asignarTarea(ArrayList<Tarea> tareas, Colaborador colaborador) {
         boolean result = true;

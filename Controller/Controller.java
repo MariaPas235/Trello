@@ -22,20 +22,12 @@ public class Controller implements IController {
 
     //Funcion del controllerMain
     /**
-     * -Funcion del controllerMain
-     * @return devuelve un mensaje de despedida del usuario si escribe la opcion 3ç
-     * -Primero, llama a la funcion de la GUI imprimirBienvenida
-     * -Dentro de este bucle hace llamamiento a la funcion de la GUI imprimirMenuBienvenida
-     * -Se le pide al usuario escribir una opcion (con la funcion del Teclado leeNumero) de este menu (1 Registrarse, 2 iniciar sesion)
-     * -En la opcion 1 se crea un usuario y llama a la funcion de la GUI recogeDatosRegistro
-     *  Este usuario creado se añade al repositorio de persona y se guarda el repositorio
-     * -En la opcion 2 se hace un llamamiento a la funcion iniciarSesion de la clase Sesion y se crea una instancia de la clase
-     *  GUI y se recogen esos datos de inicio de sesion con el llamamiento a la funcion de la GUI recogeDatosInicio
-     *  Cuando ya se ha iniciado el usuario en el programa, se hace llamamiento a la funcion de la GUI bienvenidaApp
-     *  Lo siguiente es hacer un llamamiento a la funcion controladorMenu de la clase controllador menu que le pasa la instancia
-     *  actual de la sesion
-     *  Por ultimo despues de manejar el menu, se cierra la sesion con la funcion cerrarSesion de la clase Sesion
-     *  -La opcion 3 es para salir del programa y saldra del bucle
+     * Función del controllerMain:
+     * - Muestra un mensaje de bienvenida al usuario.
+     * - Presenta un menú de opciones.
+     * - Permite al usuario registrarse o iniciar sesión y borrar usuario.
+     * - Maneja las acciones correspondientes a cada opción del menú.
+     * - Cierra la sesión al salir del programa.
      */
     @Override
     public void controllerMain() {
@@ -45,19 +37,26 @@ public class Controller implements IController {
             opcion=GUI.imprimirMenuInicio();
             switch (opcion) {
                 case 1:
-                    GUI.imprimirCabecera();
                     Persona persona = GUI.recogeDatosRegistro();
                     rPersona.add(persona);
                     rPersona.save();
                     break;
                 case 2:
-                    Sesion.iniciarSesion(new GUI(), GUI.recogeDatosInicio());
+                    Sesion.iniciarSesion(GUI.recogeDatosInicio());
                     GUI.bienvenidaApp();
                     controladorMenu.controladorMenu(Sesion.getInstance());
                     Sesion.cerrarSesion();
                     break;
+                case 3:
+                    GUI.IntroducePersonaBorrar();
+                    Persona persona1 = GUI.recogeDatosInicio();
+                    if(GUI.EstaSeguro()) {
+                        rPersona.delete(persona1.getNombre());
+                        rPersona.save();
+                    }
+                    break;
             }
-        } while (opcion != 3);
+        } while (opcion != 4);
 
         System.out.println("Gracias por usar Trello. Hasta pronto （＾∀＾）ﾉｼ");
 

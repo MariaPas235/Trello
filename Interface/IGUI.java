@@ -21,6 +21,10 @@ public interface IGUI {
     //Funcion que recoge los datos del usuario al registrarse
     Persona recogeDatosRegistro();
 
+    String IntroducePersonaBorrar();
+
+    boolean EstaSeguro();
+
     //Funcion que muestra el menu de bienvenida al programa una vez inicias sesion
     void bienvenidaApp();
 
@@ -48,7 +52,8 @@ public interface IGUI {
     //Funcion que muestra todos los datos de un proyecto
     void imprimeProyecto(Proyecto proyecto);
 
-     void imprimirCabecera();
+
+    void imprimirCabecera();
 
 
     //Funcion para asignar tareas a los colaboradores

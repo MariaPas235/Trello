@@ -12,7 +12,7 @@ import java.util.Set;
 //La clase hereda atributos de la clase abstracta LibraryProyect
 public class RepoProyecto extends LibraryProyect<Proyecto, String> implements IRepoProyecto, Serializable {
     //Atributos de la clase RepoProyecto
-    private final static String FILENAME = "/src/Proyects.bin";
+    private final static String FILENAME = "src/Proyects.bin";
     private static RepoProyecto _instance;
     private Set<Proyecto> proyectos;
     //Constructor que crea una instancia de proyecto y crea una coleccion para almacenar proyectos

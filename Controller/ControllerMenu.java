@@ -33,7 +33,6 @@ public class ControllerMenu implements IControllerMenu {
         do{
             System.out.println("Hola! " + sesion.getPersona().getUsuario());
             option= GUI.imprimirMenuProyectos();
-            Proyecto proyectoaux;
             switch (option){
                 case 1:
                     rProyecto.add( GUI.recogerDatosProyecto(sesion.getPersona().getUsuario()));
@@ -41,7 +40,7 @@ public class ControllerMenu implements IControllerMenu {
                     break;
                 case 2:
                     boolean aux = false;
-
+                    Proyecto proyectoaux = null;
                     do {
                         // Obtener el proyecto por su ID
                         proyectoaux = rProyecto.getByID(GUI.seleccionarProyecto());
@@ -54,12 +53,16 @@ public class ControllerMenu implements IControllerMenu {
                             System.out.println("El proyecto seleccionado no existe. Por favor, seleccione un proyecto válido.");
                         }
                     } while (!aux);
+
+                    // Verificar si el usuario actual es el jefe del proyecto seleccionado
                     if (Objects.equals(proyectoaux.getJefe(), sesion.getPersona().getUsuario())) {
-                        rProyecto.delete(GUI.borrarProyecto());
-                    }else{
-                        System.out.println("Usted No puede borrar este proyecto porque no es el jefe");
+                        // Si es el jefe, eliminar el proyecto
+                        rProyecto.delete(proyectoaux.getNombre());
+                        System.out.println("El proyecto ha sido borrado exitosamente.");
+                    } else {
+                        // Si el usuario no es el jefe, mostrar un mensaje de error
+                        System.out.println("Usted no puede borrar este proyecto porque no es el jefe.");
                     }
-                    proyectoaux = null;
                     break;
                 case 3:
                     Set<Proyecto> proyectosSet = (Set<Proyecto>) rProyecto.getAll();
