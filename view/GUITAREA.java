@@ -56,6 +56,7 @@ public class GUITAREA implements IGUITAREA {
 
     /**
      * Funcion de añadir tareas a un proyecto
+     *
      * @return devuelve el array de tareas añadidas
      * Primero se instancia de arrayList de tarea quede inicializa vacia
      * Se crea un boolean para comprobar si el usuario jefe quiere añadir mas tareas
@@ -68,7 +69,6 @@ public class GUITAREA implements IGUITAREA {
      * A continuacion se le pide al usuario jefe si quiere seguir añadiendo tareas
      * Si la respuesta es s seguira añadiendo tareas si es n sale del bucle
      * (Se ha aplicado el caso de ignoreCase de mayusculas y minusculas por lo que s/n y S/N es lo mismo)
-     *
      */
 
     @Override
@@ -91,7 +91,7 @@ public class GUITAREA implements IGUITAREA {
 
     //Metodo estatico para poner una fecha final
     @Override
-    public  LocalDate anadirFechaFin() {
+    public LocalDate anadirFechaFin() {
         LocalDateTime ahora = LocalDateTime.now();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -114,16 +114,18 @@ public class GUITAREA implements IGUITAREA {
         return fechaFinalizacion;
     }
     //Funcion de borrar tareas del proyecto
+
     /**
      * Funcion de borrar tareas del proyecto
+     *
      * @param tareas la varibale de tareas del arrayList de tareas
-     * Primero comprueba si la lista de tareas esta vacia y si lo esta dira un aviso de que no hay ninguna disponible para borrar
-     * Si hay tareas, a continuacion se muestra la lista de tareas y sus posiciones de la lista que hay disponibles que se reccorren con un for
-     * Se declara una variable opcion
-     * En el bucle lee el numero de la tarea de la lista por teclado del usuario para borrar la tarea
-     * Si la opcion es menor a cero o mayor a la cantidad de tareas que hay imprime un error
-     * Si la opcion es distinta a 0 se borrara el numero de la tarea de la lista introducido por teclado correctamente
-     * Si la opcion es 0 sale de la funcion de borrar tareas y sale del bucle
+     *               Primero comprueba si la lista de tareas esta vacia y si lo esta dira un aviso de que no hay ninguna disponible para borrar
+     *               Si hay tareas, a continuacion se muestra la lista de tareas y sus posiciones de la lista que hay disponibles que se reccorren con un for
+     *               Se declara una variable opcion
+     *               En el bucle lee el numero de la tarea de la lista por teclado del usuario para borrar la tarea
+     *               Si la opcion es menor a cero o mayor a la cantidad de tareas que hay imprime un error
+     *               Si la opcion es distinta a 0 se borrara el numero de la tarea de la lista introducido por teclado correctamente
+     *               Si la opcion es 0 sale de la funcion de borrar tareas y sale del bucle
      */
     @Override
     public void borrarTarea(ArrayList<Tarea> tareas) {
@@ -169,14 +171,13 @@ public class GUITAREA implements IGUITAREA {
      */
 
 
-
     @Override
     public boolean actualizarTarea(ArrayList<Tarea> tareas) {
         boolean result = false;
         System.out.println("* Actualización de Tareas:");
         if (tareas.isEmpty()) {
             System.out.println("No hay tareas disponibles para actualizar.");
-        }else {
+        } else {
 
             System.out.println("* Lista de tareas disponibles:");
             for (int i = 0; i < tareas.size(); i++) {
@@ -285,6 +286,7 @@ public class GUITAREA implements IGUITAREA {
     }
 
     //Funcion para asignar tareas a los usuarios colaboradores de un proyecto
+
     /**
      * Funcion para asignar tareas a los colaboradores de un proyecto
      *

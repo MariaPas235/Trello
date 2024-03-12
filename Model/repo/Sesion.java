@@ -21,23 +21,26 @@ public class Sesion {
         }
     }
 
-    public static Sesion getInstance(){
+    public static Sesion getInstance() {
         return _instance;
     }
 
     //Constructor vacio
-    private Sesion(){}
+    private Sesion() {
+    }
     //Constructor con los atributos
 
 
     //Getter de persona
-    public Persona getPersona(){
+    public Persona getPersona() {
         return persona;
     }
+
     //Setter de persona
-    public void setPersona(Persona persona){
+    public void setPersona(Persona persona) {
         this.persona = persona;
     }
+
     //Funcion que cierra la sesion del usuario
     public static void cerrarSesion() {
         _instance = null;

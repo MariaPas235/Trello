@@ -2,6 +2,7 @@ package Interface;
 
 import Model.entity.Proyecto;
 import Model.entity.Tarea;
+
 import java.util.ArrayList;
 
 //Funciones que se implementan en la clase controller proyectos del colaborador

@@ -3,9 +3,9 @@ package Controller;
 import Interface.IControllerMenu;
 import Model.entity.Proyecto;
 import Model.repo.RepoProyecto;
-import Model.repo.RepoTarea;
 import Model.repo.Sesion;
 import view.GUIPROYECTO;
+
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,12 +15,12 @@ public class ControllerMenu implements IControllerMenu {
     ControllerProyectoJefe controladorProyectosJefe = new ControllerProyectoJefe();
     ControllerProyectoColaborador controllerProyectoColaborador = new ControllerProyectoColaborador();
     RepoProyecto rProyecto = RepoProyecto.get_instance();
-    RepoTarea rTarea = RepoTarea.get_instance();
 
     public ControllerMenu() {
     }
 
     //Funcion del controlador del menu
+
     /**
      * Funcion del controlador del menu
      * Primero nos muestra un mensaje de bienvenida junto al usuario tras iniciar sesion
@@ -28,18 +28,18 @@ public class ControllerMenu implements IControllerMenu {
      * A continuacion el proyecto dependiendo de la opcion  se guarda, se crea y añade o borra del repo de proyectos
      * Tambien muestra todos los proyectos y su informacion guardados en el repo
      */
-    public void controladorMenu(){
+    public void controladorMenu() {
         Sesion sesion = Sesion.getInstance();
         int option;
-        do{
+        do {
             System.out.println("Hola! " + sesion.getPersona().getUsuario());
-            option= GUIPROYECTO.imprimirMenuProyectos();
+            option = GUIPROYECTO.imprimirMenuProyectos();
             Proyecto proyectoaux;
-            switch (option){
+            switch (option) {
                 case 1:
-                    proyectoaux = ( GUIPROYECTO.recogerDatosProyecto(sesion.getPersona().getUsuario()));
-                    rProyecto.add( proyectoaux );
-                    rTarea.add(proyectoaux.getTareas().);
+                    proyectoaux = (GUIPROYECTO.recogerDatosProyecto(sesion.getPersona().getUsuario()));
+                    rProyecto.add(proyectoaux);
+                    rProyecto.save();
                     break;
                 case 2:
                     boolean aux = false;
@@ -58,7 +58,7 @@ public class ControllerMenu implements IControllerMenu {
                     } while (!aux);
                     if (Objects.equals(proyectoaux.getJefe(), sesion.getPersona().getUsuario())) {
                         rProyecto.delete(GUIPROYECTO.borrarProyecto());
-                    }else{
+                    } else {
                         System.out.println("Usted No puede borrar este proyecto porque no es el jefe");
                     }
                     break;
@@ -98,7 +98,7 @@ public class ControllerMenu implements IControllerMenu {
                     } else {
                         // Verificar si el usuario actual es colaborador del proyecto
                         if (proyectoaux.esColaborador(sesion.getPersona().getUsuario())) {
-                            controllerProyectoColaborador.controladorProyectosColaborador(proyectoaux,proyectoaux.getTareas());
+                            controllerProyectoColaborador.controladorProyectosColaborador(proyectoaux, proyectoaux.getTareas());
                         } else {
                             // Si no es colaborador del proyecto
                             System.out.println("Usted no es colaborador del proyecto seleccionado.");
@@ -107,7 +107,7 @@ public class ControllerMenu implements IControllerMenu {
                     }
                     break;
             }
-        }while(!(option ==5));
+        } while (!(option == 5));
 
     }
 }

@@ -39,10 +39,13 @@ public abstract class LibraryProyect<T, K> implements Serializable {
 
     //Funcion de obtener un proyecto por su nombre
     public abstract boolean getByName(String Name);
+
     // Funcion de obtener todos los objetos
     public abstract Collection<T> getAll();
+
     //Funcion de actualizar un objeto
     public abstract T update(T data);
+
     // Funcion de borrar un objeto por su ID
     public abstract boolean delete(K id);
 

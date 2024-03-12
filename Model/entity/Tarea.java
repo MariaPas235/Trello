@@ -18,21 +18,22 @@ public class Tarea implements Serializable {
     private String comentario;
 
     private EstadoTarea estadoTarea;
+
     //Constructor de tarea full equip con todos los atributos
-    public Tarea(String nombre, String personaAsignada, String descripcion, LocalDate fechaInicio, LocalDate fechaLimite, LocalDateTime fechaActual,String comentario, EstadoTarea estadoTarea) {
+    public Tarea(String nombre, String personaAsignada, String descripcion, LocalDate fechaInicio, LocalDate fechaLimite, LocalDateTime fechaActual, String comentario, EstadoTarea estadoTarea) {
         this.nombre = nombre;
         this.personaAsignada = personaAsignada;
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
         this.fechaLimite = fechaLimite;
         this.fechaActual = fechaActual;
-        this.comentario= comentario;
-        this.estadoTarea= estadoTarea;
+        this.comentario = comentario;
+        this.estadoTarea = estadoTarea;
     }
 
     //Constructor que inicializa los atributos a 0 y el estado en sin iniciar
     public Tarea() {
-        this("", "", "", LocalDate.now(), LocalDate.now(), LocalDateTime.now(),"",EstadoTarea.SININICIAR);
+        this("", "", "", LocalDate.now(), LocalDate.now(), LocalDateTime.now(), "", EstadoTarea.SININICIAR);
     }
 
     //Getters y setters de los atributos
@@ -101,8 +102,10 @@ public class Tarea implements Serializable {
     }
 
     //El equals de la clase
+
     /**
      * Equals de la clase que comprueba si dos objetos (tareas) son iguales
+     *
      * @param obj el objeto a analizar si es igual al objeto actual
      * @return devuelve el resultado de la comparacion
      * Si el objeto que se pasa (actual) es igual a uno anterior devuelve true
@@ -115,7 +118,7 @@ public class Tarea implements Serializable {
         boolean isEquals;
         if (this == obj) {
             isEquals = true;
-        } else if ((obj == null || getClass() != obj.getClass())){
+        } else if ((obj == null || getClass() != obj.getClass())) {
             isEquals = false;
         } else {
             Tarea tarea = (Tarea) obj;
@@ -125,13 +128,15 @@ public class Tarea implements Serializable {
     }
 
     //toString de la clase
+
     /**
      * toString de la clase
+     *
      * @return devuelve todos los atributos de tarea que se imprimiran por pantalla al hacer llamamiento al toString de la clase
      */
     @Override
     public String toString() {
-        return "tarea[" + nombre + personaAsignada + descripcion + fechaInicio + fechaLimite + fechaActual + comentario +"]";
+        return "tarea[" + nombre + personaAsignada + descripcion + fechaInicio + fechaLimite + fechaActual + comentario + "]";
     }
 
 
