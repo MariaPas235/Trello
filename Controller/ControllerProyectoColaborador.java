@@ -27,12 +27,12 @@ public class ControllerProyectoColaborador implements IControllerProyectoColabor
     public  void controladorProyectosColaborador(Proyecto proyecto, ArrayList<Tarea> tareas){
         int opcion;
         do{
-            System.out.println("Bienvenido! " + proyecto.getNombre());
-            GUI.imprimeProyecto(proyecto);
+            GUI.imprimirCabecera();
+            GUI.asignarTarea(proyecto);
             opcion=GUI.imprimirOpcionesDeTareaColaborador();
             switch (opcion){
                 case 1:
-                    colaborador.actualizarTarea(tareas);
+                    GUI.actualizarTarea(tareas);
                     break;
                 case 2:
                     colaborador.verComentario(proyecto);

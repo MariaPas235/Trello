@@ -59,8 +59,16 @@ public class Controller implements IController {
                     controladorMenu.controladorMenu();
                     Sesion.cerrarSesion();
                     break;
+                case 3:
+                    GUI.IntroducePersonaBorrar();
+                    Persona persona1 = GUI.recogeDatosInicio();
+                    if(GUI.EstaSeguro()) {
+                        rPersona.delete(persona1.getNombre());
+                        rPersona.save();
+                    }
+                    break;
             }
-        } while (opcion != 3);
+        } while (opcion != 4);
 
         System.out.println("Gracias por usar Trello. Hasta pronto （＾∀＾）ﾉｼ");
 
