@@ -49,9 +49,6 @@ public interface IGUI {
     //Funcion que muestra el menu de opciones del jefe para una tarea de un colaborador
     int imprimirOpcionesDeTareaColaborador();
 
-    //Funcion que muestra todos los datos de un proyecto
-    void imprimeProyecto(Proyecto proyecto);
-
      void imprimirCabecera();
 
 

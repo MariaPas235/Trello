@@ -41,8 +41,8 @@ public class GUI implements IGUI {
         String nombreUsuario;
         String contrasena;
 
-            nombreUsuario = Teclado.leeString("Inserte su usuario");
-            contrasena = Teclado.leeString("Inserte su contraseña");
+            nombreUsuario = Teclado.leeString("* Inserte su usuario:");
+            contrasena = Teclado.leeString("*Inserte su contraseña:");
 
         Persona tryLogging = new Persona("Logging");
         tryLogging.setUsuario(nombreUsuario);
@@ -67,21 +67,21 @@ public class GUI implements IGUI {
     @Override
     public Persona recogeDatosRegistro() {
 
-        String nombrePersona = Teclado.leeString("Inserte su nombre completo");
-        String nombreUsuario = Teclado.leeString("Inserte su nombre de usuario");
+        String nombrePersona = Teclado.leeString("*Inserte su nombre completo:");
+        String nombreUsuario = Teclado.leeString("*Inserte su nombre de usuario:");
         while (!Persona.validarUsuario(nombreUsuario)) {
-            nombreUsuario = Teclado.leeString("Introduce una nombre de usuario correcto");
+            nombreUsuario = Teclado.leeString("*Introduce una nombre de usuario correcto:");
         }
-        String contrasena = Teclado.leeString("Inserte su contraseña (Debe tener al menos 8 caracteres, incluyendo 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes -> @$!.#_()%*?& <-)");
+        String contrasena = Teclado.leeString("*Inserte su contraseña (Debe tener al menos 8 caracteres, incluyendo 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial de los siguientes -> @$!.#_()%*?& <-):");
         while (!Persona.validarContrasena(contrasena)) {
-            contrasena = Teclado.leeString("Introduce una contraseña correcta");
+            contrasena = Teclado.leeString("*Introduce una contraseña correcta:");
         }
 
-        String mail = Teclado.leeString("Inserte su mail");
+        String mail = Teclado.leeString("*Inserte su mail:");
 
         while (!Persona.validarCorreo(mail)) {
-            System.out.println("Mail incorrecto");
-            mail = Teclado.leeString("Introduce tu mail correctamente");
+            System.out.println("Su mail ya se encuentra registrado en la base de datos, por favor inserte otro:");
+            mail = Teclado.leeString("Introduce tu mail:");
         }
 
         return new Persona(nombrePersona, nombreUsuario, contrasena, mail);
@@ -97,16 +97,19 @@ public class GUI implements IGUI {
      */
     @Override
     public int imprimirMenuInicio() {
-        System.out.println("1. Registrarse");
-        System.out.println("2. Iniciar sesion");
-        System.out.println("3. Borrar Usuario");
-        System.out.println("4. Salir");
+        System.out.println("");
+        System.out.println("===============================");
+        System.out.println("=     1. Registrarse          =");
+        System.out.println("=     2. Iniciar sesion       =");
+        System.out.println("=     3. Borrar Usuario       =");
+        System.out.println("=     4. Salir                =");
+        System.out.println("===============================");
         return Teclado.leeNumero("Inserte una opción");
 
     }
     @Override
     public String IntroducePersonaBorrar(){
-        return "Introduce la persona que quieres borrar\n";
+        return "* Introduce la persona que quieres borrar: \n";
     }
     @Override
     public boolean EstaSeguro() {
@@ -134,11 +137,14 @@ public class GUI implements IGUI {
      */
     @Override
     public int imprimirMenuProyectos() {
-        System.out.println("1. Crear proyecto");
-        System.out.println("2. Borrar proyecto");
-        System.out.println("3. Listar proyectos");
-        System.out.println("4. Seleccionar proyecto");
-        System.out.println("5. Cerrar Sesión");
+        System.out.println("");
+        System.out.println("====================================");
+        System.out.println("=       1. Crear proyecto          =");
+        System.out.println("=       2. Borrar proyecto         =");
+        System.out.println("=       3. Listar proyectos        =");
+        System.out.println("=       4. Seleccionar proyecto    =");
+        System.out.println("=       5. Cerrar Sesión           =");
+        System.out.println("====================================");
         return Teclado.leeNumero("Inserte una opción");
     }
 
@@ -146,8 +152,8 @@ public class GUI implements IGUI {
     @Override
     public Proyecto recogerDatosProyecto(String nombre) {
         Proyecto proyecto = new Proyecto();
-        proyecto.setNombre(Teclado.leeString("Inserte el nombre de su proyecto"));
-        proyecto.setDescripcion(Teclado.leeString("Inserte una descripción de su proyecto"));
+        proyecto.setNombre(Teclado.leeString("* Inserte el nombre de su proyecto:"));
+        proyecto.setDescripcion(Teclado.leeString("* Inserte una descripción para su proyecto:"));
         proyecto.setFechaCreacion(LocalDate.now());
         proyecto.setColaboradores(proyecto.anadirColaborador());
         proyecto.setTareas(GUI.anadirTareas());
@@ -165,11 +171,12 @@ public class GUI implements IGUI {
         LocalDate fechaFinalizacion = null;
 
         while (fechaFinalizacion == null) {
-            String fechaFinalizacionStr = Teclado.leeString("Introduce la fecha de finalización (formato AAAA-MM-DD):");
+            String fechaFinalizacionStr = Teclado.leeString("* Introduce la fecha de finalización (formato AAAA-MM-DD):");
 
             if (fechaFinalizacionStr.matches("\\d{4}-\\d{2}-\\d{2}") && fechaFinalizacionStr.compareTo(fechaActualStr) >= 0) {
                 fechaFinalizacion = LocalDate.parse(fechaFinalizacionStr, formatter);
             } else {
+                System.out.println("");
                 System.out.println("Error: La fecha de finalización no puede ser anterior a la fecha actual o el formato es incorrecto. " +
                         "Por favor, inténtalo de nuevo.");
             }
@@ -187,7 +194,7 @@ public class GUI implements IGUI {
      */
     @Override
     public String borrarProyecto() {
-        return Teclado.leeString("Introduce el nombre del proyecto que quieres eliminar:");
+        return Teclado.leeString("* Introduce el nombre del proyecto que quieres eliminar:");
     }
 
     //Funcion de seleccionar un proyecto pidiendo por teclado el nombre de este
@@ -199,13 +206,13 @@ public class GUI implements IGUI {
      */
     @Override
     public String seleccionarProyecto() {
-        return Teclado.leeString("Inserte el nombre de su proyecto");
+        return Teclado.leeString("* Inserte el nombre del proyecto al que quiere acceder:");
     }
 
     //Funcion que lista los datos de un proyecto
     @Override
     public void listarProyectos(Proyecto proyecto) {
-
+        System.out.println("");
         System.out.println("Nombre: " + proyecto.getNombre());
         System.out.println("Descripción: " + proyecto.getDescripcion());
         System.out.println("Fecha de Creación: " + proyecto.getFechaCreacion());
@@ -222,13 +229,16 @@ public class GUI implements IGUI {
      */
     @Override
     public int imprimirOpcionesDeTareaJefe() {
-        System.out.println("1. Añadir tarea");
-        System.out.println("2. Borrar tarea");
-        System.out.println("3. Añadir colaboradores");
-        System.out.println("4. Eliminar Colaboradores");
-        System.out.println("5. Asignar Tarea");
-        System.out.println("6. Actualizar Tarea");
-        System.out.println("7. Salir");
+        System.out.println("");
+        System.out.println("======================================================");
+        System.out.println("=               1. Añadir tarea                      =");
+        System.out.println("=               2. Borrar tarea                      =");
+        System.out.println("=               3. Añadir colaboradores              =");
+        System.out.println("=               4. Eliminar Colaboradores            =");
+        System.out.println("=               5. Asignar Tarea                     =");
+        System.out.println("=               6. Actualizar Tarea                  =");
+        System.out.println("=               7. Salir                             =");
+        System.out.println("======================================================");
         return Teclado.leeNumero("Inserte una opción");
     }
 
@@ -241,14 +251,16 @@ public class GUI implements IGUI {
      */
     @Override
     public int imprimirOpcionesDeTareaColaborador() {
-        System.out.println("1. Actualizar Tarea");
-        System.out.println("2. Ver Comentario");
-        System.out.println("3. Salir");
+        System.out.println("========================================");
+        System.out.println("=         1. Actualizar Tarea          =");
+        System.out.println("=         2. Ver Comentario            =");
+        System.out.println("=         3. Salir                     =");
+        System.out.println("========================================");
         return Teclado.leeNumero("Inserte una opción");
     }
 
     //Funcion que muestra todos los datos de un proyecto
-    @Override
+   /* @Override
     public void imprimeProyecto(Proyecto proyecto) {
         System.out.println("Nombre: " + proyecto.getNombre());
         System.out.println("Descripción: " + proyecto.getDescripcion());
@@ -268,7 +280,7 @@ public class GUI implements IGUI {
             System.out.printf("%-30s%-30s%-30s\n", nombreTarea, personaAsignada, estadoTarea);
         }
         System.out.println("========================================================================");
-    }
+    }*/
 
 
     //Funcion para añadir tareas a un proyecto
@@ -295,8 +307,8 @@ public class GUI implements IGUI {
         boolean auxSN = true;
         while (auxSN) {
             Tarea tarea1 = new Tarea();
-            tarea1.setNombre(Teclado.leeString("Introduce el nombre de la tarea: "));
-            tarea1.setDescripcion(Teclado.leeString("Introduce una descripcion: "));
+            tarea1.setNombre(Teclado.leeString("* Introduce el nombre de la tarea: "));
+            tarea1.setDescripcion(Teclado.leeString("* Introduce una descripcion: "));
             tarea1.setFechaActual(LocalDateTime.now());
             tarea1.setFechaInicio(LocalDate.now());
             tarea1.setFechaLimite(GUI.anadirFechaFin());
@@ -332,43 +344,15 @@ public class GUI implements IGUI {
             if (tarea.getEstadoTarea().equals(EstadoTarea.SININICIAR)) {
 
 
-                System.out.println("|"+espacios+nombreTarea+" ("+nombreColaborador+")"+espacios+"                                                                                                                                    |");
+                System.out.println( espacios+nombreTarea+" ("+nombreColaborador+")"+espacios+"                                                                                                                                     ");
 
             } else if (tarea.getEstadoTarea().equals(EstadoTarea.PENDIENTE)) {
-                System.out.println("|                                                                  "+espacios+nombreTarea+" ("+nombreColaborador+")"+espacios+"                                                                  |");
+                System.out.println("                                                                   "+espacios+nombreTarea+" ("+nombreColaborador+")"+espacios+"                                                                   ");
             } else {
-                System.out.println("|                                                                                                                                    "+espacios+nombreTarea+" ("+nombreColaborador+")"+espacios+"|");
-            }
-            //toString().substring();
-
-        }
-    }
-
-    public static int espacioencadalado(Proyecto proyecto) {
-        int suma=0;
-        int espacioencadalado=0;
-        for (Tarea tarea : proyecto.getTareas()) {
-            suma = tarea.getNombre().length() + tarea.getPersonaAsignada().length();
-            if (tarea.getEstadoTarea().equals(EstadoTarea.SININICIAR) || tarea.getEstadoTarea().equals(EstadoTarea.PENDIENTE)) {
-                espacioencadalado = (66 - suma) / 2;
-            } else {
-                espacioencadalado = (64 - suma) / 2;
+                System.out.println("                                                                                                                                     "+espacios+nombreTarea+" ("+nombreColaborador+")"+espacios+" ");
             }
 
         }
-        return espacioencadalado;
-    }
-
-
-
-    public static String generarCadenaVacia(int longitud) {
-
-        if (longitud < 0) {
-            System.out.println("La longitud no puede ser negativa.");
-        }
-
-        // Crea una cadena de caracteres vacíos con la longitud especificada
-        return new String(new char[longitud]);
     }
 
 
@@ -391,16 +375,15 @@ public class GUI implements IGUI {
     @Override
     public boolean asignarTarea(ArrayList<Tarea> tareas, Colaborador colaborador) {
         boolean result = true;
-        System.out.println("Asignación de Tareas:");
+        System.out.println("* Asignación de Tareas:");
 
         if (tareas.isEmpty()) {
             System.out.println("No hay tareas disponibles para asignar.");
             result = false;
         }
 
-        String nombreTarea = Teclado.leeString("Ingrese el nombre de la tarea: ");
-        String nombrePersonaAsignada = Teclado.leeString("Ingrese el nombre de la persona asignada: ");
-        // Buscar la tarea por su nombre
+        String nombreTarea = Teclado.leeString("* Ingrese el nombre de la tarea: ");
+        String nombrePersonaAsignada = Teclado.leeString("* Ingrese el nombre de la persona asignada: ");
         if (result) {
             for (Tarea tarea : tareas) {
                 if (tarea.getNombre().equals(nombreTarea)) {
@@ -426,12 +409,12 @@ public class GUI implements IGUI {
      */
     @Override
     public void borrarTarea(ArrayList<Tarea> tareas) {
-        System.out.println("Borrado de Tareas:");
+        System.out.println("* Borrado de Tareas:");
         if (tareas.isEmpty()) {
             System.out.println("No hay tareas disponibles para borrar.");
         } else {
 
-            System.out.println("Lista de tareas disponibles:");
+            System.out.println("* Lista de tareas disponibles:");
             for (int i = 0; i < tareas.size(); i++) {
                 System.out.println((i + 1) + ". " + tareas.get(i).getNombre());
             }
@@ -443,7 +426,7 @@ public class GUI implements IGUI {
                     System.out.println("Opción inválida. Por favor, seleccione una tarea válida.");
                 } else if (opcion != 0) {
                     tareas.remove(opcion - 1);
-                    System.out.println("Tarea borrada correctamente.");
+                    System.out.println("* Tarea borrada correctamente.");
                 }
             } while (opcion != 0);
         }
@@ -466,48 +449,51 @@ public class GUI implements IGUI {
      */
     @Override
     public void actualizarTarea(ArrayList<Tarea> tareas) {
-        System.out.println("Actualización de Tareas:");
+        System.out.println("* Actualización de Tareas:");
         if (tareas.isEmpty()) {
             System.out.println("No hay tareas disponibles para actualizar.");
             return;
         }
 
-        System.out.println("Lista de tareas disponibles:");
+        System.out.println("* Lista de tareas disponibles:");
         for (int i = 0; i < tareas.size(); i++) {
             System.out.println((i + 1) + ". " + tareas.get(i).getNombre());
         }
-        int eligeTarea = Teclado.leeNumero("Introduzca numero de la tarea: ");
+        int eligeTarea = Teclado.leeNumero("* Introduzca numero de la tarea: ");
         Tarea tarea = tareas.get(eligeTarea - 1); // Corregido el índice
 
         int opcion;
         do {
-            System.out.println("1. Nombre");
-            System.out.println("2. Persona Asignada");
-            System.out.println("3. Descripción");
-            System.out.println("4. Fecha de Inicio");
-            System.out.println("5. Fecha Límite");
-            System.out.println("6. Comentario");
-            System.out.println("7. Estado de la Tarea");
-            System.out.println("0. Salir");
+            System.out.println("");
+            System.out.println("===========================================");
+            System.out.println("=              1. Nombre                  =");
+            System.out.println("=              2. Persona Asignada        =");
+            System.out.println("=              3. Descripción             =");
+            System.out.println("=              4. Fecha de Inicio         =");
+            System.out.println("=              5. Fecha Límite            =");
+            System.out.println("=              6. Comentario              =");
+            System.out.println("=              7. Estado de la Tarea      =");
+            System.out.println("=              0. Salir                   =");
+            System.out.println("===========================================");
 
-            opcion = Teclado.leeNumero("Seleccione qué atributo desea actualizar:");
+            opcion = Teclado.leeNumero("Seleccione qué desea actualizar:");
 
             switch (opcion) {
                 case 1:
-                    tarea.setNombre(Teclado.leeString("Ingrese el nuevo nombre: "));
+                    tarea.setNombre(Teclado.leeString("* Ingrese el nuevo nombre: "));
                     break;
                 case 2:
-                    tarea.setPersonaAsignada(Teclado.leeString("Ingrese la nueva persona asignada: "));
+                    tarea.setPersonaAsignada(Teclado.leeString("* Ingrese la nueva persona asignada: "));
                     break;
                 case 3:
-                    tarea.setDescripcion(Teclado.leeString("Ingrese la nueva descripción: "));
+                    tarea.setDescripcion(Teclado.leeString("* Ingrese la nueva descripción: "));
                     break;
                 case 4:
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     LocalDate fechaInicio = null;
 
                     while (fechaInicio == null) {
-                        String fechaInicioStr = Teclado.leeString("Introduce la fecha de Inicio (formato AAAA-MM-DD):");
+                        String fechaInicioStr = Teclado.leeString("* Introduce la fecha de Inicio (formato AAAA-MM-DD):");
 
                         if (fechaInicioStr.matches("\\d{4}-\\d{2}-\\d{2}")) {
                             fechaInicio = LocalDate.parse(fechaInicioStr, formatter);
@@ -526,7 +512,7 @@ public class GUI implements IGUI {
                     LocalDate fechaFinalizacion2 = null;
 
                     while (fechaFinalizacion2 == null) {
-                        String fechaFinalizacionStr2 = Teclado.leeString("Introduce la fecha de finalización (formato AAAA-MM-DD):");
+                        String fechaFinalizacionStr2 = Teclado.leeString("* Introduce la fecha de finalización (formato AAAA-MM-DD):");
 
                         if (fechaFinalizacionStr2.matches("\\d{4}-\\d{2}-\\d{2}") && fechaFinalizacionStr2.compareTo(fechaActualStr2) >= 0) {
                             fechaFinalizacion2 = LocalDate.parse(fechaFinalizacionStr2, formatter2);
@@ -538,12 +524,15 @@ public class GUI implements IGUI {
                     tarea.setFechaLimite(fechaFinalizacion2);
                     break;
                 case 6:
-                    tarea.setComentario(Teclado.leeString("Ingrese el nuevo comentario: "));
+                    tarea.setComentario(Teclado.leeString("* Ingrese el nuevo comentario: "));
                     break;
                 case 7:
-                    System.out.println("1. Sin Iniciar");
-                    System.out.println("2. Pendiente");
-                    System.out.println("3. Acabada");
+                    System.out.println("");
+                    System.out.println("================================");
+                    System.out.println("=       1. Sin Iniciar         =");
+                    System.out.println("=       2. Pendiente           =");
+                    System.out.println("=       3. Acabada             =");
+                    System.out.println("================================");
                     int estado = Teclado.leeNumero("Seleccione el nuevo estado de la tarea:");
                     switch (estado) {
                         case 1:
@@ -565,7 +554,7 @@ public class GUI implements IGUI {
                     System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
                     break;
             }
-            System.out.println("Tarea actualizada correctamente.");
+            System.out.println("* Tarea actualizada correctamente.");
 
         } while (opcion != 0);
     }
