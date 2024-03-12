@@ -322,12 +322,12 @@ public class GUI implements IGUI {
             if (tarea.getEstadoTarea().equals(EstadoTarea.SININICIAR)) {
 
 
-                System.out.println("|"+espacios+nombreTarea+" ("+nombreColaborador+")"+espacios);
+                System.out.println("|"+espacios+nombreTarea+" ("+nombreColaborador+")"+espacios+"                                                                                                                                    |");
 
             } else if (tarea.getEstadoTarea().equals(EstadoTarea.PENDIENTE)) {
-                System.out.println("|                                                            |"+generarCadenaVacia(espacioencadalado(proyecto)) + tarea.getNombre() + " ( " + (tarea.getPersonaAsignada()) + " )"+generarCadenaVacia(espacioencadalado(proyecto))+"|                                                               |");
+                System.out.println("|                                                                  "+espacios+nombreTarea+" ("+nombreColaborador+")"+espacios+"                                                                  |");
             } else {
-                System.out.println("|                                                            |                                                                 |"+generarCadenaVacia(espacioencadalado(proyecto)) + tarea.getNombre() + " ( " + (tarea.getPersonaAsignada()) + " )"+generarCadenaVacia(espacioencadalado(proyecto))+"|");
+                System.out.println("|                                                                                                                                    "+espacios+nombreTarea+" ("+nombreColaborador+")"+espacios+"|");
             }
             //toString().substring();
 

@@ -45,7 +45,6 @@ public class Controller implements IController {
             opcion=GUI.imprimirMenuInicio();
             switch (opcion) {
                 case 1:
-                    GUI.imprimirCabecera();
                     Persona persona = GUI.recogeDatosRegistro();
                     rPersona.add(persona);
                     break;
