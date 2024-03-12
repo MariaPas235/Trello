@@ -99,9 +99,19 @@ public class GUI implements IGUI {
     public int imprimirMenuInicio() {
         System.out.println("1. Registrarse");
         System.out.println("2. Iniciar sesion");
-        System.out.println("3. Salir");
+        System.out.println("3. Borrar Usuario");
+        System.out.println("4. Salir");
         return Teclado.leeNumero("Inserte una opción");
 
+    }
+    @Override
+    public String IntroducePersonaBorrar(){
+        return "Introduce la persona que quieres borrar\n";
+    }
+    @Override
+    public boolean EstaSeguro() {
+        String respuesta = Teclado.leeString("¿Estás seguro? (si/no)"); // Convertir la respuesta a minúsculas para compararla de forma insensible a mayúsculas
+        return respuesta.equals("si");
     }
 
     //Funcion que muestra el menu de bienvenida tras iniciar sesion

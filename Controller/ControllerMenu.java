@@ -22,7 +22,6 @@ public class ControllerMenu implements IControllerMenu {
     //Funcion del controlador del menu
     /**
      * Funcion del controlador del menu
-     * @param sesion el inicio de sesion de un usuario al entrar en el programa
      * Primero nos muestra un mensaje de bienvenida junto al usuario tras iniciar sesion
      * Se llama a la funcion del menu de opciones dd proyecto y elige una de las opiones
      * A continuacion el proyecto dependiendo de la opcion  se guarda, se crea y añade o borra del repo de proyectos
@@ -38,7 +37,6 @@ public class ControllerMenu implements IControllerMenu {
             switch (option){
                 case 1:
                     rProyecto.add( GUI.recogerDatosProyecto(sesion.getPersona().getUsuario()));
-                    rProyecto.save();
                     break;
                 case 2:
                     boolean aux = false;

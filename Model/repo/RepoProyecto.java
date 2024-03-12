@@ -52,6 +52,7 @@ public class RepoProyecto extends LibraryProyect<Proyecto, String> implements IR
         if (proyectos.add(data)) {
             result = data;
         }
+        save();
         return result;
     }
     //Funcion de obtener un proyecto por ID

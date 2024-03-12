@@ -21,6 +21,10 @@ public interface IGUI {
     //Funcion que recoge los datos del usuario al registrarse
     Persona recogeDatosRegistro();
 
+    String IntroducePersonaBorrar();
+
+    boolean EstaSeguro();
+
     //Funcion que muestra el menu de bienvenida al programa una vez inicias sesion
     void bienvenidaApp();
 
