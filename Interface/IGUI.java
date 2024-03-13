@@ -9,4 +9,6 @@ public interface IGUI {
 
     //Funcion que muestra el menu de proyectos al iniciar sesion el usuario
     void espacioTrabajo(Proyecto proyecto);
+
+    void imprimir(String impreso);
 }

@@ -5,6 +5,7 @@ import Model.entity.Proyecto;
 import Model.repo.RepoProyecto;
 import Model.repo.Sesion;
 import view.GUIPROYECTO;
+import view.GUI;
 
 import java.util.Objects;
 import java.util.Set;
@@ -15,6 +16,7 @@ public class ControllerMenu implements IControllerMenu {
     ControllerProyectoJefe controladorProyectosJefe = new ControllerProyectoJefe();
     ControllerProyectoColaborador controllerProyectoColaborador = new ControllerProyectoColaborador();
     RepoProyecto rProyecto = RepoProyecto.get_instance();
+    GUI GUI=new GUI();
 
     public ControllerMenu() {
     }
@@ -32,7 +34,7 @@ public class ControllerMenu implements IControllerMenu {
         Sesion sesion = Sesion.getInstance();
         int option;
         do {
-            System.out.println("Hola! " + sesion.getPersona().getUsuario());
+            GUI.imprimir("Hola! " + sesion.getPersona().getUsuario());
             option = GUIPROYECTO.imprimirMenuProyectos();
             Proyecto proyectoaux;
             switch (option) {
@@ -53,21 +55,22 @@ public class ControllerMenu implements IControllerMenu {
                             aux = true;
                         } else {
                             // Si no se encontró el proyecto, mostrar un mensaje de error
-                            System.out.println("El proyecto seleccionado no existe. Por favor, seleccione un proyecto válido.");
+                            GUI.imprimir("El proyecto seleccionado no existe. Por favor, seleccione un proyecto válido.");
                         }
                     } while (!aux);
                     if (Objects.equals(proyectoaux.getJefe(), sesion.getPersona().getUsuario())) {
                         rProyecto.delete(GUIPROYECTO.borrarProyecto());
                     } else {
-                        System.out.println("Usted No puede borrar este proyecto porque no es el jefe");
+                        GUI.imprimir("Usted No puede borrar este proyecto porque no es el jefe");
+
                     }
                     break;
                 case 3:
                     Set<Proyecto> proyectosSet = (Set<Proyecto>) rProyecto.getAll();
                     if (proyectosSet.isEmpty()) {
-                        System.out.println("No hay proyectos creados.");
+                        GUI.imprimir("No hay proyectos creados.");
                     } else {
-                        System.out.println("Proyectos creados:");
+                        GUI.imprimir("Proyectos creados:");
                         for (Proyecto proyecto : proyectosSet) {
                             // Verificar si el usuario actual es el jefe del proyecto o si es colaborador del proyecto
                             if (Objects.equals(proyecto.getJefe(), sesion.getPersona().getUsuario()) || proyecto.esColaborador(sesion.getPersona().getUsuario())) {
@@ -88,7 +91,7 @@ public class ControllerMenu implements IControllerMenu {
                             aux = true;
                         } else {
                             // Si no se encontró el proyecto, mostrar un mensaje de error
-                            System.out.println("El proyecto seleccionado no existe. Por favor, seleccione un proyecto válido.");
+                            GUI.imprimir("El proyecto seleccionado no existe. Por favor, seleccione un proyecto válido.");
                         }
                     } while (!aux);
 
@@ -101,7 +104,7 @@ public class ControllerMenu implements IControllerMenu {
                             controllerProyectoColaborador.controladorProyectosColaborador(proyectoaux, proyectoaux.getTareas());
                         } else {
                             // Si no es colaborador del proyecto
-                            System.out.println("Usted no es colaborador del proyecto seleccionado.");
+                            GUI.imprimir("Usted no es colaborador del proyecto seleccionado.");
                             // Aquí puedes manejar la situación de otra manera, por ejemplo, mostrar un mensaje de error o redirigir a otra página.
                         }
                     }
