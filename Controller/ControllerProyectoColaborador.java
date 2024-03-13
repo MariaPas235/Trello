@@ -38,7 +38,7 @@ public class ControllerProyectoColaborador implements IControllerProyectoColabor
             opcion = GUITAREA.imprimirOpcionesDeTareaColaborador();
             switch (opcion) {
                 case 1:
-                    GUITAREA.actualizarTarea(tareas);
+                    GUITAREA.actualizarTareaColaborador(tareas);
                     rProyecto.save();
                     break;
                 case 2:

@@ -284,6 +284,41 @@ public class GUITAREA implements IGUITAREA {
         }
         return result;
     }
+    public  String actualizarTareaColaborador(ArrayList<Tarea> tareas) {
+        if (tareas.isEmpty()) {
+            System.out.println("No hay tareas disponibles para actualizar.");
+        } else {
+
+            System.out.println("* Lista de tareas disponibles:");
+            for (int i = 0; i < tareas.size(); i++) {
+                System.out.println((i + 1) + ". " + tareas.get(i).getNombre());
+            }
+            int eligeTarea = Teclado.leeNumero("* Introduzca numero de la tarea: ");
+            Tarea tarea = tareas.get(eligeTarea - 1); // Corregido el índice
+
+            System.out.println("");
+            System.out.println("================================");
+            System.out.println("=       1. Sin Iniciar         =");
+            System.out.println("=       2. Pendiente           =");
+            System.out.println("=       3. Acabada             =");
+            System.out.println("================================");
+            int estado = Teclado.leeNumero("Seleccione el nuevo estado de la tarea:");
+            switch (estado) {
+                case 1:
+                    tarea.setEstadoTarea(EstadoTarea.SININICIAR);
+                    break;
+                case 2:
+                    tarea.setEstadoTarea(EstadoTarea.PENDIENTE);
+                    break;
+                case 3:
+                    tarea.setEstadoTarea(EstadoTarea.ACABADA);
+                    break;
+                default:
+                    System.out.println("Opción inválida. El estado de la tarea no fue actualizado.");
+            }
+        }
+        return "Tarea actualizada Correctamente";
+    }
 
     //Funcion para asignar tareas a los usuarios colaboradores de un proyecto
 
