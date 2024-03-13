@@ -51,4 +51,10 @@ public class GUI implements IGUI {
         }
     }
 
+    //Función para imprimir por pantalla
+    @Override
+    public void imprimir(String impreso){
+        System.out.println(impreso);
+    }
+
 }

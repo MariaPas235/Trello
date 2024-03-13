@@ -5,6 +5,7 @@ import Model.entity.Persona;
 import Model.repo.RepoPersona;
 import Model.repo.Sesion;
 import view.GUIMENU;
+import view.GUI;
 
 //La clase controlador implementa las funciones de la interfaz IController
 public class Controller implements IController {
@@ -15,6 +16,7 @@ public class Controller implements IController {
     RepoPersona rPersona = RepoPersona.get_instance();
     //Se crea una nueva instancia de la clase ControllerMenu asignada a la variable controladorMenu
     ControllerMenu controladorMenu = new ControllerMenu();
+    GUI GUI= new GUI();
 
     //Constructor vacio del Controller
     public Controller() {
@@ -71,8 +73,12 @@ public class Controller implements IController {
             }
         } while (opcion != 4);
 
-        System.out.println("Gracias por usar Trello. Hasta pronto （＾∀＾）ﾉｼ");
+        GUI.imprimir("Gracias por usar Trello. Hasta pronto （＾∀＾）ﾉｼ");
 
 
     }
+
+
+
+
 }

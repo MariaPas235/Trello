@@ -45,9 +45,11 @@ public class ControllerProyectoJefe implements IControllerProyectoJefe {
                     if (tareasNuevas != null && !tareasNuevas.isEmpty()) {
                         proyecto.getTareas().addAll(tareasNuevas);
                         rProyecto.save();
-                        System.out.println("Tarea(s) añadida(s) correctamente.");
+                        GUI.imprimir("Tarea(s) añadida(s) correctamente.");
+
                     } else {
-                        System.out.println("No se pudo añadir la(s) tarea(s).");
+                        GUI.imprimir("No se pudo añadir la(s) tarea(s).");
+
                     }
                     break;
                 case 2:
